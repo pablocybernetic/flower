@@ -38,9 +38,9 @@
             @php $total += $product['price'] * $product['quantity'] @endphp
             <tr>
                 <td>{{$product->name}}</td>
-                <td style="text-align:center">৳{{$product->price}}</td>
+                <td style="text-align:center">Ksh {{$product->price}}</td>
                 <td style="text-align:center">{{$product->quantity}}</td>
-                <td style="text-align:center">৳{{$product->subtotal}}</td>
+                <td style="text-align:center">Ksh {{$product->subtotal}}</td>
                 <td style="text-align:center" class="actions" data-th="">
                     <form method="post" action="{{route('cart.destroy', $product)}}" onsubmit="return confirm('Sure?')">
                         @csrf
@@ -62,7 +62,7 @@
                 <td style="text-align:center"></td>
                 
               
-                <td style="text-align:center">৳{{  $chrage->price }}</td>
+                <td style="text-align:center">Ksh {{  $chrage->price }}</td>
 
 
         
@@ -115,15 +115,15 @@
         
         @endphp
        
-            <td colspan="5" class="text-right"><h5><strong>Total ৳{{ $without_discount_price }}</strong></h5></td>
+            <td colspan="5" class="text-right"><h5><strong>Total Ksh {{ $without_discount_price }}</strong></h5></td>
         </tr>
         <tr>
   
-            <td colspan="5" class="text-right"><h5><strong>Discount ৳{{ $discount_price }}</strong></h5></td>
+            <td colspan="5" class="text-right"><h5><strong>Discount Ksh {{ $discount_price }}</strong></h5></td>
         </tr>
         <tr>
       
-            <td colspan="5" class="text-right"><h3><strong>Total (With Discount) ৳{{ $total_price }}</strong></h3></td>
+            <td colspan="5" class="text-right"><h3><strong>Total (With Discount) Ksh {{ $total_price }}</strong></h3></td>
         </tr>
         <tr>
             <td colspan="5" class="text-right">

@@ -118,7 +118,7 @@
                             <td></td>
                             <td></td>
                             <td>Total </td>
-                            <td class="">  ৳{{  $wihout_discount_price }}</td>                   
+                            <td class="">  Ksh {{  $wihout_discount_price }}</td>                   
                     
                     
                         </tr>
@@ -127,7 +127,7 @@
                             <td></td>
                             <td></td>
                             <td>Discount </td>
-                            <td class="">  ৳{{  $discount_price }}</td>                   
+                            <td class="">  Ksh {{  $discount_price }}</td>                   
                     
                     
                         </tr>
@@ -136,7 +136,7 @@
                             <td></td>
                             <td></td>
                             <td><h3>Total (With Discount)</h3> </td>
-                            <td class=""><h3>  ৳{{  $total_price }} </h3></td>                   
+                            <td class=""><h3>  Ksh {{  $total_price }} </h3></td>                   
                     
                     
                         </tr>

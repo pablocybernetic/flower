@@ -165,9 +165,9 @@
             @php $total += $product['price'] * $product['quantity'] @endphp
             <tr>
                 <td>{{$product->name}}</td>
-                <td style="text-align:center">৳{{$product->price}}</td>
+                <td style="text-align:center">Ksh {{$product->price}}</td>
                 <td style="text-align:center">{{$product->quantity}}</td>
-                <td style="text-align:center">৳{{$product->subtotal}}</td>
+                <td style="text-align:center">Ksh {{$product->subtotal}}</td>
                 
             </tr>
             
@@ -179,7 +179,7 @@
                 <td>{{$charge->name}}</td>
                 <td style="text-align:center"></td>
                 <td style="text-align:center"></td>
-                <td style="text-align:center">৳{{$charge->price}}</td>
+                <td style="text-align:center">Ksh {{$charge->price}}</td>
                 
             </tr>
             
@@ -195,7 +195,7 @@
         Session::put('total',$total_price);
         
         @endphp
-            <td colspan="4" class="text-right"><h6><strong>Total ৳{{ $without_discount_price }}</strong></h6></td>
+            <td colspan="4" class="text-right"><h6><strong>Total Ksh {{ $without_discount_price }}</strong></h6></td>
         </tr>
         <tr>
         @php 
@@ -206,7 +206,7 @@
         Session::put('total',$total_price);
         
         @endphp
-            <td colspan="4" class="text-right"><h6><strong>Discount ৳{{ $discount_price }}</strong></h6></td>
+            <td colspan="4" class="text-right"><h6><strong>Discount Ksh {{ $discount_price }}</strong></h6></td>
         </tr>
         <tr>
         @php 
@@ -219,7 +219,7 @@
         Session::put('total',$total_price);
         
         @endphp
-            <td colspan="4" class="text-right"><h3><strong>Total (With Discount)৳{{ $total_price }}</h2></strong></h3></td>
+            <td colspan="4" class="text-right"><h3><strong>Total (With Discount)Ksh {{ $total_price }}</h2></strong></h3></td>
         </tr>
         <tr>
             <td colspan="5" class="text-right">

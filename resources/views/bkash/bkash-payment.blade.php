@@ -10,7 +10,7 @@
 
 
 <button class="btn btn-success" id="bKash_button" onclick="BkashPayment()">
-    Pay with bKash
+    Pay with Mpesa
 </button>
 
 

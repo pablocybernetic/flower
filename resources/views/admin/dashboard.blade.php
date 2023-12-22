@@ -103,7 +103,7 @@
                           <p class="text-muted mb-0"></p>
                         </div>
                         <div class="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
-                          <h6 class="font-weight-bold mb-0">৳{{   $total   }}</h6>
+                          <h6 class="font-weight-bold mb-0">Ksh {{   $total   }}</h6>
                         </div>
                       </div>
 
@@ -113,7 +113,7 @@
                           <p class="text-muted mb-0"></p>
                         </div>
                         <div class="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
-                          <h6 class="font-weight-bold mb-0">৳{{   $cash_on_payment   }}</h6>
+                          <h6 class="font-weight-bold mb-0">Ksh {{   $cash_on_payment   }}</h6>
                         </div>
                       </div>
 
@@ -124,7 +124,7 @@
                           <p class="text-muted mb-0"></p>
                         </div>
                         <div class="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
-                          <h6 class="font-weight-bold mb-0">৳{{  $online_payment  }}</h6>
+                          <h6 class="font-weight-bold mb-0">Ksh {{  $online_payment  }}</h6>
                         </div>
                       </div>
                     </div>

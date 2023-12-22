@@ -27,7 +27,7 @@
                 <td>
                     <img src="{{asset('assets/images/'.$products->image)}}" height=150px width=180px></td>
                     <td><h2>{{$products->name}}</h2>
-                    <h4>৳{{$products->price}}</h4>
+                    <h4>Ksh {{$products->price}}</h4>
                     <p>{{$products->description}}</p>
                    
                       <?php

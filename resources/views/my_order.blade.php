@@ -38,9 +38,9 @@
                 <td>{{$product->invoice_no}}</td>
                 <td>{{$product->name}}</td>
                 <td>{{$product->pay_method}}</td>
-                <td style="text-align:center">৳{{$product->price}}</td>
+                <td style="text-align:center">Ksh {{$product->price}}</td>
                 <td style="text-align:center">{{$product->quantity}}</td>
-                <td style="text-align:center">৳{{$product->subtotal}}</td>
+                <td style="text-align:center">Ksh {{$product->subtotal}}</td>
               
             </tr>
         @endforeach
@@ -55,7 +55,7 @@
         Session::put('total',$total_price);
         
         @endphp
-            <td colspan="7" class="text-right"><h3><strong>Total ৳{{ $total_price }}</strong></h3></td>
+            <td colspan="7" class="text-right"><h3><strong>Total Ksh {{ $total_price }}</strong></h3></td>
         </tr>
         <tr>
             <td colspan="7" class="text-right">
