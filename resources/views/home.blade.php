@@ -9,7 +9,7 @@
                 <div class="col-lg-4">
                     <div class="left-content">
                         <div class="inner-content">
-                            <h3>MidwayCafe</h3>
+                            <h3>Pandakivuli</h3>
                             <h4>THE BEST EXPERIENCE</h4>
                             <div class="main-white-button scroll-to-section">
                                 <a href="#reservation"><h2>Make A Reservation</h2></a>

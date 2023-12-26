@@ -1,4 +1,4 @@
-<title>MidwayCafe</title>
+<title>Pandakivuli</title>
 <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/images/short.jpg') }}">
 <x-guest-layout>
     <x-jet-authentication-card>

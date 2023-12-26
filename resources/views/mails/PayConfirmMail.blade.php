@@ -20,7 +20,7 @@
        
 		    	</address>
     		</div>
-           <center> <h1>MidwayCafe</h1> </center>
+           <center> <h1>PandaKivuli</h1> </center>
             <img src="data:image/png;base64, {!! $qrcode !!}" style="margin-left:570px;">
     		<div class="span4 well">
     			<table class="invoice-head" style="margin-left:20px;font-size:18px;">
