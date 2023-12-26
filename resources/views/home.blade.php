@@ -583,8 +583,8 @@
             <div class="row">
                 <div class="col-lg-4">
                     <div class="section-heading" >
-                        <h6>Our Menu</h6>
-                        <h2>Our selection of cakes with quality taste</h2>
+                        <h6>Our Flowers</h6>
+                        <h2>Our selection of flowers with quality fragrance</h2>
                     </div>
                 </div>
             </div>
@@ -700,7 +700,7 @@
             <div class="row">
                 <div class="col-lg-4 offset-lg-4 text-center">
                     <div class="section-heading">
-                        <h6>Our Chefs</h6>
+                        <h6>Our Frourists</h6>
                         <h2>We offer the best ingredients for you</h2>
                     </div>
                 </div>
@@ -740,16 +740,16 @@
                     <div class="left-text-content">
                         <div class="section-heading">
                             <h6>Contact Us</h6>
-                            <h2>Here You Can Make A Reservation Or Just walkin to our cafe</h2>
+                            <h2>Here You Can Make an inquary Or Just walkin to our flowers Store</h2>
                         </div>
-                        <p>Members of Midway Dine are always active to response your call.</p>
+                        <p>Members of Pandakivuli  are always active to response your call.</p>
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="phone">
                                     <i class="fa fa-phone"></i>
                                     <h4>Phone Numbers</h4>
-                                    <span><a href="#">01824072334</a>
-									<br><a href="#">01554649446</a>
+                                    <span><a href="#">0705374455</a>
+									<br><a href="#">0705374455</a>
 									</span>
                                 </div>
                             </div>
@@ -771,7 +771,7 @@
                             @csrf
                           <div class="row">
                             <div class="col-lg-12">
-                                <h4>Table Reservation</h4>
+                                <h4>Flowers Inquiry</h4>
                             </div>
                             <div class="col-lg-6 col-sm-12">
                               <fieldset>
@@ -791,7 +791,7 @@
                             <div class="col-md-6 col-sm-12">
                               <fieldset>
                                 <select value="number-guests" name="no_guest" id="number-guests">
-                                    <option value="number-guests">Number Of Guests</option>
+                                    <option value="number-guests">Number Of Flowers</option>
                                     <option name="1" id="1">1</option>
                                     <option name="2" id="2">2</option>
                                     <option name="3" id="3">3</option>
@@ -834,7 +834,7 @@
                             </div>
                             <div class="col-lg-12">
                               <fieldset>
-                                <button type="submit" id="form-submit" class="main-button-icon">Make A Reservation</button>
+                                <button type="submit" id="form-submit" class="main-button-icon">Make an Inquiry</button>
                               </fieldset>
                             </div>
                           </div>
