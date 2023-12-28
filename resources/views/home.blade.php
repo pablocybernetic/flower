@@ -39,6 +39,121 @@
         </div>
     </div>
     <!-- ***** Main Banner Area End ***** -->
+    <!-- ***** Menu Area Starts ***** -->
+    <section class="section"  id="menu">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="section-heading" >
+                            <h6>Our Flowers</h6>
+                            <h2>Our selection of flowers with quality fragrance</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-item-carousel">
+                <div class="col-lg-12">
+                    <div class="owl-menu-item owl-carousel" >
+                      
+                        @foreach($menu as $product)
+                       
+                        <div class="item">
+    
+                        <?php
+                            $img=$product->image;
+                        ?>
+                            <div class='card' style="background-image: url({{asset('assets/images/'.$img)}})"> 
+    
+                                <div class="price"><h6>Ksh{{ $product->price }}</h6>
+                                @if($product->available!="Stock")
+                                <h4 style="">Out Of Stock</h4> 
+    
+                                @endif
+                            
+                            </div>
+                            <?php
+    
+                                
+                                $total_rate=DB::table('rates')->where('product_id',$product->id)
+                                ->sum('star_value');
+    
+    
+                                $total_voter=DB::table('rates')->where('product_id',$product->id)
+                                ->count();
+    
+                                if($total_voter>0)
+                                {
+    
+                                    $per_rate=$total_rate/$total_voter;
+    
+                                }
+                                else
+                                {
+    
+                                    $per_rate=0;
+    
+    
+                                }
+    
+                                $per_rate=number_format($per_rate, 1);
+    
+    
+                                $whole = floor($per_rate);      // 1
+                                $fraction = $per_rate - $whole
+    
+                            ?>
+                                <div class='info'>
+                                  <h1 class='title'>{{ $product->name }}</h1>
+                                  <p class='description'>{{ $product->description  }}</p>
+                                  <div class="main-text-button">
+                                      <div class="scroll-to-section" >
+                                      <span class="product_rating">
+                                      @for($i=1;$i<=$whole;$i++)
+    
+                                        <i class="fa fa-star "></i>
+    
+                                        @endfor
+    
+                                        @if($fraction!=0)
+    
+                                        <i class="fa fa-star-half"></i>
+    
+                                        @endif
+                                            
+                                            
+                                        <span class="rating_avg">({{  $per_rate}})</span>
+                </span>
+          <br>
+                                       <a href="/rate/{{ $product->id }}" style="color:blue;">Rate this</a>
+                                      <p>Quantity: </p>
+                                    @if($product->available=="Stock")
+                                      <form method="post" action="{{route('cart.store',$product->id)}}">
+                                         @csrf
+                                      <input type="number" name="number" style="width:50px;" id="myNumber" value="1">
+                                        <input type="submit" class="btn btn-success" value="Add Chart">
+                                      </form>
+                                    @endif
+    
+                                    @if($product->available!="Stock")
+                                      <form method="post" action="{{route('cart.store',$product->id)}}">
+                                         @csrf
+                                      <input type="number" name="number" style="width:50px;" id="myNumber" value="1">
+                                        <input type="submit" class="btn btn-success" disabled value="Add Chart">
+                                      </form>
+                                    @endif
+                                    </div>
+                                  </div>
+                                  
+                                </div>
+                            </div>
+                        </div>
+                       
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ***** Menu Area Ends ***** -->
 
     <!-- ***** About Area Starts ***** -->
     <section class="section" id="about">
@@ -79,7 +194,44 @@
         </div>
     </section>
     <!-- ***** About Area Ends ***** -->
-
+    
+    <section class="section" id="chefs">
+        <div class="container">
+          
+            <div class="row">
+                <div class="col-lg-4 offset-lg-4 text-center">
+                    <div class="section-heading">
+                        <h6>Our Frourists</h6>
+                        <h2>We offer the best freshiest flowers for you</h2>
+                    </div>
+                </div>
+            </div>
+           
+            <div class="row">
+                @foreach($chefs as $chef)
+                <div class="col-lg-4">
+                    <div class="chef-item">
+                        <div class="thumb">
+                            <div class="overlay"></div>
+                            <ul class="social-icons">
+                                <li><a href="{{ $chef->facebook_link  }}" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="{{ $chef->twitter_link  }}" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="{{ $chef->instragram_link  }}" target="_blank"><i class="fa fa-instagram"></i></a></li>
+                            </ul>
+                            <img src="{{ asset('assets/images/'.$chef->image)}}" alt="Chef #1">
+                        </div>
+                        <div class="down-content">
+                            <h4>{{ $chef->name  }}</h4>
+                            <span>{{ $chef->job_title  }}</span>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+                
+            </div>
+        </div>
+    </section>
+    <!-- ***** Chefs Area Ends ***** -->
      <!-- ***** Menu Area Starts ***** -->
      <section class="section" id="offers">
         <div class="container">
@@ -577,160 +729,8 @@
         </div>
     </section>
     <!-- ***** Chefs Area Ends ***** --> 
-<!-- ***** Menu Area Starts ***** -->
-<section class="section"  id="menu">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="section-heading" >
-                        <h6>Our Flowers</h6>
-                        <h2>Our selection of flowers with quality fragrance</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="menu-item-carousel">
-            <div class="col-lg-12">
-                <div class="owl-menu-item owl-carousel" >
-                  
-                    @foreach($menu as $product)
-                   
-                    <div class="item">
-
-                    <?php
-                        $img=$product->image;
-                    ?>
-                        <div class='card' style="background-image: url({{asset('assets/images/'.$img)}})"> 
-
-                            <div class="price"><h6>Ksh{{ $product->price }}</h6>
-                            @if($product->available!="Stock")
-                            <h4 style="">Out Of Stock</h4> 
-
-                            @endif
-                        
-                        </div>
-                        <?php
-
-                            
-                            $total_rate=DB::table('rates')->where('product_id',$product->id)
-                            ->sum('star_value');
-
-
-                            $total_voter=DB::table('rates')->where('product_id',$product->id)
-                            ->count();
-
-                            if($total_voter>0)
-                            {
-
-                                $per_rate=$total_rate/$total_voter;
-
-                            }
-                            else
-                            {
-
-                                $per_rate=0;
-
-
-                            }
-
-                            $per_rate=number_format($per_rate, 1);
-
-
-                            $whole = floor($per_rate);      // 1
-                            $fraction = $per_rate - $whole
-
-                        ?>
-                            <div class='info'>
-                              <h1 class='title'>{{ $product->name }}</h1>
-                              <p class='description'>{{ $product->description  }}</p>
-                              <div class="main-text-button">
-                                  <div class="scroll-to-section" >
-                                  <span class="product_rating">
-                                  @for($i=1;$i<=$whole;$i++)
-
-                                    <i class="fa fa-star "></i>
-
-                                    @endfor
-
-                                    @if($fraction!=0)
-
-                                    <i class="fa fa-star-half"></i>
-
-                                    @endif
-                                        
-                                        
-                                    <span class="rating_avg">({{  $per_rate}})</span>
-            </span>
-      <br>
-                                   <a href="/rate/{{ $product->id }}" style="color:blue;">Rate this</a>
-                                  <p>Quantity: </p>
-                                @if($product->available=="Stock")
-                                  <form method="post" action="{{route('cart.store',$product->id)}}">
-                                     @csrf
-                                  <input type="number" name="number" style="width:50px;" id="myNumber" value="1">
-                                    <input type="submit" class="btn btn-success" value="Add Chart">
-                                  </form>
-                                @endif
-
-                                @if($product->available!="Stock")
-                                  <form method="post" action="{{route('cart.store',$product->id)}}">
-                                     @csrf
-                                  <input type="number" name="number" style="width:50px;" id="myNumber" value="1">
-                                    <input type="submit" class="btn btn-success" disabled value="Add Chart">
-                                  </form>
-                                @endif
-                                </div>
-                              </div>
-                              
-                            </div>
-                        </div>
-                    </div>
-                   
-                    @endforeach
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ***** Menu Area Ends ***** -->
 
     <!-- ***** Chefs Area Starts ***** -->
-    <section class="section" id="chefs">
-        <div class="container">
-          
-            <div class="row">
-                <div class="col-lg-4 offset-lg-4 text-center">
-                    <div class="section-heading">
-                        <h6>Our Frourists</h6>
-                        <h2>We offer the best freshiest flowers for you</h2>
-                    </div>
-                </div>
-            </div>
-           
-            <div class="row">
-                @foreach($chefs as $chef)
-                <div class="col-lg-4">
-                    <div class="chef-item">
-                        <div class="thumb">
-                            <div class="overlay"></div>
-                            <ul class="social-icons">
-                                <li><a href="{{ $chef->facebook_link  }}" target="_blank"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="{{ $chef->twitter_link  }}" target="_blank"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="{{ $chef->instragram_link  }}" target="_blank"><i class="fa fa-instagram"></i></a></li>
-                            </ul>
-                            <img src="{{ asset('assets/images/'.$chef->image)}}" alt="Chef #1">
-                        </div>
-                        <div class="down-content">
-                            <h4>{{ $chef->name  }}</h4>
-                            <span>{{ $chef->job_title  }}</span>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
-                
-            </div>
-        </div>
-    </section>
-    <!-- ***** Chefs Area Ends ***** -->
 
     <!-- ***** Reservation Us Area Starts ***** -->
     <section class="section" id="reservation">
