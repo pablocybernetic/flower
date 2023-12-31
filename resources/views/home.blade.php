@@ -146,6 +146,8 @@
                                   
                                 </div>
                             </div>
+                            <h1 class='title' style="color: #75c1d8">{{ $product->name }}</h1>
+
                         </div>
                        
                         @endforeach
@@ -720,7 +722,7 @@
                                 </article>   
                             </section>
                             <br>
-                            <a href="/menu"><input style="color:#fff; background-color:#FB5849; font-size:20px;"
+                            <a href="/menu"><input style="color:#fff; background-color:#75c1d8; font-size:20px;"
                             class="btn" type="submit" value="Browse All"></a>
                         </div>
                     </div>

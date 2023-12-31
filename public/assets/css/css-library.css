@@ -120,12 +120,12 @@ body {
 }
 
 ::selection {
-  background: #fb5849;
+  background: #75c1d8;
   color: #fff;
 }
 
 ::-moz-selection {
-  background: #fb5849;
+  background: #75c1d8;
   color: #fff;
 }
 
@@ -147,7 +147,7 @@ body {
 
 .main-white-button a {
   font-size: 13px;
-  color: #fb5849;
+  color: #75c1d8;
   background-color: #fff;
   padding: 12px 25px;
   display: inline-block;
@@ -174,7 +174,7 @@ body {
 .section-heading h6 {
   position: relative;
   font-size: 15px;
-  color: #fb5849;
+  color: #75c1d8;
   font-weight: 500;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -188,7 +188,7 @@ body {
   position: absolute;
   left: 0;
   top: 8px;
-  background-color: #fb5849;
+  background-color: #75c1d8;
 }
 
 .section-heading h2 {
@@ -223,11 +223,11 @@ header
 }
 
 .background-header .main-nav .nav li:hover a {
-  color: #fb5849!important;
+  color: #75c1d8!important;
 }
 
 .background-header .nav li a.active {
-  color: #fb5849!important;
+  color: #75c1d8!important;
 }
 
 .header-area {
@@ -311,12 +311,12 @@ header
 
 .header-area .main-nav .nav li:hover a,
 .header-area .main-nav .nav li a.active {
-  color: #fb5849!important;
+  color: #75c1d8!important;
 }
 
 .background-header .main-nav .nav li:hover a,
 .background-header .main-nav .nav li a.active {
-  color: #fb5849!important;
+  color: #75c1d8!important;
   opacity: 1;
 }
 
@@ -373,7 +373,7 @@ header
 
 .header-area .main-nav .nav li.submenu ul li a:hover {
   background: #fff;
-  color: #fb5849!important;
+  color: #75c1d8!important;
   padding-left: 25px;
 }
 
@@ -507,7 +507,7 @@ header
 }
 
 .header-area.header-sticky .nav li a.active {
-  color: #fb5849;
+  color: #75c1d8;
 }
 
 @media (max-width: 1200px) {
@@ -526,7 +526,7 @@ header
   }
   .header-area.header-sticky .nav li a:hover,
   .header-area.header-sticky .nav li a.active {
-    color: #fb5849!important;
+    color: #75c1d8!important;
     opacity: 1;
   }
   .header-area.header-sticky .nav li.search-icon a {
@@ -584,7 +584,7 @@ header
   }
   .header-area .main-nav .nav li a:hover {
     background: #eee !important;
-    color: #fb5849!important;
+    color: #75c1d8!important;
   }
   .header-area .main-nav .nav li.submenu ul {
     visibility: inherit;
@@ -743,7 +743,7 @@ banner
   right:30px;
   width: 50px;
   height: 50px;
-  background-color: #fb5849;
+  background-color: #75c1d8;
   border:0 none;
   line-height: 44px;
   border-radius: 50%;
@@ -772,7 +772,7 @@ banner
   left:30px;
   width: 50px;
   height: 50px;
-  background-color: #fb5849;
+  background-color: #75c1d8;
   border:0 none;
   line-height: 44px;
   border-radius: 50%;
@@ -867,7 +867,7 @@ about
   display: inline-block;
   line-height: 70px;
   text-align: center;
-  background-color: #fb5849;
+  background-color: #75c1d8;
   color: #fff;
   border-radius: 50%;
   transform: translate(-35px, -35px);
@@ -924,8 +924,8 @@ menu
 .info {
   position: relative;
   width: 100%;
-  background-color: #fb5849;
-  border: 1px solid #fb5849;
+  background-color: #75c1d8;
+  border: 1px solid #75c1d8;
   transform: translateY(100%)
   translateY(120px)
   translateZ(0);
@@ -954,7 +954,7 @@ menu
   position: absolute;
   width: 70px;
   height: 70px;
-  background-color: #fb5849;
+  background-color: #75c1d8;
   font-size: 20px;
   font-weight: 700;
   color: #fff;
@@ -1000,7 +1000,7 @@ menu
 #menu .owl-nav .owl-prev:before {
   display: inline-block;
   font-family: 'FontAwesome';
-  color: #fb5849;
+  color: #75c1d8;
   font-size: 25px;
   font-weight: 700;
   content: '\f104';
@@ -1032,7 +1032,7 @@ menu
 #menu .owl-nav .owl-next:before {
   display: inline-block;
   font-family: 'FontAwesome';
-  color: #fb5849;
+  color: #75c1d8;
   font-size: 25px;
   font-weight: 700;
   content: '\f105';
@@ -1070,11 +1070,11 @@ chefs
 }
 
 #chefs .chef-item:hover {
-  border-color: #fb5849;
+  border-color: #75c1d8;
 }
 
 #chefs .chef-item:hover .down-content h4 {
-  color: #fb5849;
+  color: #75c1d8;
 }
 
 #chefs .chef-item .thumb {
@@ -1131,7 +1131,7 @@ chefs
 }
 
 #chefs .chef-item .thumb ul.social-icons li a:hover {
-  background-color: #fb5849;
+  background-color: #75c1d8;
 }
 
 #chefs .chef-item:hover .overlay {
@@ -1214,7 +1214,7 @@ reservation
   text-align: center;
   line-height: 70px;
   color: #fff;
-  background-color: #fb5849;
+  background-color: #75c1d8;
   border-radius: 50%;
   font-size: 24px;
   margin-top: -35px;
@@ -1240,7 +1240,7 @@ reservation
 
 #reservation .phone span a:hover,
 #reservation .message span a:hover {
-  color: #fb5849;
+  color: #75c1d8;
 }
 
 #contact {
@@ -1286,14 +1286,14 @@ reservation
 .contact-form input:focus,
 .contact-form textarea:focus,
 .contact-form select:focus {
-  border-color: #fb5849;
+  border-color: #75c1d8;
 }
 
 .contact-form button {
   margin-top: -10px;
   font-size: 13px;
   color: #fff;
-  background-color: #fb5849;
+  background-color: #75c1d8;
   padding: 12px 25px;
   width: 100%;
   box-shadow: none;
@@ -1385,7 +1385,7 @@ offers
   margin: 0 auto 15px auto;
 }
 #offers #tabs ul .ui-tabs-active a {
-  color: #fb5849;
+  color: #75c1d8;
   position: relative;
 }
 #offers #tabs ul .ui-tabs-active span {
@@ -1451,7 +1451,7 @@ offers
   right: 0;
   width: 70px;
   height: 70px;
-  background-color: #fb5849;
+  background-color: #75c1d8;
   display: inline-block;
   text-align: center;
   line-height: 70px;
@@ -1487,7 +1487,7 @@ footer
 footer {
   margin-top: 60px;
   padding: 50px 0px;
-  background-color: #fb5849;
+  background-color: #75c1d8;
 }
 
 footer .left-text-content p {
@@ -1532,7 +1532,7 @@ footer .right-text-content ul li a {
   font-size: 20px;
   background-color: #fff;
   border-radius: 50%;
-  color: #fb5849;
+  color: #75c1d8;
   -webkit-transition: all 0.5s ease 0s;
   -moz-transition: all 0.5s ease 0s;
   -o-transition: all 0.5s ease 0s;
@@ -1609,7 +1609,7 @@ responsive
 
 #preloader {
   overflow: hidden;
-  background-color: #fb5849;
+  background-color: #75c1d8;
   left: 0;
   right: 0;
   top: 0;
