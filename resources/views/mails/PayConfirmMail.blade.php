@@ -85,7 +85,7 @@
 						<td style="margin-left:20px;">{{ $product->name }}</td>
 						<td style="margin-left:20px;">{{ $product->price }}</td>
 						<td style="margin-left:20px;">{{ $product->quantity }}</td>
-                      <td style="margin-left:20px;">{{ $product->subtotal }} Tk</td>
+                      <td style="margin-left:20px;">{{ $product->subtotal }} Ksh</td>
 						</tr>
                     @endforeach
                     @foreach($extra_charge as $charge)
@@ -93,7 +93,7 @@
 						<td style="margin-left:20px;">{{ $charge->name }}</td>
 						<td style="margin-left:20px;"></td>
 						<td style="margin-left:20px;"></td>
-                      <td style="margin-left:20px;">{{ $charge->price }} Tk</td>
+                      <td style="margin-left:20px;">{{ $charge->price }} Ksh</td>
 						</tr>
                     @endforeach
 
@@ -102,13 +102,13 @@
 <tr>
 							<td colspan="2">&nbsp;</td>
 							<td><strong>Total</strong></td>
-							<td><strong>{{  $without_discount_price }} Tk</strong></td>
+							<td><strong>{{  $without_discount_price }} Ksh</strong></td>
 						</tr>
             <tr><td colspan="4"></td></tr>
 <tr>
 							<td colspan="2">&nbsp;</td>
 							<td><strong>Discount</strong></td>
-							<td><strong>{{  $discount_price }} Tk</strong></td>
+							<td><strong>{{  $discount_price }} Ksh</strong></td>
 						</tr>
             <tr><td colspan="4"></td></tr>
 <tr>
@@ -116,7 +116,7 @@
 <tr>
 							<td colspan="2">&nbsp;</td>
 							<td><strong>Total</strong></td>
-							<td><strong>{{  $total }} Tk</strong></td>
+							<td><strong>{{  $total }} Ksh</strong></td>
 						</tr>
 					</tbody>
 				</table>

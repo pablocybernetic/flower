@@ -759,8 +759,9 @@
                                 <div class="message">
                                     <i class="fa fa-envelope"></i>
                                     <h4>Emails</h4>
-                                    <span><a href="mailto:sajeebchakraborty.cse2000@gmail.com">sajeebchakraborty.cse2000@gmail.com</a><br>
-									<a href="mailto:sajeebcb.cseru@gmail.com">sajeebcb.cseru@gmail.com</a><br>
+                                    <span>
+                                        <a href="mailto:support@pandakivuli.com">support@pandakivuli.com</a><br>
+                                        <a href="mailto:gitaup08@gmail.com">gitaup08@gmail.com</a><br>
 									</span>
                                 </div>
                             </div>
