@@ -145,8 +145,12 @@
                                   </div>
                                   
                                 </div>
+                            </div><div class="row">
+                                <h1 class='title' style="color: #75c1d8">{{ $product->name }}</h1>
+                                <h1 class='title' style="color: #75c1d8">Ksh {{ $product->price }}</h1>
+
+
                             </div>
-                            <h1 class='title' style="color: #75c1d8">{{ $product->name }}</h1>
 
                         </div>
                        
