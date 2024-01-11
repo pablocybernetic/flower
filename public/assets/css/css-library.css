@@ -951,16 +951,21 @@ menu
 }
 
 #menu .price h6 {
-  position: absolute;
-  width: 70px;
-  height: 70px;
-  background-color: #75c1d8;
+  position:absolute;
+
+  width: 50%;
+  height: 50px;
+  background-color: #75c1d841;
+  /* opacity: 0.3; */
   font-size: 20px;
   font-weight: 700;
   color: #fff;
   border-radius: 3px;
-  text-align: center;
-  line-height: 70px;
+  text-align: left;
+  line-height: 50px;
+  padding-left: 2%;
+  padding-bottom: 2%;
+
 }
 
 
