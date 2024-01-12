@@ -19,6 +19,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/font-awesome.css')}}">
 
     <link rel="stylesheet" href="{{ asset('assets/css/css-library.css')}}">
+    {{-- <link rel="stylesheet" href="{{ asset('assets/css/mordern.css')}}"> --}}
+
 
     <link rel="stylesheet" href="{{ asset('assets/css/owl-carousel.css')}}">
 

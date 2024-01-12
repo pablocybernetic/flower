@@ -924,7 +924,7 @@ menu
 .info {
   position: relative;
   width: 100%;
-  background-color: #75c1d8;
+  background-color: #75c1d841;
   border: 1px solid #75c1d8;
   transform: translateY(100%)
   translateY(120px)
@@ -967,8 +967,6 @@ menu
   padding-bottom: 2%;
 
 }
-
-
 
 #menu .card .main-text-button {
   margin-left: 30px;
