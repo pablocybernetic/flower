@@ -234,7 +234,7 @@ class AdminController extends Controller
         if($req->price < 0)
         {
 
-            session()->flash('wrong','Negative Price value do not accept !');
+            session()->flash('wrong','Negative Price value are not accepted !');
             return back();
 
 
@@ -264,7 +264,7 @@ class AdminController extends Controller
         $insert=DB::table('products')->Insert($data);
 
 
-        session()->flash('success','Menu added successfully !');
+        session()->flash('success','Plant added successfully !');
         return back();
 
 

@@ -246,7 +246,7 @@
                 <div class="col-lg-4 offset-lg-4 text-center">
                     <div class="section-heading">
                         <h6>Midway Week</h6>
-                        <h2>This Week’s Special Meal Offers</h2>
+                        <h2>This Week’s Special Flowers Offers</h2>
                     </div>
                 </div>
             </div>
@@ -259,9 +259,9 @@
                                     <div class="col-lg-6 offset-lg-3">
                                         <ul>
                                   
-                                          <li><a href='#tabs-1'><img src="{{ asset('assets/images/tab-icon-01.png')}}" alt="">Breakfast</a></li>
-                                          <li><a href='#tabs-2'><img src="{{ asset('assets/images/tab-icon-02.png')}}" alt="">Lunch</a></a></li>
-                                          <li><a href='#tabs-3'><img src="{{ asset('assets/images/tab-icon-03.png')}}" alt="">Dinner</a></a></li>
+                                          <li><a href='#tabs-1'><img src="{{ asset('assets/images/tab-icon-01.png')}}" alt="">Flowers</a></li>
+                                          <li><a href='#tabs-2'><img src="{{ asset('assets/images/tab-icon-02.png')}}" alt="">Trees</a></a></li>
+                                          <li><a href='#tabs-3'><img src="{{ asset('assets/images/tab-icon-03.png')}}" alt="">Seedlings</a></a></li>
                                       
                                         </ul>
                                     </div>
