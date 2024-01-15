@@ -130,14 +130,14 @@
 
   		<div class="row" style="margin-left:20px;">
           <div class="span3" style="font-size:16px;">
-  		        <strong>RMS Admin</strong>
+  		        <strong>Pandakivuli Admin</strong>
   	    	</div>
             <br>
   	    	<div class="span3">
-  		        <strong>Phone:</strong>(+880) 1824072334
+  		        <strong>Phone:</strong>(+254) 705374455
   	    	</div>
   	    	<div class="span3">
-  		        <strong>Email:</strong> <a href="sajeebchakraborty.cse2000@gmail.com">sajeebchakraborty.cse2000@gmail.com</a>
+  		        <strong>Email:</strong> <a href="sajeebchakraborty.cse2000@gmail.com">gitaup08@gmail.com</a>
   	    	</div>
   	    
   		</div>

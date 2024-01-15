@@ -84,7 +84,7 @@
 						<td style="margin-left:20px;">{{ $product->name }}</td>
 						<td style="margin-left:20px;">{{ $product->price }}</td>
 						<td style="margin-left:20px;">{{ $product->quantity }}</td>
-                      <td style="margin-left:20px;">{{ $product->subtotal }} Tk</td>
+                      <td style="margin-left:20px;">{{ $product->subtotal }} Ksh</td>
 						</tr>
                     @endforeach
                     @foreach($extra_charge as $charge)
@@ -92,26 +92,26 @@
 						<td style="margin-left:20px;">{{ $charge->name }}</td>
 						<td style="margin-left:20px;"></td>
 						<td style="margin-left:20px;"></td>
-                      <td style="margin-left:20px;">{{ $charge->price }} Tk</td>
+                      <td style="margin-left:20px;">{{ $charge->price }} Ksh</td>
 						</tr>
                     @endforeach
             <tr><td colspan="4"></td></tr>
 <tr>
 							<td colspan="2">&nbsp;</td>
 							<td><strong>Total</strong></td>
-							<td><strong>{{  $without_discount_price }} Tk</strong></td>
+							<td><strong>{{  $without_discount_price }} Ksh</strong></td>
 						</tr>
             <tr><td colspan="4"></td></tr>
 <tr>
 							<td colspan="2">&nbsp;</td>
 							<td><strong>Discount</strong></td>
-							<td><strong>{{  $discount_price }} Tk</strong></td>
+							<td><strong>{{  $discount_price }} Ksh</strong></td>
 						</tr>
             <tr><td colspan="4"></td></tr>
 <tr>
 							<td colspan="2">&nbsp;</td>
 							<td><strong>Total</strong></td>
-							<td><strong>{{  $total }} Tk</strong></td>
+							<td><strong>{{  $total }} Ksh</strong></td>
 						</tr>
 					</tbody>
 				</table>
@@ -125,14 +125,14 @@
 
   		<div class="row" style="margin-left:20px;">
           <div class="span3" style="font-size:16px;">
-  		        <strong>RMS Admin</strong>
+  		        <strong>Pandakivuli Admin</strong>
   	    	</div>
             <br>
   	    	<div class="span3">
-  		        <strong>Phone:</strong>(+880) 1824072334
+  		        <strong>Phone:</strong>(+254) 705374455
   	    	</div>
   	    	<div class="span3">
-  		        <strong>Email:</strong> <a href="sajeebchakraborty.cse2000@gmail.com">sajeebchakraborty.cse2000@gmail.com</a>
+  		        <strong>Email:</strong> <a href="sajeebchakraborty.cse2000@gmail.com">gitaup08@gmail.com</a>
   	    	</div>
   	    
   		</div>

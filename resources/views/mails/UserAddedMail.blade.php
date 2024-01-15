@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>RMS Admin</title>
+    <title>Pandakivuli Admin</title>
 </head>
 <body>
     <h1>{{ $details['title'] }}</h1>

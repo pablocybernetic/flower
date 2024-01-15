@@ -4,10 +4,10 @@
     		<div class="span4">
                 <img src="http://webivorous.com/wp-content/uploads/2020/06/brand-logo-webivorous.png" class="img-rounded logo">
     			<address>
-			        <strong>Webivorous Web services Pvt. Ltd.</strong><br>
+			        <strong>PandaKivuli. Ltd.</strong><br>
                  
-			       35, Lajpat Nagar<br>
-                  Gurugram, Haryana-122001 (India)
+			    <br>
+                  Westlands, Har (Kenya)
 		    	</address>
     		</div>
     		<div class="span4 well">
