@@ -64,7 +64,7 @@
                     <span class="text-muted">150</span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between">
-                    <span>Total (BDT)</span>
+                    <span>Total (Ksh)</span>
                     <strong>1200 TK</strong>
                 </li>
             </ul>
@@ -88,7 +88,7 @@
                     <label for="mobile">Mobile</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
-                            <span class="input-group-text">+88</span>
+                            <span class="input-group-text">+254</span>
                         </div>
                         <input type="text" name="customer_mobile" class="form-control" id="mobile" placeholder="Mobile"
                                value="01711xxxxxx" required>
@@ -123,20 +123,20 @@
 
                 <div class="row">
                     <div class="col-md-5 mb-3">
-                        <label for="country">Country</label>
+                        <label for="country">County</label>
                         <select class="custom-select d-block w-100" id="country" required>
                             <option value="">Choose...</option>
-                            <option value="Bangladesh">Bangladesh</option>
+                            <option value="Nairobi">Nairobi</option>
                         </select>
                         <div class="invalid-feedback">
-                            Please select a valid country.
+                            Please select a valid county.
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label for="state">State</label>
+                        <label for="state">Location</label>
                         <select class="custom-select d-block w-100" id="state" required>
                             <option value="">Choose...</option>
-                            <option value="Dhaka">Dhaka</option>
+                            <option value="Kileleshwa">Kileleshwa</option>
                         </select>
                         <div class="invalid-feedback">
                             Please provide a valid state.
@@ -168,7 +168,7 @@
     </div>
 
     <footer class="my-5 pt-5 text-muted text-center text-small">
-        <p class="mb-1">&copy; 2019 Company Name</p>
+        <p class="mb-1">&copy; 2022-<?php echo date('Y')?> PandaKivuli Name</p>
         <ul class="list-inline">
             <li class="list-inline-item"><a href="#">Privacy</a></li>
             <li class="list-inline-item"><a href="#">Terms</a></li>
