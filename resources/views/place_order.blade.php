@@ -71,20 +71,20 @@
 
                 <div class="row">
                     <div class="col-md-5 mb-3">
-                        <label for="country">Country</label>
+                        <label for="country">County</label>
                         <select class="custom-select d-block w-100" id="country" required>
                             <option value="">Choose...</option>
-                            <option value="Bangladesh">Bangladesh</option>
+                            <option value="Nairobi">Nairobi</option>
                         </select>
                         <div class="invalid-feedback">
-                            Please select a valid country.
+                            Please select a valid county.
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label for="state">State</label>
+                        <label for="state">Location</label>
                         <select class="custom-select d-block w-100" id="state" required>
                             <option value="">Choose...</option>
-                            <option value="Dhaka">Dhaka</option>
+                            <option value="Kileleshwa">Kileleshwa</option>
                         </select>
                         <div class="invalid-feedback">
                             Please provide a valid state.
