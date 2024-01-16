@@ -65,7 +65,7 @@
 
                             <li class="scroll-to-section"><a href="/my-order">My Order</a></li>
                           
-                            <li class="scroll-to-section"><a href="/#chefs">Chefs</a></li> 
+                            <li class="scroll-to-section"><a href="/#chefs"></a>Botanist</li> 
                             <li class="scroll-to-section"><a href="/#reservation">Contact Us</a></li>
                             <li><a href="/cart"><i class="fa fa-shopping-cart"></i></a></li>
 
