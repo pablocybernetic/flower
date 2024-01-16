@@ -65,7 +65,7 @@
 
                             <li class="scroll-to-section"><a href="/my-order">My Order</a></li>
                           
-                            <li class="scroll-to-section"><a href="/#chefs"></a>Botanist</li> 
+                            <li class="scroll-to-section"><a href="/#chefs">Botanist</a></li> 
                             <li class="scroll-to-section"><a href="/#reservation">Contact Us</a></li>
                             <li><a href="/cart"><i class="fa fa-shopping-cart"></i></a></li>
 
@@ -170,8 +170,8 @@
                 </div>
                 <div class="col-lg-4 col-xs-12">
                     <div class="left-text-content">
-                        <p>© Copyright Midway Dine
-							<br>Since 2022</p>
+                        <p>© Copyright Pandakivuli Garden
+							<br>2022-<?php echo date('Y')  ?></p> 
                     </div>
                 </div>
             </div>
