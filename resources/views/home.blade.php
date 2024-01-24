@@ -10,7 +10,7 @@
                     <div class="left-content">
                         <div class="inner-content">
                             <h3>Pandakivuli</h3>
-                            <h4>THE BEST EXPERIENCE</h4>
+                            <h4>We deriver within two hours after placement of the order.</h4>
                             <div class="main-white-button scroll-to-section">
                                 <a href="#reservation"><h2>Make A Reservation</h2></a>
                             </div>
