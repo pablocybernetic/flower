@@ -80,7 +80,7 @@ class BkashController extends Controller
         $token = session()->get('bkash_token');
 
         $request['intent'] = 'sale';
-        $request['currency'] = 'BDT';
+        $request['currency'] = 'Ksh';
         $request['merchantInvoiceNumber'] = rand();
 
         $url = curl_init("$this->base_url/checkout/payment/create");
