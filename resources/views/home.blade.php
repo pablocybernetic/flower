@@ -59,10 +59,25 @@
             
             <div class="menu-item-carousel">
                 <div class="col-lg-12">
-                    <div class="owl-menu-item owl-carousel" >
-                        
+                    <style>.grid-container {
+                        display: grid;
+                        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust the column width as needed */
+                        gap: 10px; /* Adjust the gap between grid items as needed */
+                      }
+                      
+                      .grid-item {
+                        /* Your individual grid item styles go here */
+                        background-color: #eee;
+                        padding: 10px;
+                        text-align: center;
+                      }
+                      </style>
+                    {{-- <div class="owl-menu-item owl-carousel" > --}}
+                        <div class="grid-container">
 
-<div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                        
+                            
+<!-- *****  <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
     <a href="#">
         <img class="rounded-t-lg" src="https://www.kindpng.com/picc/m/139-1392125_oak-tree-white-background-hd-png-download.png" alt="" />
     </a>
@@ -79,7 +94,7 @@
         </a>
     </div>
 </div>
-
+ ***** -->
                       
                         @foreach($menu as $product)
                        
