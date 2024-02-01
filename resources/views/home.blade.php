@@ -72,7 +72,6 @@
                         text-align: center;
                       }
                       </style>
-                    {{-- <div class="owl-menu-item owl-carousel" > --}}
                         <div class="grid-container">
 
                         
@@ -98,7 +97,7 @@
                       
                         @foreach($menu as $product)
                        
-                        <div class="item">
+                        <div class="item pt-1 pb-3 pl-0 pr-5 ">
     
                         <?php
                             $img=$product->image;
