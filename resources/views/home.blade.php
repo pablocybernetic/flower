@@ -58,7 +58,7 @@
 
             
             <div class="menu-item-carousel">
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                     <style>.grid-container {
                         display: grid;
                         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust the column width as needed */
