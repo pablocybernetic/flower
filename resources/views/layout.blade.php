@@ -43,19 +43,86 @@
         </div>
     </div>  
     <!-- ***** Preloader End ***** -->
+    <style>
+        @media only screen and (max-width: 767px) {
+            .main-nav ul.nav {
+                display: none;
+                flex-direction: column;
+                position: fixed;
+                top: 0;
+                right: 0;
+                background-color: #fff; /* Adjust the background color */
+                width: 60%; /* Adjust the width as needed */
+                box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+            }
+    
+            .main-nav ul.nav.show {
+                display: flex;
+            }
+    
+            .main-nav .mobile-menu {
+                display: block;
+                cursor: pointer;
+                position: fixed;
+                top: 15px;
+                right: 15px;
+                z-index: 1001;
+            }
+    
+            .cancel-btn {
+                position: absolute;
+                top: 15px;
+                left: 15px;
+                cursor: pointer;
+            }
+        }
+    </style>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var mobileMenu = document.querySelector('.mobile-menu');
+            var navList = document.querySelector('.main-nav ul.nav');
+            var cancelBtn = document.createElement('div');
+            cancelBtn.innerHTML = '<i class="fa fa-times"></i>';
+            cancelBtn.className = 'cancel-btn';
+    
+            mobileMenu.addEventListener('click', function () {
+                navList.classList.toggle('show');
+                if (navList.classList.contains('show')) {
+                    navList.parentElement.appendChild(cancelBtn);
+                } else {
+                    navList.parentElement.removeChild(cancelBtn);
+                }
+            });
+    
+            cancelBtn.addEventListener('click', function () {
+                navList.classList.remove('show');
+                navList.parentElement.removeChild(cancelBtn);
+            });
+    
+            window.addEventListener('resize', function () {
+                if (window.innerWidth > 767) {
+                    navList.classList.remove('show');
+                    navList.parentElement.removeChild(cancelBtn);
+                }
+            });
+        });
+    </script>
     
     
     <!-- ***** Header Area Start ***** -->
-    <header class="header-area" style="z-index:1000">
-        <div class="container">
-                    <nav class="main-nav">
-                        <!-- ***** Logo Start ***** -->
-                        <a href="{{url('home')}}" class="logo">
-                            <img width="100px" src="{{ asset('assets/images/logo.png')}}">
-                        </a>
-                        <!-- ***** Logo End ***** -->
-                        <!-- ***** Menu Start ***** -->
-                        <ul class="nav">
+ <!-- ***** Header Area Start ***** -->
+<header class="header-area" style="z-index:1000">
+    <div class="container">
+        <nav class="main-nav">
+            <!-- ***** Logo Start ***** -->
+            <a href="{{url('home')}}" class="logo">
+                <img width="100px" src="{{ asset('assets/images/logo.png')}}">
+            </a>
+            <!-- ***** Logo End ***** -->
+            <!-- ***** Menu Start ***** -->
+            <ul class="nav">
                             <li class="scroll-to-section"><a href="/">Home</a></li>
                             <li class="scroll-to-section"><a href="/#about">About</a></li>
                            	
@@ -139,11 +206,21 @@
                             </li>
                         </ul>        
                         
-                        <!-- ***** Menu End ***** -->
-                    </nav>
-        </div>
-    </header>
-    <!-- ***** Header Area End ***** -->
+                       <!-- ***** Menu Start ***** -->
+            <ul class="nav">
+                <!-- ... Your existing menu items ... -->
+            </ul>
+
+            <!-- ***** Mobile Menu Start ***** -->
+            <div class="mobile-menu" style="align-items: right; margin-right:0%">
+                <i class="fa fa-bars" style=""></i>
+                <div class="cancel-btn"></div>
+            </div>
+            <!-- ***** Mobile Menu End ***** -->
+        </nav>
+    </div>
+</header>
+<!-- ***** Header Area End ***** -->
 
     <div style="min-height:750px">
         @yield('page-content')
