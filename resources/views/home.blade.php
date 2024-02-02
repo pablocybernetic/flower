@@ -46,8 +46,8 @@
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="section-heading" >
-                            <h6>Our Flowers</h6>
-                            <h2>Our selection of flowers with quality fragrance</h2>
+                            <h6> our plants</h6>
+                            <h2> here's a selection of our plants </h2>
                         </div>
                     </div>
                 </div>
@@ -61,7 +61,7 @@
                 <div class="col-lg-12">
                     <style>.grid-container {
                         display: grid;
-                        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust the column width as needed */
+                        /* grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); Adjust the column width as needed */
                         gap: 10px; /* Adjust the gap between grid items as needed */
                       }
                       
@@ -72,46 +72,95 @@
                         text-align: center;
                       }
                       </style>
-                        <div class="grid-container">
+
+
+
+
+                        <div class="grid-container row-lg-1">
 
                         
-                            
-<div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-    <a href="#">
-        <img class="rounded-t-lg" src="https://www.kindpng.com/picc/m/139-1392125_oak-tree-white-background-hd-png-download.png" alt=""  style="height: 300px;"/>
-    </a>
-    <div class="p-5">
-        <a href="#">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">David Austin</h5>
-        </a>
-        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
-        <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-blue bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-            Read more
-             {{-- <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10"> --}}
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-            {{-- </svg> --}}
-        </a>
-    </div>
-</div>
- 
-                      
-                        @foreach($menu as $product)
-                       
-                        <div class="grid-item  ">
-    
-                        <?php
-                            $img=$product->image;
-                        ?>
-                            <div class='card' style="background-image: url({{asset('assets/images/'.$img)}}); background-size: 300px; background-position: center; height: 300px ;"> 
-    
-                                <div class="price"><h6>Ksh{{ $product->price }}</h6>
-                                @if($product->available!="Stock")
+                            <section style="background-color: #eee;">
+                                <div class="container py-5">
+                                  <div class="row justify-content-center">
+                                    {{-- begining of single product --}}
+                                    {{-- <div class="col-md-8 col-lg-6 col-xl-4">
+                                      <div class="card text-black">
+                                        <i class="fab fa-apple fa-lg pt-3 pb-1 px-3"></i>
+                                        <img
+                                          src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/3.webp"
+                                          class="card-img-top"
+                                          alt="Apple Computer"
+                                        />
+                                        <div class="card-body">
+                                          <div class="text-center">
+                                            <h5 class="card-title">Believing is seeing</h5>
+                                            <p class="text-muted mb-4">Apple pro display XDR</p>
+                                          </div>
+                                          <div>
+                                            <div class="d-flex justify-content-between">
+                                              <span>Pro Display XDR</span><span>$5,999</span>
+                                            </div>
+                                            <div class="d-flex justify-content-between">
+                                              <span>Pro stand</span><span>$999</span>
+                                            </div>
+                                            <div class="d-flex justify-content-between">
+                                              <span>Vesa Mount Adapter</span><span>$199</span>
+                                            </div>
+                                          </div>
+                                          <div class="d-flex justify-content-between total font-weight-bold mt-4">
+                                            <span>Total</span><span>$7,197.00</span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div> --}}
+                                  {{-- end of single item --}}
+                                  @foreach($menu as $product)
+                                  <?php
+                                  $img=$product->image;
+                              ?>
+                               
+                                      <div class="col-md-8 col-lg-6 col-xl-4">
+                                        <div class="card text-black">
+                                          <i class="fab fa-apple fa-lg pt-3 pb-1 px-3"></i>
+                                          <img
+                                            src="{{asset('assets/images/'.$img)}}"
+                                            class="card-img-top"
+                                            alt="Apple Computer"
+                                          />
+                                          <div class="card-body">
+                                            <div class="text-center">
+                                              <h5 class="card-title">{{ $product->name }}</h5>
+                                              <p class="text-muted mb-4">{{ $product->description  }}</p>
+                                            </div>
+                                            <div>
+                                              <div class="d-flex justify-content-between">
+                                                <span>Pro Display XDR</span><span>Ksh 5,999</span>
+                                              </div>
+                                              <div class="d-flex justify-content-between">
+                                                <span>Pro stand</span><span>Ksh 999</span>
+                                              </div>
+                                              <div class="d-flex justify-content-between">
+                                                <span>Vesa Mount Adapter</span><span>Ksh 199</span>
+                                              </div>
+                                            </div>
+                                            <div class="d-flex justify-content-between total font-weight-bold mt-4">
+                                              <span>Total</span><span>Ksh {{ $product->price }}</span>
+                                            </div>
+                                            <p>Quantity: </p>
+                                    @if($product->available=="Stock")
+                                      <form method="post" action="{{route('cart.store',$product->id)}}">
+                                         @csrf
+                                      <input type="number" name="number" style="width:50px;" id="myNumber" value="1">
+                                        <input type="submit" class="btn btn-success" value="Add Chart">
+                                      </form>
+                                    @endif
+                                            @if($product->available!="Stock")
                                 <h4 style="">Out Of Stock</h4> 
     
                                 @endif
-                            
-                            </div>
-                            <?php
+                                <span class="product_rating">
+                                    
+                                <?php
     
                                 
                                 $total_rate=DB::table('rates')->where('product_id',$product->id)
@@ -142,59 +191,71 @@
                                 $fraction = $per_rate - $whole
     
                             ?>
-                                <div class='info'>
-                                  <h1 class='title'>{{ $product->name }}</h1>
-                                  <p class='description'>{{ $product->description  }}</p>
-                                  <div class="main-text-button">
-                                      <div class="scroll-to-section" >
-                                      <span class="product_rating">
-                                      @for($i=1;$i<=$whole;$i++)
+                                    @for($i=1;$i<=$whole;$i++)
+  
+                                      <i class="fa fa-star "></i>
+  
+                                      @endfor
+  
+                                      @if($fraction!=0)
+  
+                                      <i class="fa fa-star-half"></i>
+  
+                                      @endif
+                                          
+                                          
+                                      <span class="rating_avg">({{  $per_rate}})</span>
+              </span>
+        <br>
+                                     <a href="/rate/{{ $product->id }}" style="color:blue;">Rate this</a>
+
+                                <?php
     
-                                        <i class="fa fa-star "></i>
+                                
+                                $total_rate=DB::table('rates')->where('product_id',$product->id)
+                                ->sum('star_value');
     
-                                        @endfor
     
-                                        @if($fraction!=0)
+                                $total_voter=DB::table('rates')->where('product_id',$product->id)
+                                ->count();
     
-                                        <i class="fa fa-star-half"></i>
+                                if($total_voter>0)
+                                {
     
-                                        @endif
-                                            
-                                            
-                                        <span class="rating_avg">({{  $per_rate}})</span>
-                </span>
-          <br>
-                                       <a href="/rate/{{ $product->id }}" style="color:blue;">Rate this</a>
-                                      <p>Quantity: </p>
-                                    @if($product->available=="Stock")
-                                      <form method="post" action="{{route('cart.store',$product->id)}}">
-                                         @csrf
-                                      <input type="number" name="number" style="width:50px;" id="myNumber" value="1">
-                                        <input type="submit" class="btn btn-success" value="Add Chart">
-                                      </form>
-                                    @endif
+                                    $per_rate=$total_rate/$total_voter;
     
-                                    @if($product->available!="Stock")
-                                      <form method="post" action="{{route('cart.store',$product->id)}}">
-                                         @csrf
-                                      <input type="number" name="number" style="width:50px;" id="myNumber" value="1">
-                                        <input type="submit" class="btn btn-success" disabled value="Add Chart">
-                                      </form>
-                                    @endif
+                                }
+                                else
+                                {
+    
+                                    $per_rate=0;
+    
+    
+                                }
+    
+                                $per_rate=number_format($per_rate, 1);
+    
+    
+                                $whole = floor($per_rate);      // 1
+                                $fraction = $per_rate - $whole
+    
+                            ?>
+                                            <button class="btn btn-primary d-flex flex-row" type="button">Add to Cart <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                                                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+                                              </svg>
+                                            </button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      @endforeach
+
                                     </div>
                                   </div>
-                                  
-                                </div>
-                            </div><div class="row">
-                                <h1 class='title' style="color: #75c1d8">{{ $product->name }}</h1>
-                                <h1 class='title' style="color: #75c1d8">Ksh {{ $product->price }}</h1>
+                              </section>
+                            
 
-
-                            </div>
-
-                        </div>
-                       
-                        @endforeach
+ 
+                      
                     </div>
                 </div>
             </div>
