@@ -195,8 +195,8 @@
                             <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                                 @auth
                                     <li style="margin-top:-13px;">
-                                        <x-app-layout> </x-app-layout>
-                                    </li>
+                                        {{-- <x-app-layout> </x-app-layout> --}}
+                                    </li> 
                                 @else
                                   <li>
                                     {{-- <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a> --}}
@@ -217,13 +217,46 @@
             {{-- <li class="nav-item">
               <a class="nav-link" href="#">Link</a>
             </li> --}}
-            
-          
+            @if (Route::has('login'))
+            @auth
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="{{ route('profile.show') }}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{ Auth::user()->name }}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="{{ route('profile.show') }}"> {{ __('Manage Account') }}</a>
+                  <div class="block px-4 py-2 text-xs text-gray-400">
+                    @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
+                                <x-jet-dropdown-link href="{{ route('api-tokens.index') }}">
+                                    {{ __('API Tokens') }}
+                                </x-jet-dropdown-link>
+                            @endif
+
+                            <div class="border-t border-gray-100"></div>
+
+                            <!-- Authentication -->
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+
+                                <x-jet-dropdown-link href="{{ route('logout') }}"
+                                         onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                    {{ __('Log Out') }}
+                                </x-jet-dropdown-link>
+                            </form>
+                </div>
+                
+                </div>
+              </li>
+              @endauth
+
+              @endif
+
           </ul>
-          <form class="form-inline my-2 my-lg-0">
+          {{-- <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" style="border-radius: 20px;" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-primary my-2 my-sm-0"style="border-radius: 20px;" type="submit">Search</button>
-          </form>
+          </form> --}}
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
