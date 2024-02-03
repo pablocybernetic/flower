@@ -84,7 +84,7 @@
             var mobileMenu = document.querySelector('.mobile-menu');
             var navList = document.querySelector('.main-nav ul.nav');
             var cancelBtn = document.createElement('div');
-            cancelBtn.innerHTML = '<i class="fa fa-times"></i>';
+            cancelBtn.innerHTML = '<i class="fa fa-times" style=" margin-left: 10%"></i>';
             cancelBtn.className = 'cancel-btn';
     
             mobileMenu.addEventListener('click', function () {
@@ -109,117 +109,128 @@
             });
         });
     </script>
-    
-    
-    <!-- ***** Header Area Start ***** -->
- <!-- ***** Header Area Start ***** -->
-<header class="header-area" style="z-index:1000">
-    <div class="container">
-        <nav class="main-nav">
-            <!-- ***** Logo Start ***** -->
-            <a href="{{url('home')}}" class="logo">
-                <img width="100px" src="{{ asset('assets/images/logo.png')}}">
-            </a>
-            <!-- ***** Logo End ***** -->
-            <!-- ***** Menu Start ***** -->
-            <ul class="nav">
-                            <li class="scroll-to-section"><a href="/">Home</a></li>
-                            <li class="scroll-to-section"><a href="/#about">About</a></li>
-                           	
-                            <li class="scroll-to-section"><a href="/#menu">Menu</a></li>
-                        
-                            <li class="scroll-to-section"><a href="/trace-my-order">Trace Order</a></li>
 
-                            <li class="scroll-to-section"><a href="/my-order">My Order</a></li>
-                          
-                            <li class="scroll-to-section"><a href="/#chefs">Botanist</a></li> 
-                            <li class="scroll-to-section"><a href="/#reservation">Contact Us</a></li>
-                            <li><a href="/cart"><i class="fa fa-shopping-cart"></i></a></li>
-
-
-                            <?php
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <a href="{{url('home')}}" class="logo" style="padding-right: 10px">
+            <img width="100px" src="{{ asset('assets/images/logo.png')}}">
+        </a>
+       
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/#about">About <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="/#menu">Our Plants <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="/trace-my-order">Trace Order<span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="/my-order">My Order<span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="/#chefs">Botanist<span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="/#reservation">Contact Us<span class="sr-only">(current)</span></a>
+              </li>
+                <li style="padding:10px"><a href="/cart"><i class="fa fa-shopping-cart"></i></a></li>
+                <?php
                                 
-                                if(Auth::user())
-                                {
-                        
-                                    $cart_amount=DB::table('carts')->where('user_id',Auth::user()->id)->where('product_order','no')->count();
-                        
-                        
-                                }
-                                else
-                                {
-                        
-                                    $cart_amount=0;
-                        
-                                }
+                if(Auth::user())
+                {
+        
+                    $cart_amount=DB::table('carts')->where('user_id',Auth::user()->id)->where('product_order','no')->count();
+        
+        
+                }
+                else
+                {
+        
+                    $cart_amount=0;
+        
+                }
 
 
-                            ?>
+            ?>
 
 
-                            <span class='badge badge-warning' id='lblCartCount'> {{ $cart_amount }} </span>
+            <span class='badge badge-warning' id='lblCartCount'> {{ $cart_amount }} </span>
 
-                            <style>
+            <style>
 
 
-                                .badge {
-                                padding-left: 9px;
-                                padding-right: 9px;
-                                padding-top:10px;
-                                -webkit-border-radius: 9px;
-                                -moz-border-radius: 9px;
-                                border-radius: 9px;
-                                height:16px;
-                                text-align:center;
-                                }
+                .badge {
+                padding-left: 9px;
+                padding-right: 9px;
+                padding-top:10px;
+                -webkit-border-radius: 9px;
+                -moz-border-radius: 9px;
+                border-radius: 9px;
+                height:16px;
+                text-align:center;
+                }
 
-                                .label-warning[href],
-                                .badge-warning[href] {
-                                background-color: #c67605;
-                                }
-                                #lblCartCount {
-                                    font-size: 12px;
-                                    background: #ff0000;
-                                    color: #fff;
-                                    padding: 0 5px;
-                                    vertical-align: top;
-                                    margin-left: -10px; 
-                                }
-                            </style>
-                            <li>
-                                @if (Route::has('login'))
-                                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                                    @auth
-                                        <li style="margin-top:-13px;">
-                                            <x-app-layout> </x-app-layout>
+                .label-warning[href],
+                .badge-warning[href] {
+                background-color: #c67605;
+                }
+                #lblCartCount {
+                    font-size: 12px;
+                    background: #ff0000;
+                    color: #fff;
+                    padding: 0 5px;
+                    vertical-align: top;
+                    margin-left: -10px; 
+                }
+            </style>
+                          
+                          <li>
+                            @if (Route::has('login'))
+                            <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                                @auth
+                                    <li style="margin-top:-13px;">
+                                        <x-app-layout> </x-app-layout>
+                                    </li>
+                                @else
+                                  <li>
+                                    {{-- <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a> --}}
+                                    <a class="nav-link" href="{{ route('login') }}">Log in<span class="sr-only">(current)</span></a>
+
+                                  </li>
+                                    @if (Route::has('register'))
+                                        <li>
+                                            {{-- <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a> --}}
+                                            <a class="nav-link" href="{{ route('register') }}">Register<span class="sr-only">(current)</span></a>
                                         </li>
-                                    @else
-                                      <li>
-                                        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a>
-                                      </li>
-                                        @if (Route::has('register'))
-                                            <li><a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a> </li>
-                                        @endif
-                                    @endauth
-                                </div>
-                                @endif
-                            </li>
-                        </ul>        
-                        
-                       <!-- ***** Menu Start ***** -->
-            <ul class="nav">
-                <!-- ... Your existing menu items ... -->
-            </ul>
+                                    @endif
+                                @endauth
+                            </div>
+                            @endif
+                            
+                        </li>      
+            {{-- <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li> --}}
+            
+          
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+      </nav>
+    <!-- ***** Header Area Start ***** -->
 
-            <!-- ***** Mobile Menu Start ***** -->
-            <div class="mobile-menu" style="align-items: right; margin-right:0%">
-                <i class="fa fa-bars" style=""></i>
-                <div class="cancel-btn"></div>
-            </div>
-            <!-- ***** Mobile Menu End ***** -->
-        </nav>
-    </div>
-</header>
 <!-- ***** Header Area End ***** -->
 
     <div style="min-height:750px">
