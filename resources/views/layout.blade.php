@@ -139,56 +139,7 @@
               <li class="nav-item active">
                 <a class="nav-link" href="/#reservation">Contact Us<span class="sr-only">(current)</span></a>
               </li>
-                <li style="padding:10px"><a href="/cart"><i class="fa fa-shopping-cart"></i></a></li>
-                <?php
-                                
-                if(Auth::user())
-                {
-        
-                    $cart_amount=DB::table('carts')->where('user_id',Auth::user()->id)->where('product_order','no')->count();
-        
-        
-                }
-                else
-                {
-        
-                    $cart_amount=0;
-        
-                }
-
-
-            ?>
-
-
-            <span class='badge badge-warning' id='lblCartCount'> {{ $cart_amount }} </span>
-
-            <style>
-
-
-                .badge {
-                padding-left: 9px;
-                padding-right: 9px;
-                padding-top:10px;
-                -webkit-border-radius: 9px;
-                -moz-border-radius: 9px;
-                border-radius: 9px;
-                height:16px;
-                text-align:center;
-                }
-
-                .label-warning[href],
-                .badge-warning[href] {
-                background-color: #c67605;
-                }
-                #lblCartCount {
-                    font-size: 12px;
-                    background: #ff0000;
-                    color: #fff;
-                    padding: 0 5px;
-                    vertical-align: top;
-                    margin-left: -10px; 
-                }
-            </style>
+          
                           
                           <li>
                             @if (Route::has('login'))
@@ -217,6 +168,56 @@
             {{-- <li class="nav-item">
               <a class="nav-link" href="#">Link</a>
             </li> --}}
+            <li style="padding:10px"><a href="/cart"><i class="fa fa-shopping-cart"></i></a></li>
+            <?php
+                            
+            if(Auth::user())
+            {
+    
+                $cart_amount=DB::table('carts')->where('user_id',Auth::user()->id)->where('product_order','no')->count();
+    
+    
+            }
+            else
+            {
+    
+                $cart_amount=0;
+    
+            }
+
+
+        ?>
+
+
+        <span class='badge badge-warning' id='lblCartCount'> {{ $cart_amount }} </span>
+
+        <style>
+
+
+            .badge {
+            padding-left: 9px;
+            padding-right: 9px;
+            padding-top:10px;
+            -webkit-border-radius: 9px;
+            -moz-border-radius: 9px;
+            border-radius: 9px;
+            height:16px;
+            text-align:center;
+            }
+
+            .label-warning[href],
+            .badge-warning[href] {
+            background-color: #c67605;
+            }
+            #lblCartCount {
+                font-size: 12px;
+                background: #ff0000;
+                color: #fff;
+                padding: 0 5px;
+                vertical-align: top;
+                margin-left: -10px; 
+            }
+        </style>
             @if (Route::has('login'))
             @auth
             <li class="nav-item dropdown">
