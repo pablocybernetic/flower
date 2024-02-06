@@ -55,131 +55,42 @@
 
 
 
-
-            
-            <div class="menu-item-carousel">
-                <div class="col-lg-12">
-                    
-                    <style>.grid-container {
-                        .description {
-    max-height: 3em; /* Adjust the height as needed for three lines */
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-
-                        display: grid;
-                        /* grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); Adjust the column width as needed */
-                        gap: 10px; /* Adjust the gap between grid items as needed */
-                      }
-                      
-                      .grid-item {
-                        /* Your individual grid item styles go here */
-                        background-color: #eee;
-                        padding: 10px;
-                        text-align: center;
-                      }
-                      </style>
-
-
-
-
-                        <div class="grid-container row-lg-1">
-
-                        
-                            <section style="background-color: #eee;">
-                                <div class="container py-5">
-                                  <div class="row justify-content-center">
-                                    {{-- begining of single product --}}
-                                    {{-- <div class="col-md-8 col-lg-6 col-xl-4">
-                                      <div class="card text-black">
-                                        <i class="fab fa-apple fa-lg pt-3 pb-1 px-3"></i>
-                                        <img
-                                          src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/3.webp"
-                                          class="card-img-top"
-                                          alt="Apple Computer"
-                                        />
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-12">
+                        <div class="menu-item-carousel">
+                            <div class="grid-container row gx-4">
+                                @foreach($menu as $product)
+                                <div class="col-6 col-md-3 col-lg-3 mb-4">
+                                    <div class="card">
+                                        <i class="fa fa-pagelines fa-lg pt-3 pb-1 px-3"></i>
+                                        <div style="padding-bottom: 100%; position: relative;">
+                                            <img src="{{asset('assets/images/'.$product->image)}}" class="card-img-top img-fluid" alt="Product Image" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                                        </div>
                                         <div class="card-body">
-                                          <div class="text-center">
-                                            <h5 class="card-title">Believing is seeing</h5>
-                                            <p class="text-muted mb-4">Apple pro display XDR</p>
-                                          </div>
-                                          <div>
-                                            <div class="d-flex justify-content-between">
-                                              <span>Pro Display XDR</span><span>$5,999</span>
+                                            <h5 class="card-title">{{ $product->name }}</h5>
+                                            {{-- <p class="card-text text-muted mb-3 description">{{ $product->description }}</p> --}}
+                                            <div class="d-flex justify-content-between mb-3">
+                                                <span>Total</span>
+                                                <span>Ksh {{ $product->price }}</span>
                                             </div>
-                                            <div class="d-flex justify-content-between">
-                                              <span>Pro stand</span><span>$999</span>
-                                            </div>
-                                            <div class="d-flex justify-content-between">
-                                              <span>Vesa Mount Adapter</span><span>$199</span>
-                                            </div>
-                                          </div>
-                                          <div class="d-flex justify-content-between total font-weight-bold mt-4">
-                                            <span>Total</span><span>$7,197.00</span>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div> --}}
-                                  {{-- end of single item --}}
-                                  @foreach($menu as $product)
-                                  <?php
-                                  $img=$product->image;
-                              ?>
-                               
-                                      <div class="col-md-8 col-lg-6 col-xl-4">
-                                        <div class="card text-black">
-                                          <i class="fa fa-pagelines fa-lg pt-3 pb-1 px-3"></i>
-                                          <div style="padding-bottom: 100%; position: relative;">
-                                            <img src="{{asset('assets/images/'.$img)}}" class="card-img-top img-fluid" alt="Apple Computer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
-                                        </div>
-                                          <div class="card-body">
-                                            <div class="text-center">
-                                              <h5 class="card-title">{{ $product->name }}</h5>
-                                              <p class="text-muted mb-4 description">{{ $product->description }}</p>
-                                            </div>
-                                            {{-- <div>
-                                              <div class="d-flex justify-content-between">
-                                                <span>Pro Display XDR</span><span>Ksh 5,999</span>
-                                              </div>
-                                              <div class="d-flex justify-content-between">
-                                                <span>Pro stand</span><span>Ksh 999</span>
-                                              </div>
-                                              <div class="d-flex justify-content-between">
-                                                <span>Vesa Mount Adapter</span><span>Ksh 199</span>
-                                              </div>
-                                            </div> --}}
-                                            <div class="d-flex justify-content-between total font-weight-bold mt-4">
-                                              <span>Total</span><span>Ksh {{ $product->price }}</span>
-                                            </div>
-                                            <p>Quantity: </p>
-                                    @if($product->available=="Stock")
-                                      <form method="post" action="{{route('cart.store',$product->id)}}">
-                                         @csrf
-                                         <div class="row">
-                                            <div class="col-md-7"> <!-- Adjust the column size as needed -->
-                                                <input type="number" name="number" class="form-control" style="width: 100%;" id="myNumber" value="1">
-                                            </div>
-                                            <div class="col-md-2"> <!-- Adjust the column size as needed -->
-                                            </div>
-                                            <div class="col-md-3"> <!-- Adjust the column size as needed -->
-                                                <button type="submit" class="btn btn-primary rounded-circle mx-auto" >
-                                                    <i class="fa fa-plus" style="height: 15px; width: 15px;"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        
-
-                                    {{-- <button class="btn btn-primary d-flex flex-row" type="button">Add to Cart <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
-                                            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
-                                          </svg>
-                                        </button> --}}
-                                      </form>
-                                    @endif
-                                            @if($product->available!="Stock")
-                                <h4 style="">Out Of Stock</h4> 
+                                            <form method="post" action="{{ route('cart.store', $product->id) }}">
+                                                @csrf
+                                                <div class="row align-items-center">
+                                                    <div class="col">
+                                                        <input type="number" name="number" class="form-control" value="1">
+                                                    </div>
+                                                    <div class="col-auto">
+                                                        <button type="submit" class="btn btn-primary rounded-circle">
+                                                            <i class="fa fa-plus"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            @if($product->available != "Stock")
+                                            <h4 class="text-danger">Out Of Stock</h4>
+                                            @endif 
     
-                                @endif
                                 <span class="product_rating">
                                     
                                 <?php
@@ -270,7 +181,7 @@
 
                                     </div>
                                   </div>
-                              </section>
+                              
                             
 
  
