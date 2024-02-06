@@ -63,7 +63,7 @@
                                 @foreach($menu as $product)
                                 <div class="col-6 col-md-3 col-lg-3 mb-4">
                                     <div class="card">
-                                        <i class="fa fa-pagelines fa-lg pt-3 pb-1 px-3"></i>
+                                        {{-- <i class="fa fa-pagelines fa-lg pt-3 pb-1 px-3"></i> --}}
                                         <div style="padding-bottom: 100%; position: relative;">
                                             <img src="{{asset('assets/images/'.$product->image)}}" class="card-img-top img-fluid" alt="Product Image" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
                                         </div>
