@@ -129,7 +129,7 @@
                                
                                       <div class="col-md-8 col-lg-6 col-xl-4">
                                         <div class="card text-black">
-                                          <i class="fab fa-apple fa-lg pt-3 pb-1 px-3"></i>
+                                          <i class="fa fa-pagelines fa-lg pt-3 pb-1 px-3"></i>
                                           <div style="padding-bottom: 100%; position: relative;">
                                             <img src="{{asset('assets/images/'.$img)}}" class="card-img-top img-fluid" alt="Apple Computer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
                                         </div>
