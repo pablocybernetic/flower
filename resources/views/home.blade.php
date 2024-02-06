@@ -68,28 +68,27 @@
                                             <img src="{{asset('assets/images/'.$product->image)}}" class="card-img-top img-fluid" alt="Product Image" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
                                         </div>
                                         <div class="card-body">
-                                            <h5 class="card-title">{{ $product->name }}</h5>
+                                            <h6 class="card-title fs-5">{{ $product->name }}</h6>
                                             {{-- <p class="card-text text-muted mb-3 description">{{ $product->description }}</p> --}}
                                             <div class="d-flex justify-content-between mb-3">
                                                 <span>Total</span>
-                                                <span>Ksh {{ $product->price }}</span>
+                                                <span class="fs-6">Ksh {{ $product->price }}</span>
                                             </div>
                                             <form method="post" action="{{ route('cart.store', $product->id) }}">
                                                 @csrf
                                                 <div class="row align-items-center">
                                                     <div class="col">
-                                                        <input type="number" name="number" class="form-control" value="1">
+                                                        <input type="number" name="number" class="form-control form-control-sm" value="1">
                                                     </div>
                                                     <div class="col-auto">
-                                                        <button type="submit" class="btn btn-primary rounded-circle">
+                                                        <button type="submit" class="btn btn-primary btn-sm rounded-circle">
                                                             <i class="fa fa-plus"></i>
                                                         </button>
                                                     </div>
                                                 </div>
                                             </form>
                                             @if($product->available != "Stock")
-                                            <h4 class="text-danger">Out Of Stock</h4>
-                                            @endif 
+                                            <h4 class="text-danger fs-6">Out Of Stock</h4>                                            @endif 
     
                                 <span class="product_rating">
                                     
