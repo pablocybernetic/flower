@@ -59,7 +59,15 @@
             
             <div class="menu-item-carousel">
                 <div class="col-lg-12">
+                    
                     <style>.grid-container {
+                        .description {
+    max-height: 3em; /* Adjust the height as needed for three lines */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
                         display: grid;
                         /* grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); Adjust the column width as needed */
                         gap: 10px; /* Adjust the gap between grid items as needed */
@@ -122,17 +130,15 @@
                                       <div class="col-md-8 col-lg-6 col-xl-4">
                                         <div class="card text-black">
                                           <i class="fab fa-apple fa-lg pt-3 pb-1 px-3"></i>
-                                          <img
-                                            src="{{asset('assets/images/'.$img)}}"
-                                            class="card-img-top"
-                                            alt="Apple Computer"
-                                          />
+                                          <div style="padding-bottom: 100%; position: relative;">
+                                            <img src="{{asset('assets/images/'.$img)}}" class="card-img-top img-fluid" alt="Apple Computer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                                        </div>
                                           <div class="card-body">
                                             <div class="text-center">
                                               <h5 class="card-title">{{ $product->name }}</h5>
-                                              <p class="text-muted mb-4">{{ $product->description  }}</p>
+                                              <p class="text-muted mb-4 description">{{ $product->description }}</p>
                                             </div>
-                                            <div>
+                                            {{-- <div>
                                               <div class="d-flex justify-content-between">
                                                 <span>Pro Display XDR</span><span>Ksh 5,999</span>
                                               </div>
@@ -142,7 +148,7 @@
                                               <div class="d-flex justify-content-between">
                                                 <span>Vesa Mount Adapter</span><span>Ksh 199</span>
                                               </div>
-                                            </div>
+                                            </div> --}}
                                             <div class="d-flex justify-content-between total font-weight-bold mt-4">
                                               <span>Total</span><span>Ksh {{ $product->price }}</span>
                                             </div>
@@ -151,8 +157,11 @@
                                       <form method="post" action="{{route('cart.store',$product->id)}}">
                                          @csrf
                                       <input type="number" name="number" style="width  :40px;" id="myNumber" value="1">
-                                        <input type="submit" class="btn btn-primary" value="Add Chart ">
-                                        {{-- <button class="btn btn-primary d-flex flex-row" type="button">Add to Cart <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                                      <button type="submit" class="btn btn-primary rounded-circle mx-auto" >
+                                        <i class="fa fa-plus" style="height: 15px; width:15px;"></i>
+                                    </button>
+
+                                    {{-- <button class="btn btn-primary d-flex flex-row" type="button">Add to Cart <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
                                             <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
                                           </svg>
                                         </button> --}}
@@ -956,5 +965,19 @@
     <!-- ***** Reservation Area Ends ***** -->
 
    
+    <script>
+        $(document).ready(function() {
+            $('.description').each(function() {
+                var $this = $(this);
+                var lineHeight = parseInt($this.css('line-height'));
+                var maxHeight = lineHeight * 3; // Adjust for three lines
+                var actualHeight = $this.prop('scrollHeight');
+                
+                if (actualHeight > maxHeight) {
+                    $this.addClass('more');
+                }
+            });
+        });
+    </script>
     
    @endsection
