@@ -71,7 +71,11 @@
                             @endphp
 
 
-                            {{  $user->name }}
+@if ($user)
+    {{ $user->name }}
+@else
+    Guest
+@endif
 
 
 
