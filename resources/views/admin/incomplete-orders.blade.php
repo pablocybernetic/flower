@@ -82,10 +82,34 @@
                             </td>
 
 
-                            <td>  {{  $user->phone }}</td>
-                            <td> {{ $order->shipping_address }} </td>
+                            <td>  
+                            
+                              @if ($user)
+                              {{  $user->phone }}
+                          @else
+                              254xxxxxx
+                          @endif
+                          
+                            </td>
+                            <td> 
+                                
+                              @if ($user)
+                              {{ $order->shipping_address }} 
+                          @else
+                              Null
+                          @endif
+                          
+                            </td>
                      
-                            <td> {{ $order->pay_method }} </td>
+                            <td> 
+                                
+                              @if ($user)
+                              {{ $order->pay_method }} 
+                          @else
+                              Null
+                          @endif
+                          
+                            </td>
 
                             <td>
 
