@@ -1,7 +1,9 @@
 @extends('layout', ['title'=> 'Home'])
 
 @section('page-content')
-
+<style>
+    
+</style>
     <!-- ***** Main Banner Area Start ***** -->
     <div id="top">
         <div class="container-fluid">
@@ -41,32 +43,59 @@
     <!-- ***** Main Banner Area End ***** -->
      <!-- resources/views/search.blade.php -->
 
-<form action="{{ route('search') }}" method="GET">
-    <input type="text" name="query" placeholder="Search products">
-    <button type="submit">Search</button>
-</form>
+     <div class="container mt-5">
+        <div class="d-flex justify-content-center">
+            <form class="bg-light p-0 rounded shadow-sm" action="{{ route('home') }}" method="GET">
+                <div class="input-group">
+                    <input type="text" name="query" class="form-control" placeholder="Search products">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
                       
     <!-- ***** Menu Area Starts ***** -->
     <section class="section"  id="menu">
+        @if(isset($query))
+
             <div class="container">
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="section-heading" >
                             <h6> our plants</h6>
-                            <h2> here's a selection of our plants </h2>
+                            <h2> Your search results</h2>
                         </div>
                     </div>
                 </div>
             </div>
-
-
+            @php
+                $displayResults = $searchResults;
+            @endphp
+        @else
+            @php
+                $displayResults = $menu;
+            @endphp
+        
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="section-heading" >
+                        <h6> our plants</h6>
+                        <h2> here's a selection of our plants </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
 
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-12">
                         <div class="menu-item-carousel">
                             <div class="grid-container row gx-4">
-                                @foreach($menu as $product)
+                                @foreach($displayResults as $product)
                                 <div class="col-6 col-md-3 col-lg-3 mb-4">
                                     <div class="card">
                                         {{-- <i class="fa fa-pagelines fa-lg pt-3 pb-1 px-3"></i> --}}

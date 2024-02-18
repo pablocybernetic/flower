@@ -18,37 +18,39 @@ use Session;
 
 class HomeController extends Controller
 {
-    public function index(){
+    public function index(Request $request)
+    {
+        $menu = DB::table('products')->where('catagory', 'regular')->get();
+        $breakfast = DB::table('products')->where('catagory', 'special')->where('session', 0)->get();
+        $lunch = DB::table('products')->where('catagory', 'special')->where('session', 1)->get();
+        $dinner = DB::table('products')->where('catagory', 'special')->where('session', 2)->get();
+        $chefs = DB::table('chefs')->get();
 
-        $menu=DB::table('products')->where('catagory','regular')->get();
-
-        $breakfast=DB::table('products')->where('catagory','special')->where('session',0)->get();
-        $lunch=DB::table('products')->where('catagory','special')->where('session',1)->get();
-        $dinner=DB::table('products')->where('catagory','special')->where('session',2)->get();
-
-        $chefs=DB::table('chefs')->get();
-
-
-        if(Auth::user())
-        {
-
-            $cart_amount=DB::table('carts')->where('user_id',Auth::user()->id)->where('product_order','no')->count();
-
-
-        }
-        else
-        {
-
-            $cart_amount=0;
-
+        if (Auth::user()) {
+            $cart_amount = DB::table('carts')->where('user_id', Auth::user()->id)->where('product_order', 'no')->count();
+        } else {
+            $cart_amount = 0;
         }
 
-        $about_us=DB::table('about_us')->get();
-        $banners=DB::table('banners')->get();
+        $about_us = DB::table('about_us')->get();
+        $banners = DB::table('banners')->get();
 
+        // Check if a search query is present
+        if ($request->has('query')) {
+            $query = $request->input('query');
 
+            // Perform a search and get the results
+            $searchResults = DB::table('products')
+                ->where('name', 'like', "%$query%")
+                ->orWhere('description', 'like', "%$query%")
+                ->get();
 
-        return view("home",compact('menu','breakfast','lunch','dinner','chefs','cart_amount','about_us','banners'));
+            // Pass the search results to the view
+            return view('home', compact('menu', 'breakfast', 'lunch', 'dinner', 'chefs','searchResults', 'query', 'cart_amount', 'about_us', 'banners'));
+        }
+
+        // If no search query, display regular products
+        return view('home', compact('menu', 'breakfast', 'lunch', 'dinner', 'chefs', 'cart_amount', 'about_us', 'banners'));
     }
 
     public function redirects(){

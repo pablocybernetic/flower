@@ -49,6 +49,7 @@
                 </span>
               </div>
               <span class="text-muted"><i class="fas fa-shopping-basket fa-sm mx-1"></i>154 orders</span>
+              <br><br>
               <span class="text-success ms-2">In stock</span>
             </div>
   
@@ -78,27 +79,16 @@
             <hr />
   
             <div class="row mb-4">
-              <div class="col-md-4 col-6">
+              {{-- <div class="col-md-4 col-6">
                 <label class="mb-2">Size</label>
                 <select class="form-select border border-secondary" style="height: 35px;">
                   <option>Small</option>
                   <option>Medium</option>
                   <option>Large</option>
                 </select>
-              </div>
+              </div> --}}
               <!-- col.// -->
-              <div class="col-md-4 col-6 mb-3">
-                <label class="mb-2 d-block">Quantity</label>
-                <div class="input-group mb-3" style="width: 170px;">
-                  <button class="btn btn-white border border-secondary px-3" type="button" id="button-addon1" data-mdb-ripple-color="dark">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <input type="text" class="form-control text-center border border-secondary" placeholder="14" aria-label="Example text with button addon" aria-describedby="button-addon1" />
-                  <button class="btn btn-white border border-secondary px-3" type="button" id="button-addon2" data-mdb-ripple-color="dark">
-                    <i class="fas fa-plus"></i>
-                  </button>
-                </div>
-              </div>
+       
             </div>
             <form method="post" action="{{ route('cart.store', $product->id) }}">
                 @csrf

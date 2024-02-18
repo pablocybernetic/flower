@@ -27,8 +27,9 @@ use App\Http\Controllers\ProductSearchController;
 
 Route::get('/search', [ProductSearchController::class, 'search'])->name('search');
 
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get("/", 'App\Http\Controllers\HomeController@index');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::post("/register/confirm",'App\Http\Controllers\HomeController@register')->name('register/confirm');
 Route::get("/redirects",'App\Http\Controllers\HomeController@redirects');

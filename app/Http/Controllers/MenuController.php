@@ -61,8 +61,8 @@ class MenuController extends Controller
 
         $products = Product::inRandomOrder()->limit(8)->get();
 
-        // return view('productDetails', compact('product', 'products'));
-        return  compact('product', 'products');
+        return view('productDetails', compact('product', 'products'));
+        // return  compact('product', 'products');
 
     }
 
