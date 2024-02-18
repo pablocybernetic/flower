@@ -27,9 +27,11 @@ Route::get("/", 'App\Http\Controllers\HomeController@index');
 
 Route::post("/register/confirm",'App\Http\Controllers\HomeController@register')->name('register/confirm');
 Route::get("/redirects",'App\Http\Controllers\HomeController@redirects');
-
+ 
 #Route::get("/menu",'App\Http\Controllers\MenuController@menu');
 Route::get('/menu', [MenuController::class, 'menu'])->name('menu');
+Route::get('/menu/{id}', [MenuController::class, 'show'])->name('show');
+
 
 Route::get('/trace-my-order', [ShipmentController::class, 'trace'])->name('trace-my-order');
 
