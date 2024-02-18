@@ -39,7 +39,13 @@
         </div>
     </div>
     <!-- ***** Main Banner Area End ***** -->
-                           
+     <!-- resources/views/search.blade.php -->
+
+<form action="{{ route('search') }}" method="GET">
+    <input type="text" name="query" placeholder="Search products">
+    <button type="submit">Search</button>
+</form>
+                      
     <!-- ***** Menu Area Starts ***** -->
     <section class="section"  id="menu">
             <div class="container">

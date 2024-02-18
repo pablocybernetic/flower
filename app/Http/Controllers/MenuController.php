@@ -59,10 +59,10 @@ class MenuController extends Controller
             return response()->json(['error' => 'Product not found'], 404);
         }
 
-        $products = Product::inRandomOrder()->limit(5)->get();
+        $products = Product::inRandomOrder()->limit(8)->get();
 
-        return view('productDetails', compact('product', 'products'));
-        // return  compact('product', 'products');
+        // return view('productDetails', compact('product', 'products'));
+        return  compact('product', 'products');
 
     }
 

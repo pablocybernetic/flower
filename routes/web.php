@@ -9,6 +9,7 @@ use App\Http\Controllers\ShipmentController;
 use App\Http\Controllers\SslCommerzPaymentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProductSearchController;
 
 
 /*
@@ -21,6 +22,10 @@ use App\Http\Controllers\AdminController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// routes/web.php
+
+
+Route::get('/search', [ProductSearchController::class, 'search'])->name('search');
 
 
 Route::get("/", 'App\Http\Controllers\HomeController@index');
