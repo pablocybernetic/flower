@@ -35,8 +35,8 @@
         <main class="col-lg-6">
           <div class="ps-lg-3">
             <h4 class="title text-dark">
-                {{ $product->name }}
-            </h4>
+              {{ $product->name }}
+          </h4>
             <div class="d-flex flex-row my-3">
               <div class="text-warning mb-1 me-2">
                 <i class="fa fa-star"></i>
@@ -50,30 +50,31 @@
               </div>
               <span class="text-muted"><i class="fas fa-shopping-basket fa-sm mx-1"></i>154 orders</span>
               <br><br>
-              <span class="text-success ms-2">In stock</span>
             </div>
+            <span class="text-success ms-2">In stock</span>
+
   
             <div class="mb-3">
               <span class="h5">Ksh {{ $product->price }}</span>
               <span class="text-muted">/per item</span>
             </div>
   
-            <p>
-                {{ $product->description }} 
-            </p>
+            
+              <p>{!! $product->description !!}</p>
+            
   
             <div class="row">
               <dt class="col-3">Category:</dt>
               <dd class="col-9">{{ $product->category }}</dd>
   
-              <dt class="col-3">Color</dt>
+              {{-- <dt class="col-3">Color</dt>
               <dd class="col-9">Brown</dd>
   
               <dt class="col-3">Material</dt>
               <dd class="col-9">Cotton, Jeans</dd>
   
               <dt class="col-3">Brand</dt>
-              <dd class="col-9">Reebook</dd>
+              <dd class="col-9">Reebook</dd> --}}
             </div>
   
             <hr />

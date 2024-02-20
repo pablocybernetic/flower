@@ -8,18 +8,8 @@
     <div id="top">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-4">
-                    <div class="left-content">
-                        <div class="inner-content">
-                            <h3>Pandakivuli</h3>
-                            <h4>We deriver within two hours.</h4>
-                            <div class="main-white-button scroll-to-section">
-                                <a href="#reservation" class="bn5"><h2>Reservation</h2></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-8">
+              
+                <div class="col-lg-12">
                     <div class="main-banner header-text">
                         <div class="Modern-Slider">
 
@@ -27,7 +17,7 @@
                           <!-- Item -->
                           <div class="item">
                             <div class="img-fill">
-                                <img src="{{ asset('assets/images/'.$banner->image)}}" alt="">
+                                <img src="{{ asset('assets/images/'.$banner->image)}}"  alt="">
                             </div>
                           </div>
 
