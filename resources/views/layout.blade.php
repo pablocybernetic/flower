@@ -156,7 +156,7 @@
     
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            var mobileMenu = document.querySelector('.mobile-menu');
+            var mobileMenu = document.querySelector('.mobile-menu .fixed-top');
             var navList = document.querySelector('.main-nav ul.nav');
             var cancelBtn = document.createElement('div');
             cancelBtn.innerHTML = '<i class="fa fa-times" style=" margin-left: 10%"></i>';

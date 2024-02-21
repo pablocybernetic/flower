@@ -1,9 +1,6 @@
 @extends('layout', ['title'=> 'Home'])
-
 @section('page-content')
-<style>
-    
-</style>
+
     <!-- ***** Main Banner Area Start ***** -->
     <div id="top">
         <div class="container-fluid">
@@ -17,7 +14,7 @@
                           <!-- Item -->
                           <div class="item">
                             <div class="img-fill">
-                                <img src="{{ asset('assets/images/'.$banner->image)}}"  alt="">
+                                <img src="{{ asset('assets/images/'.$banner->image)}}" alt="" style="max-width: 100%; max-height: 30rem; height: auto; object-fit:fill;">
                             </div>
                           </div>
 
@@ -31,6 +28,7 @@
         </div>
     </div>
     <!-- ***** Main Banner Area End ***** -->
+    
      <!-- resources/views/search.blade.php -->
 
      <div class="container mt-5">
