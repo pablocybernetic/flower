@@ -24,8 +24,10 @@ use App\Http\Controllers\ProductSearchController;
 */
 // routes/web.php
 
-
-Route::get('/search', [ProductSearchController::class, 'search'])->name('search');
+Route::get('/simple', function () {
+    return view('welcome');
+});
+Route::get('/search', [HomeController::class, 'search'])->name('search');
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
