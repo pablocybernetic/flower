@@ -173,7 +173,7 @@
                                     </div>
                                 </form>
                                 @if($product->available != "Stock")
-                                <h4 class="text-danger fs-6">Out Of Stock</h4>                                            @endif 
+                                <p class="text-danger fs-6">Out Of Stock</p>                                            @endif 
 
                     <span class="product_rating">
                         

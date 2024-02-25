@@ -58,6 +58,34 @@ class HomeController extends Controller
         // If no search query, display regular products
         return view('home', compact('menu', 'breakfast', 'lunch', 'dinner', 'chefs', 'cart_amount', 'about_us', 'banners'));
     }
+    public function search(Request $request){
+
+        $menu = DB::table('products')->where('catagory', 'regular')->get();
+        if ($request->has('query')) {
+            $query = $request->input('query');
+    
+            // Perform a search and get the results
+            $searchResults = DB::table('products')
+                ->where('name', 'like', "%$query%")
+                ->orWhere('description', 'like', "%$query%")
+                ->get();
+    
+            // Check if it's an AJAX request
+            if ($request->ajax()) {
+                // Return only the search results in JSON format
+                return response()->json($searchResults);
+            } else {
+                // Pass the search results to the view along with other data
+                return view('home', compact('menu', 'breakfast', 'lunch', 'dinner', 'chefs', 'searchResults', 'query', 'cart_amount', 'about_us', 'banners'));
+            }
+        }
+        else {
+            if ($request->ajax()) {
+        // return products
+            return response()->json($menu);
+        }}
+
+    }
     public function redirects(){
 
 

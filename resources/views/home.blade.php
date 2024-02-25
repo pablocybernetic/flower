@@ -33,9 +33,9 @@
 
      <div class="container mt-5">
         <div class="d-flex justify-content-center">
-            <form class="bg-light p-0 rounded shadow-sm" action="{{ route('home') }}" method="GET">
+            <form id="searchForm" class="bg-light p-0 rounded shadow-sm" action="{{ route('home') }}" method="GET">
                 <div class="input-group">
-                    <input type="text" name="query" class="form-control" placeholder="Search products">
+                    <input type="text" name="query" id="searchQuery" class="form-control" placeholder="Search products">
                     <div class="input-group-append">
                         <button type="submit" class="btn btn-primary">Search</button>
                     </div>
@@ -43,7 +43,96 @@
             </form>
         </div>
     </div>
-                      
+   
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Function to perform search
+            function performSearch() {
+                var query = $('#searchQuery').val(); // Get the search query
+    
+                // Send AJAX request
+                $.ajax({
+                    type: 'GET',
+                    url: '{{ route('home') }}', // Replace this with your route
+                    data: { query: query },
+                    success: function(response) {
+                        displayData(response); // Display search results
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error);
+                    }
+                });
+            }
+    
+            // Trigger search whenever the user types something
+            $('#searchQuery').on('keyup', function() {
+                performSearch();
+            });
+    
+            // Prevent form submission
+            $('#searchForm').submit(function(event) {
+                event.preventDefault();
+            });
+        
+    
+            // Function to display the fetched data on the HTML page
+            function displayData(data) {
+                // Find the menu-list element
+                var menuList = $('#searching');
+    
+                // Clear any existing content
+                menuList.empty();
+    
+                // Loop through the fetched data and create HTML elements to display it
+                $.each(data, function(index, product) {
+                    // Create HTML elements to represent the product card
+                    var card = $('<div>').addClass('col-6 col-md-3 col-lg-3 mb-4');
+                    var cardInnerHtml = `
+                        <div class="card">
+                            <a href="/menu/${product.id}">
+                                <div style="padding-bottom: 100%; position: relative;">
+                                    <img src="assets/images/${product.image}" class="card-img-top img-fluid" alt="Product Image" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                                </div>
+                            </a>
+                            <div class="card-body">
+                                <h6 class="card-title fs-5">${product.name}</h6>
+                                <div class="d-flex justify-content-between mb-3">
+                                    <span>Total</span>
+                                    <span class="fs-6">Ksh ${product.price}</span>
+                                </div>
+                                <form method="post" action="/menu/${product.id}">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}"> <!-- Add this line -->
+
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <input type="number" name="number" class="form-control form-control-sm" value="1">
+                                        </div>
+                                        <div class="col-auto">
+                                            <button type="submit" class="btn btn-primary btn-sm rounded-circle">
+                                                <i class="fa fa-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                                ${product.available !== "Stock" ? '<p class="text-danger fs-6">Out Of Stock</p>' : ''}
+                                <!-- Add the rating section here -->
+                                <!-- Assuming product ratings are also fetched from the server -->
+                            </div>
+                        </div>
+                    `;
+                    // Set the inner HTML of the card element
+                    card.html(cardInnerHtml);
+                    // Append the card to the container
+                    menuList.append(card);
+                });
+            }
+        });
+    </script>
+    
+
+            
     <!-- ***** Menu Area Starts ***** -->
     <section class="section"  id="menu">
         @if(isset($query))
@@ -82,7 +171,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-12">
                         <div class="menu-item-carousel">
-                            <div class="grid-container row gx-4">
+                            <div class="grid-container row gx-4" id="searching">
                                 @foreach($displayResults as $product)
                                 <div class="col-6 col-md-3 col-lg-3 mb-4">
                                     <div class="card">

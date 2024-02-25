@@ -886,9 +886,9 @@ menu
 */
 
 #menu {
-  margin-top: 120px;
+  margin-top: 10px;
   background-color: #fffafa;
-  padding: 120px 0px;
+  padding: 10px 0px;
 }
 
 #menu .section-heading {
