@@ -167,13 +167,13 @@
         </div>
         @endif
 
-            <div class="container">
+            <div class="container" style="padding: 0">
                 <div class="row justify-content-center">
                     <div class="col-lg-12">
                         <div class="menu-item-carousel">
-                            <div class="grid-container row gx-4" id="searching">
+                            <div class="grid-container row gx-8" id="searching">
                                 @foreach($displayResults as $product)
-                                <div class="col-6 col-md-3 col-lg-3 mb-4">
+                                <div class="col-6 col-md-3 col-lg-2 mb-4">
                                     <div class="card">
                                         {{-- <i class="fa fa-pagelines fa-lg pt-3 pb-1 px-3"></i> --}}
                                         <a href="/menu/{{ $product->id }}">
@@ -182,11 +182,12 @@
                                             </div></a>
                                         
                                         <div class="card-body">
-                                            <h6 class="card-title fs-5">{{ $product->name }}</h6>
+                                            <strong><p class="card-title fs-5">{{ $product->name }}</p></strong>
                                             {{-- <p class="card-text text-muted mb-3 description">{{ $product->description }}</p> --}}
                                             <div class="d-flex justify-content-between mb-3">
-                                                <span>Total</span>
-                                                <span class="fs-6">Ksh {{ $product->price }}</span>
+                                                <strong><p>Total</p></strong>
+                                                
+                                                <span class="fs-6">Ksh</span><strong><span> {{ $product->price }}</span></strong>
                                             </div>
                                             <form method="post" action="{{ route('cart.store', $product->id) }}">
                                                 @csrf
