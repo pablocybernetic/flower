@@ -87,6 +87,13 @@
                         <select class="custom-select d-block w-100" id="state" required>
                             <option value="">Choose...</option>
                             <option value="Kileleshwa">Kileleshwa</option>
+                            <option value="Kasarani">Kasarani</option>
+                            <option value="Westlands">Westlands</option>
+                            <option value="Kahawa Sukari">Kahawa Sukari</option>
+                            <option value="Roysambu">Roysambu</option>
+                            <option value="Kamakis">Kamakis</option>
+                            
+
                         </select>
                         <div class="invalid-feedback">
                             Please provide a valid state.
