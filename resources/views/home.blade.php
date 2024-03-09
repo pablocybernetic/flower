@@ -64,6 +64,7 @@
                         console.error(error);
                     }
                 });
+                
             }
     
             // Trigger search whenever the user types something
