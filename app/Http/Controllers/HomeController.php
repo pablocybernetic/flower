@@ -20,7 +20,7 @@ class HomeController extends Controller
 {
     public function index(Request $request)
     {
-        $menu = DB::table('products')->where('catagory', 'regular')->get();
+        $menu = DB::table('products')->get();
         $breakfast = DB::table('products')->where('catagory', 'special')->where('session', 0)->get();
         $lunch = DB::table('products')->where('catagory', 'special')->where('session', 1)->get();
         $dinner = DB::table('products')->where('catagory', 'special')->where('session', 2)->get();

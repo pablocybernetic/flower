@@ -148,7 +148,7 @@
                 </div>
             </div>
             @php
-                $displayResults = $searchResults;
+                $displayResults = $searhResults;
             @endphp
         @else
             @php
@@ -173,8 +173,8 @@
                         <div class="menu-item-carousel">
                             <div class="grid-container row gx-8" id="searching">
                                 @foreach($displayResults as $product)
-                                <div class="col-6 col-md-3 col-lg-2 mb-4">
-                                    <div class="card">
+                                <div class="col-12 col-sm-6 col-md-3 col-lg-3 mb-4">
+                                <div class="card">
                                         {{-- <i class="fa fa-pagelines fa-lg pt-3 pb-1 px-3"></i> --}}
                                         <a href="/menu/{{ $product->id }}">
                                             <div style="padding-bottom: 100%; position: relative;">
@@ -203,9 +203,9 @@
                                                 </div>
                                             </form>
                                             @if($product->available != "Stock")
-                                            <h4 class="text-danger fs-6">Out Of Stock</h4>                                            @endif 
+                                            <p class="text-danger fs-6">Out Of Stock</p>                                      @endif 
     
-                                <span class="product_rating">
+                                <span class="product_rating" style="font-style:text-muted; font-size:12px;">
                                     
                                 <?php
     
