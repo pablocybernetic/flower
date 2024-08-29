@@ -166,7 +166,7 @@
             </div>
         </div>
         @endif
-        
+
 
             <div class="container" style="padding: 0">
                 <div class="row justify-content-center">
@@ -872,8 +872,8 @@
                                 </article>   
                             </section>
                             <br>
-                            <a href="/menu"><input style="color:#fff; background-color:#75c1d8; font-size:20px;"
-                            class="btn" type="submit" value="Browse All"></a>
+                            <!-- <a href="/menu"><input style="color:#fff; background-color:#75c1d8; font-size:20px;"
+                            class="btn" type="submit" value="Browse All"></a> -->
                         </div>
                     </div>
                 </div>
