@@ -186,7 +186,7 @@
                                             {{-- <p class="card-text text-muted mb-3 description">{{ $product->description }}</p> --}}
                                                 
                                                 <strong><span class="fs-6" style="font-size: 20px; font-style:bold;">KES {{ $product->price }}</span></strong>
-                                            <p class="card-title fs-5" style="font-weight: 300">{{ $product->name }}</p>
+                                            <p class="card-title fs-5" style="  color:gray;">{{ $product->name }}</p>
 
                                             @if($product->available == "Stock")
 
