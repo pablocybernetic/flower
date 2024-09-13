@@ -137,7 +137,7 @@
   		        <strong>Phone:</strong>(+254) 705374455
   	    	</div>
   	    	<div class="span3">
-  		        <strong>Email:</strong> <a href="sajeebchakraborty.cse2000@gmail.com">gitaup08@gmail.com</a>
+  		        <strong>Email:</strong> <a href="gitaup08@gmail">gitaup08@gmail.com</a>
   	    	</div>
   	    
   		</div>

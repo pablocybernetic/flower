@@ -1,7 +1,7 @@
 @extends('layout', ['title'=> 'Home'])
 @section('page-content')
-
-    <!-- ***** Main Banner Area Start ***** -->
+{{-- @include('hero-banner') --}}
+<!-- ***** Main Banner Area Start ***** -->
     <div id="top">
         <div class="container-fluid">
             <div class="row">
@@ -90,7 +90,7 @@
                     // Create HTML elements to represent the product card
                     var card = $('<div>').addClass('col-6 col-md-3 col-lg-3 mb-4');
                     var cardInnerHtml = `
-                        <div class="card">
+                        <div class="card" style="min-height: auto;">
                             <a href="/menu/${product.id}">
                                 <div style="padding-bottom: 100%; position: relative;">
                                     <img src="assets/images/${product.image}" class="card-img-top img-fluid" alt="Product Image" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
@@ -107,7 +107,7 @@
 
                                     <div class="row align-items-center">
                                         <div class="col">
-                                            <input type="number" name="number" class="form-control form-control-sm" value="1">
+                                            <input type="number" name="number" class="form-control form-control-sm" value="1" style="width: 50%">
                                         </div>
                                         <div class="col-auto">
                                             <button type="submit" class="btn btn-primary btn-sm rounded-circle">
@@ -182,19 +182,19 @@
                                                 <img src="{{asset('assets/images/'.$product->image)}}" class="card-img-top img-fluid" alt="Product Image" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
                                             </div></a>
                                         
-                                        <div class="card-body">
-                                            <strong><p class="card-title fs-5">{{ $product->name }}</p></strong>
+                                        <div class="card-body" style="padding:0.5rem">
                                             {{-- <p class="card-text text-muted mb-3 description">{{ $product->description }}</p> --}}
-                                            <div class="d-flex justify-content-between mb-3">
-                                                <strong><p>Total</p></strong>
                                                 
-                                                <span class="fs-6">Ksh</span><strong><span> {{ $product->price }}</span></strong>
-                                            </div>
+                                                <strong><span class="fs-6" style="font-size: 20px; font-style:bold;">KES {{ $product->price }}</span></strong>
+                                            <p class="card-title fs-5" style="font-weight: 300">{{ $product->name }}</p>
+
+                                            @if($product->available == "Stock")
+
                                             <form method="post" action="{{ route('cart.store', $product->id) }}">
                                                 @csrf
                                                 <div class="row align-items-center">
                                                     <div class="col">
-                                                        <input type="number" name="number" class="form-control form-control-sm" value="1">
+                                                        <input type="number" name="number" class="form-control form-control-sm" value="1" style="width: 50%; border-radius:30px">
                                                     </div>
                                                     <div class="col-auto">
                                                         <button type="submit" class="btn btn-primary btn-sm rounded-circle">
@@ -203,91 +203,10 @@
                                                     </div>
                                                 </div>
                                             </form>
-                                            @if($product->available != "Stock")
-                                            <p class="text-danger fs-6">Out Of Stock</p>                                      @endif 
+                                            @else
+                                            <p class="text-danger fs-4" style="font-size: 10px;">Out Of Stock</p>                                      @endif 
     
-                                <span class="product_rating" style="font-style:text-muted; font-size:12px;">
-                                    
-                                <?php
-    
-                                
-                                $total_rate=DB::table('rates')->where('product_id',$product->id)
-                                ->sum('star_value');
-    
-    
-                                $total_voter=DB::table('rates')->where('product_id',$product->id)
-                                ->count();
-    
-                                if($total_voter>0)
-                                {
-    
-                                    $per_rate=$total_rate/$total_voter;
-    
-                                }
-                                else
-                                {
-    
-                                    $per_rate=0;
-    
-    
-                                }
-    
-                                $per_rate=number_format($per_rate, 1);
-    
-    
-                                $whole = floor($per_rate);      // 1
-                                $fraction = $per_rate - $whole
-    
-                            ?>
-                                    @for($i=1;$i<=$whole;$i++)
-  
-                                      <i class="fa fa-star "></i>
-  
-                                      @endfor
-  
-                                      @if($fraction!=0)
-  
-                                      <i class="fa fa-star-half"></i>
-  
-                                      @endif
-                                          
-                                          
-                                      <span class="rating_avg">({{  $per_rate}})</span>
-              </span>
-        <br>
-                                     <a href="/rate/{{ $product->id }}" style="color:blue;">Rate this</a>
-
-                                <?php
-    
-                                
-                                $total_rate=DB::table('rates')->where('product_id',$product->id)
-                                ->sum('star_value');
-    
-    
-                                $total_voter=DB::table('rates')->where('product_id',$product->id)
-                                ->count();
-    
-                                if($total_voter>0)
-                                {
-    
-                                    $per_rate=$total_rate/$total_voter;
-    
-                                }
-                                else
-                                {
-    
-                                    $per_rate=0;
-    
-    
-                                }
-    
-                                $per_rate=number_format($per_rate, 1);
-    
-    
-                                $whole = floor($per_rate);      // 1
-                                $fraction = $per_rate - $whole
-    
-                            ?>
+                  
                                      
                                           </div>
                                         </div>
