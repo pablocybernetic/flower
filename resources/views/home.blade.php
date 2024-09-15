@@ -133,97 +133,204 @@
     
 
             
-    <!-- ***** Menu Area Starts ***** -->
-    <section class="section"  id="menu">
-        @if(isset($query))
-
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="section-heading" >
-                            <h6> our plants</h6>
-                            <h2> Your search results</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @php
-                $displayResults = $searhResults;
-            @endphp
-        @else
-            @php
-                $displayResults = $menu;
-            @endphp
-        
+  <!-- ***** Menu Area Starts ***** -->
+<section class="section" id="menu">
+    @if(isset($query))
         <div class="container">
             <div class="row">
                 <div class="col-lg-4">
-                    <div class="section-heading" >
-                        <h6> our plants</h6>
-                        <h2> here's a selection of our plants </h2>
+                    <div class="section-heading">
+                        <h6>Our Plants</h6>
+                        <h2>Your search results</h2>
                     </div>
                 </div>
             </div>
         </div>
-        @endif
+        @php
+            $displayResults = $searhResults;
+        @endphp
+    @else
+        @php
+            $displayResults = $menu;
+        @endphp
 
-
-            <div class="container" style="padding: 0">
-                <div class="row justify-content-center">
-                    <div class="col-lg-12">
-                        <div class="menu-item-carousel">
-                            <div class="grid-container row gx-8" id="searching">
-                                @foreach($displayResults as $product)
-                                <div class="col-12 col-sm-6 col-md-3 col-lg-3 mb-4">
-                                <div class="card">
-                                        {{-- <i class="fa fa-pagelines fa-lg pt-3 pb-1 px-3"></i> --}}
-                                        <a href="/menu/{{ $product->id }}">
-                                            <div style="padding-bottom: 100%; position: relative;">
-                                                <img src="{{asset('assets/images/'.$product->image)}}" class="card-img-top img-fluid" alt="Product Image" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
-                                            </div></a>
-                                        
-                                        <div class="card-body" style="padding:0.5rem">
-                                            {{-- <p class="card-text text-muted mb-3 description">{{ $product->description }}</p> --}}
-                                                
-                                                <strong><span class="fs-6" style="font-size: 20px; font-style:bold;">KES {{ $product->price }}</span></strong>
-                                            <p class="card-title fs-5" style="  color:gray;">{{ $product->name }}</p>
-
-                                            @if($product->available == "Stock")
-
-                                            <form method="post" action="{{ route('cart.store', $product->id) }}">
-                                                @csrf
-                                                <div class="row align-items-center">
-                                                    <div class="col">
-                                                        <input type="number" name="number" class="form-control form-control-sm" value="1" style="width: 50%; border-radius:30px">
-                                                    </div>
-                                                    <div class="col-auto">
-                                                        <button type="submit" class="btn btn-primary btn-sm rounded-circle">
-                                                            <i class="fa fa-plus"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                            @else
-                                            <p class="text-danger fs-4" style="font-size: 10px;">Out Of Stock</p>                                      @endif 
-    
-                  
-                                     
-                                          </div>
-                                        </div>
-                                      </div>
-                                      @endforeach
-
-                                    </div>
-                                  </div>
-                              
-                            
-
- 
-                      
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="section-heading">
+                        <h6>Our Plants</h6>
+                        <h2>Here's a selection of our plants</h2>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    @endif
+
+<style>
+    .custom-select {
+        border-radius: 25px;
+    }
+</style>
+
+<div class="container" style="padding: 0">
+    <div class="row">
+        <!-- Filter panel for Desktop on the side, Mobile on top -->
+        <div class="col-lg-3 col-12 mb-4">
+            <div class="filter-panel p-4 bg-white shadow-lg rounded" style="border-left: 5px solid #28a745;">
+                <h5 class="mb-4 text-success text-uppercase fw-bold" style="letter-spacing: 1px;">Filters</h5>
+                <!-- Filter Form -->
+                <form>
+                    <!-- Category Filter -->
+                    <div class="mb-4">
+                        <label for="category" class="form-label fw-semibold text-secondary">Category</label>
+                        <select class="form-select form-control custom-select" id="category">
+                            <option value="">All Categories</option>
+                            <option value="indoor">Indoor</option>
+                            <option value="outdoor">Outdoor</option>
+                            <option value="succulents">Succulents</option>
+                            <option value="cactus">Cactus</option>
+                        </select>
+                    </div>
+
+                    <!-- Price Range Filter -->
+                    <div class="mb-4">
+                        <label for="price" class="form-label fw-semibold text-secondary">Price Range</label>
+                        <input type="range" class="form-range form-control" id="price" min="0" max="1000" step="50">
+                        <p class="text-muted mt-2">Price: <span id="priceValue" class="fw-bold text-success">500</span> KES</p>
+                    </div>
+
+                    <!-- Size Filter -->
+                    <div class="mb-4">
+                        <label for="size" class="form-label fw-semibold text-secondary">Size</label>
+                        <select class="form-select form-control custom-select" id="size">
+                            <option value="">All Sizes</option>
+                            <option value="small">Small</option>
+                            <option value="medium">Medium</option>
+                            <option value="large">Large</option>
+                        </select>
+                    </div>
+
+
+            <!-- Light Requirements Filter -->
+            <div class="mb-4">
+                <label for="light" class="form-label fw-semibold text-secondary">Light Requirements</label>
+                <select class="form-select form-control custom-select" id="light">
+                    <option value="">All Light Conditions</option>
+                    <option value="fullsun">Full Sun</option>
+                    <option value="partialsun">Partial Sun</option>
+                    <option value="lowlight">Low Light</option>
+                </select>
+            </div>
+
+            <!-- Watering Needs Filter -->
+            <div class="mb-4">
+                <label for="watering" class="form-label fw-semibold text-secondary">Watering Needs</label>
+                <select class="form-select form-control custom-select" id="watering">
+                    <option value="">All Watering Needs</option>
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select>
+            </div>
+
+            <!-- Difficulty Level Filter -->
+            <div class="mb-4">
+                <label for="difficulty" class="form-label fw-semibold text-secondary">Difficulty Level</label>
+                <select class="form-select form-control custom-select" id="difficulty">
+                    <option value="">All Difficulty Levels</option>
+                    <option value="easy">Easy</option>
+                    <option value="moderate">Moderate</option>
+                    <option value="challenging">Challenging</option>
+                </select>
+            </div>
+
+            <!-- Growth Rate Filter -->
+            <div class="mb-4">
+                <label for="growthRate" class="form-label fw-semibold text-secondary">Growth Rate</label>
+                <select class="form-select form-control custom-select" id="growthRate">
+                    <option value="">All Growth Rates</option>
+                    <option value="slow">Slow</option>
+                    <option value="medium">Medium</option>
+                    <option value="fast">Fast</option>
+                </select>
+            </div>
+
+            <!-- Pet-Friendly Filter -->
+            <div class="mb-4">
+                <label for="petFriendly" class="form-label fw-semibold text-secondary">Pet-Friendly</label>
+                <select class="form-select form-control custom-select" id="petFriendly">
+                    <option value="">All Plants</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+                    <button type="submit" class="btn btn-success w-100 rounded-pill">Apply Filters</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Product Listing -->
+        <div class="col-lg-9 col-12">
+            <div class="menu-item-carousel">
+                <div class="grid-container row gx-8" id="searching">
+                    @foreach($displayResults as $product)
+                    <div class="col-6 col-sm-6 col-md-3 col-lg-3 mb-4">
+                        <div class="card">
+                            <a href="/menu/{{ $product->id }}">
+                                <div style="padding-bottom: 100%; position: relative;">
+                                    <img src="{{asset('assets/images/'.$product->image)}}" class="card-img-top img-fluid" alt="Product Image" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                                </div>
+                            </a>
+                            <div class="card-body" style="padding:0.5rem">
+                                <strong><span class="fs-6" style="font-size: 20px; font-style:bold;">KES {{ $product->price }}</span></strong>
+                                <p class="card-title fs-5" style="color:gray;">{{ $product->name }}</p>
+
+                                @if($product->available == "Stock")
+                                <form method="post" action="{{ route('cart.store', $product->id) }}">
+                                    @csrf
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <input type="number" name="number" class="form-control form-control-sm" value="1" style="width: 50%; border-radius:30px">
+                                        </div>
+                                        <div class="col-auto">
+                                            <button type="submit" class="btn btn-primary btn-sm rounded-circle">
+                                                <i class="fa fa-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                                @else
+                                <p class="text-danger fs-4" style="font-size: 10px;">Out Of Stock</p>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // JavaScript for dynamic price range handling
+    const minPrice = {{ $displayResults->min('price') }};
+    const maxPrice = {{ $displayResults->max('price') }};
+
+    const priceSlider = document.getElementById('price');
+    const priceValue = document.getElementById('priceValue');
+
+    // Set the min and max for the slider
+    priceSlider.min = minPrice;
+    priceSlider.max = maxPrice;
+
+    // Update the displayed value dynamically
+    priceSlider.addEventListener('input', function() {
+        priceValue.textContent = this.value;
+    });
+</script>
+</section>
+
         <!-- ***** Menu Area Ends ***** -->
 
     <!-- ***** About Area Starts ***** -->
