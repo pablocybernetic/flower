@@ -362,7 +362,7 @@
                     <div class="right-content">
                         <div class="thumb">
                             <a rel="nofollow" href="{{  $a_us->youtube_link    }}" target="_blank"> <i class="fa fa-play"></i></a>
-                            <img src="{{ asset('assets/images/'.$a_us->vd_image)}}" alt="">
+                            <img src="https://pandakivuli.co.ke/assets/images/529514846.png" alt="">
 
                             @endforeach
                         </div>
@@ -430,9 +430,9 @@
                                     <div class="col-lg-6 offset-lg-3">
                                         <ul>
                                   
-                                          <li><a href='#tabs-1'><img src="{{ asset('assets/images/tab-icon-01.png')}}" alt="">Flowers</a></li>
-                                          <li><a href='#tabs-2'><img src="{{ asset('assets/images/tab-icon-02.png')}}" alt="">Trees</a></a></li>
-                                          <li><a href='#tabs-3'><img src="{{ asset('assets/images/tab-icon-03.png')}}" alt="">Seedlings</a></a></li>
+                                          <li><a href='#tabs-1'><img src="" alt="">Flowers</a></li>
+                                          <li><a href='#tabs-2'><img src="" alt="">Trees</a></a></li>
+                                          <li><a href='#tabs-3'><img src="" alt="">Seedlings</a></a></li>
                                       
                                         </ul>
                                     </div>
