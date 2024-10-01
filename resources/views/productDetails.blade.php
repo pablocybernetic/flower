@@ -38,7 +38,7 @@
               {{ $product->name }}
           </h4>
             <div class="d-flex flex-row my-3">
-              <div class="text-warning mb-1 me-2">
+              {{-- <div class="text-warning mb-1 me-2">
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
@@ -47,7 +47,7 @@
                 <span class="ms-1">
                   4.5
                 </span>
-              </div>
+              </div> --}}
               <span class="text-muted"><i class="fas fa-shopping-basket fa-sm mx-1"></i>154 orders</span>
               <br><br>
             </div>
@@ -175,88 +175,7 @@
                                 @if($product->available != "Stock")
                                 <p class="text-danger fs-6">Out Of Stock</p>                                            @endif 
 
-                    <span class="product_rating">
-                        
-                    <?php
-
-                    
-                    $total_rate=DB::table('rates')->where('product_id',$product->id)
-                    ->sum('star_value');
-
-
-                    $total_voter=DB::table('rates')->where('product_id',$product->id)
-                    ->count();
-
-                    if($total_voter>0)
-                    {
-
-                        $per_rate=$total_rate/$total_voter;
-
-                    }
-                    else
-                    {
-
-                        $per_rate=0;
-
-
-                    }
-
-                    $per_rate=number_format($per_rate, 1);
-
-
-                    $whole = floor($per_rate);      // 1
-                    $fraction = $per_rate - $whole
-
-                ?>
-                        @for($i=1;$i<=$whole;$i++)
-
-                          <i class="fa fa-star "></i>
-
-                          @endfor
-
-                          @if($fraction!=0)
-
-                          <i class="fa fa-star-half"></i>
-
-                          @endif
-                              
-                              
-                          <span class="rating_avg">({{  $per_rate}})</span>
-  </span>
-<br>
-                         <a href="/rate/{{ $product->id }}" style="color:blue;">Rate this</a>
-
-                    <?php
-
-                    
-                    $total_rate=DB::table('rates')->where('product_id',$product->id)
-                    ->sum('star_value');
-
-
-                    $total_voter=DB::table('rates')->where('product_id',$product->id)
-                    ->count();
-
-                    if($total_voter>0)
-                    {
-
-                        $per_rate=$total_rate/$total_voter;
-
-                    }
-                    else
-                    {
-
-                        $per_rate=0;
-
-
-                    }
-
-                    $per_rate=number_format($per_rate, 1);
-
-
-                    $whole = floor($per_rate);      // 1
-                    $fraction = $per_rate - $whole
-
-                ?>
+            
                          
                               </div>
                             </div>
