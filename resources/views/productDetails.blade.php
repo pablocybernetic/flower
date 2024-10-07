@@ -46,6 +46,7 @@
                 <i class="fas fa-star-half-alt"></i>
                 <span class="ms-1">
                   4.5
+                  
                 </span>
               </div> --}}
               <span class="text-muted"><i class="fas fa-shopping-basket fa-sm mx-1"></i>154 orders</span>
