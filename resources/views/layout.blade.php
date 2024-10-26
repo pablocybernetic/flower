@@ -209,7 +209,7 @@
                 <a class="nav-link" href="/my-order">My Order<span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item active">
-                <a class="nav-link" href="/#chefs">Botanist<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/#chefs">Our Team<span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item active">
                 <a class="nav-link" href="/#reservation">Contact Us<span class="sr-only">(current)</span></a>
