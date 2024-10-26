@@ -417,7 +417,7 @@
                 <div class="col-lg-4 offset-lg-4 text-center">
                     <div class="section-heading">
                         <h6>Midway Week</h6>
-                        <h2>This Week’s Special Flowers Offers</h2>
+                        <h2>This Week’s Special Offers</h2>
                     </div>
                 </div>
             </div>
@@ -431,8 +431,12 @@
                                         <ul>
                                   
                                           <li><a href='#tabs-1'><img src="" alt="">Flowers</a></li>
-                                          <li><a href='#tabs-2'><img src="" alt="">Trees</a></a></li>
+                                          <li><a href='#tabs-2'><img src="" alt="">Fruit trees</a></a></li>
                                           <li><a href='#tabs-3'><img src="" alt="">Seedlings</a></a></li>
+                                          <li><a href='#tabs-4'><img src="" alt="">Herbs</a></a></li>
+                                          <li><a href='#tabs-5'><img src="" alt="">Graden</a></a></li>
+                                          <li><a href='#tabs-6'><img src="" alt=""> Planting accessories</a></a></li>
+
                                       
                                         </ul>
                                     </div>
