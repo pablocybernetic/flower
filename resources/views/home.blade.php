@@ -926,8 +926,8 @@
                                 <div class="phone">
                                     <i class="fa fa-phone"></i>
                                     <h4>Phone Numbers</h4>
-                                    <span><a href="#">0705374455</a>
-									<br><a href="#">0705374455</a>
+                                    <span><a href="#">0705307007</a>
+									<!-- <br><a href="#">0705374455</a> -->
 									</span>
                                 </div>
                             </div>
@@ -936,8 +936,8 @@
                                     <i class="fa fa-envelope"></i>
                                     <h4>Emails</h4>
                                     <span>
-                                        <a href="mailto:support@pandakivuli.com">support@pandakivuli.com</a><br>
-                                        <a href="mailto:gitaup08@gmail.com">gitaup08@gmail.com</a><br>
+                                        <a href="mailto:support@pandakivuli.co.ke">support@pandakivuli.co.ke</a><br>
+                                        <a href="mailto:jiuda47@gmail.com">jiuda47@gmail.com</a><br>
 									</span>
                                 </div>
                             </div>
