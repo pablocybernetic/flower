@@ -86,12 +86,27 @@
                         <label for="state">Location</label>
                         <select class="custom-select d-block w-100" id="state" required>
                             <option value="">Choose...</option>
-                            <option value="Kileleshwa">Kileleshwa</option>
-                            <option value="Kasarani">Kasarani</option>
-                            <option value="Westlands">Westlands</option>
-                            <option value="Kahawa Sukari">Kahawa Sukari</option>
-                            <option value="Roysambu">Roysambu</option>
-                            <option value="Kamakis">Kamakis</option>
+                            <option value="Donholm">Donholm</option>
+<option value="Kabete">Kabete</option>
+<option value="Kahawa Sukari">Kahawa Sukari</option>
+<option value="Kamakis">Kamakis</option>
+<option value="Kasarani">Kasarani</option>
+<option value="Kileleshwa">Kileleshwa</option>
+<option value="Kilimani">Kilimani</option>
+<option value="Langata">Langata</option>
+<option value="Lavington">Lavington</option>
+<option value="Mirema">Mirema</option>
+<option value="Nairobi West">Nairobi West</option>
+<option value="Parklands">Parklands</option>
+<option value="Roysambu">Roysambu</option>
+<option value="Ruaka">Ruaka</option>
+<option value="South B">South B</option>
+<option value="South C">South C</option>
+<option value="Thindigua">Thindigua</option>
+<option value="Utawala">Utawala</option>
+<option value="Westlands">Westlands</option>
+<option value="Zimmerman">Zimmerman</option>
+
                             
 
                         </select>

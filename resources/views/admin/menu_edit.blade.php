@@ -56,11 +56,54 @@
                           </select>
                         </div>
                         <div class="form-group">
+                          <label for="exampleSelectGender">Size</label>
+                          <select class="form-control" name="size" id="exampleSelectGender">
+                            <option value="Small" @php if($product->size=="Small"){ echo"selected"; }   @endphp>Small</option>
+                            <option value="Medium" @php if($product->size=="Medium"){ echo"selected"; }   @endphp>Medium</option>
+                            <option value="Large" @php if($product->size=="Large"){ echo"selected"; }   @endphp>Large</option>
+
+                          </select>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="exampleSelectGender">Light Requirements</label>
+                          <select class="form-control" name="light" id="exampleSelectGender">
+                            <option value="Full Sun" @php if($product->light=="Full Sun"){ echo"selected"; }   @endphp>Full Sun</option>
+                            <option value="Partial Sun" @php if($product->light=="Partial Sun"){ echo"selected"; }   @endphp>Partial Sun</option>
+                            <option value="Low Light" @php if($product->light=="Low Light"){ echo"selected"; }   @endphp>Low Light</option>
+
+                          </select>
+                        </div><div class="form-group">
+                          <label for="exampleSelectGender">Watering Needs</label>
+                          <select class="form-control" name="water" id="exampleSelectGender">
+                            <option value="Low" @php if($product->water=="Low"){ echo"selected"; }   @endphp>Low</option>
+                            <option value="Medium" @php if($product->water=="Medium"){ echo"selected"; }   @endphp>Medium</option>
+                            <option value="High" @php if($product->water=="High"){ echo"selected"; }   @endphp>High</option>
+
+                          </select>
+                        </div><div class="form-group">
+                          <label for="exampleSelectGender">Growth Rat</label>
+                          <select class="form-control" name="growth" id="exampleSelectGender">
+                            <option value="Slow" @php if($product->growth=="Slow"){ echo"selected"; }   @endphp>Slow</option>
+                            <option value="Medium" @php if($product->growth=="Medium"){ echo"selected"; }   @endphp>Medium</option>
+                            <option value="Fast" @php if($product->growth=="Fast"){ echo"selected"; }   @endphp>Fast</option>
+
+                          </select>
+                        </div><div class="form-group">
+                          <label for="exampleSelectGender">Pet-Friendly</label>
+                          <select class="form-control" name="pet" id="exampleSelectGender">
+                            <option value="Yes" @php if($product->pet=="Yes"){ echo"selected"; }   @endphp>Yes</option>
+                            <option value="No" @php if($product->pet=="No"){ echo"selected"; }   @endphp>No</option>
+
+                          </select>
+                        </div>
+
+                        <div class="form-group">
                           <label for="exampleSelectGender">Season</label>
                           <select class="form-control" name="session" id="exampleSelectGender">
-                            <option value="0" @php if($product->session=="0"){ echo"selected"; }   @endphp>Breakfast</option>
-                            <option value="1" @php if($product->session=="1"){ echo"selected"; }   @endphp>Lunch</option>
-                            <option value="2" @php if($product->session=="2"){ echo"selected"; }   @endphp>Dinner</option>
+                            <option value="0" @php if($product->session=="0"){ echo"selected"; }   @endphp>All season</option>
+                            <option value="1" @php if($product->session=="1"){ echo"selected"; }   @endphp>Summer</option>
+                            <option value="2" @php if($product->session=="2"){ echo"selected"; }   @endphp>Winter</option>
                           </select>
                         </div>
   

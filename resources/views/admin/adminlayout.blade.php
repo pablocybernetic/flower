@@ -115,9 +115,9 @@
           <li class="nav-item menu-items">
             <a class="nav-link" href="/admin/food-menu">
               <span class="menu-icon">
-                <i class="mdi mdi-food"></i>
+                <i class="mdi mdi-cart"></i>
               </span>
-              <span class="menu-title">Food Menu</span>
+              <span class="menu-title">Products</span>
             </a>
           </li>
           
@@ -125,9 +125,9 @@
           <li class="nav-item menu-items">
             <a class="nav-link" href="/admin/chefs">
               <span class="menu-icon">
-                <i class="mdi mdi-food"></i>
+                <i class="mdi mdi-group"></i>
               </span>
-              <span class="menu-title">Chefs</span>
+              <span class="menu-title">Team</span>
             </a>
           </li>
           @endif
@@ -175,7 +175,7 @@
               <span class="menu-icon">
                 <i class="mdi mdi-chart-bar"></i>
               </span>
-              <span class="menu-title">Reservation</span>
+              <span class="menu-title">Special Orders</span>
             </a>
           </li>
           @if(Auth::user()->usertype == 1)
@@ -393,7 +393,7 @@
           <!-- partial:partials/_footer.html -->
           <footer class="footer">
             <div class="d-sm-flex justify-content-center justify-content-sm-between">
-              <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © RMS  2022</span>
+              <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © Pandakivuli  2023</span>
          
               <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> <a href="/" target="_blank">Go to Client Section</a></span>
             </div>

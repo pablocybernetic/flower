@@ -48,18 +48,63 @@
                           <div class="form-group">
                             <label for="exampleSelectGender">Catagory</label>
                             <select class="form-control" name="catagory" id="exampleSelectGender">
-                              <option value="regular">Regular</option>
-                              <option value="special">Special</option>
+                              <option value="Indoor">Indoor</option>
+                              <option value="Outdoor">Outdoor</option>
+                              <option value="Saculent">Saculent</option>
+                              <option value="Cactus">Cactus</option>
+
                             </select>
                           </div>
                           <div class="form-group">
                             <label for="exampleSelectGender">Season</label>
                             <select class="form-control" name="session" id="exampleSelectGender">
-                              <option value="0">Breakfast</option>
-                              <option value="1">Lunch</option>
-                              <option value="2">Dinner</option>
+                              <option value="0">All seasons</option>
+                              <option value="1">Winter</option>
+                              <option value="2">Summer</option>
                             </select>
                           </div>
+                          <div class="form-group">
+                            <label for="exampleSelectGender">Size</label>
+                            <select class="form-control" name="size" id="exampleSelectGender">
+                              <option value="Small">Small</option>
+                              <option value="Medium">Medium</option>
+                              <option value="Large">Large</option>
+
+                            </select>
+                          </div>     <div class="form-group">
+                            <label for="exampleSelectGender">Light Requirements</label>
+                            <select class="form-control" name="light" id="exampleSelectGender">
+                              <option value="Full Sun">Full Sun</option>
+                              <option value="Partial Sun">Partial Sun</option>
+                              <option value="Low Light">Low Light</option>
+
+                            </select>
+                          </div>     <div class="form-group">
+                            <label for="exampleSelectGender">Watering Needs</label>
+                            <select class="form-control" name="water" id="exampleSelectGender">
+                              <option value="Low">Low</option>
+                              <option value="Medium">Medium</option>
+                              <option value="High">High</option>
+
+                            </select>
+                          </div>     <div class="form-group">
+                            <label for="exampleSelectGender">Growth Rate</label>
+                            <select class="form-control" name="growth" id="exampleSelectGender">
+                              <option value="Slow">Slow</option>
+                              <option value="Medium">Medium</option>
+                              <option value="Fast">Fast</option>
+
+                            </select>
+                          </div>     <div class="form-group">
+                            <label for="exampleSelectGender">Pet-Friendly</label>
+                            <select class="form-control" name="pet" id="exampleSelectGender">
+                              <option value="Yes">Yes</option>
+                              <option value="No">No</option>
+                             
+
+                            </select>
+                          </div>
+                          
                     
                           <div class="form-group">
                             <label for="exampleSelectGender">Available</label>

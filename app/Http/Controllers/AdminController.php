@@ -259,6 +259,12 @@ class AdminController extends Controller
         $data['session']=$req->session;
         $data['available']=$req->available;
         $data['image']=$new_image;
+        // added
+        $data['size']=$req->size;
+        $data['light']=$req->light;
+        $data['water']=$req->water;
+        $data['growth']=$req->growth;
+        $data['pet']=$req->pet;     
 
 
         $insert=DB::table('products')->Insert($data);
@@ -378,6 +384,12 @@ class AdminController extends Controller
         $data['price']=$req->price;
         $data['catagory']=$req->catagory;
         $data['session']=$req->session;
+            // added
+            $data['size']=$req->size;
+            $data['light']=$req->light;
+            $data['water']=$req->water;
+            $data['growth']=$req->growth;
+            $data['pet']=$req->pet; ;
         $data['available']=$req->available;
 
         if($req->image!=NULL)
