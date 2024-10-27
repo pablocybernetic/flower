@@ -174,46 +174,56 @@
 
 <div class="container" style="padding: 0">
     <div class="row">
-        <!-- Filter panel for Desktop on the side, Mobile on top -->
-        <div class="col-lg-3 col-12 mb-4">
-            <div class="filter-panel p-4 bg-white shadow-lg rounded" style="border-left: 5px solid #28a745;">
-                <h5 class="mb-4 text-success text-uppercase fw-bold" style="letter-spacing: 1px;">Filters</h5>
-                <!-- Filter Form -->
-                <form>
-                    <!-- Category Filter -->
-                    <div class="mb-4">
-                        <label for="category" class="form-label fw-semibold text-secondary">Category</label>
-                        <select class="form-select form-control custom-select" id="category">
-                            <option value="">All Categories</option>
-                            <option value="indoor">Indoor</option>
-                            <option value="outdoor">Outdoor</option>
-                            <option value="succulents">Succulents</option>
-                            <option value="cactus">Cactus</option>
-                        </select>
-                    </div>
+   <!-- Font Awesome CSS --> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-                    <!-- Price Range Filter -->
-                    <div class="mb-4">
-                        <label for="price" class="form-label fw-semibold text-secondary">Price Range</label>
-                        <input type="range" class="form-range form-control" id="price" min="0" max="1000" step="50">
-                        <p class="text-muted mt-2">Price: <span id="priceValue" class="fw-bold text-success">500</span> KES</p>
-                    </div>
+<!-- Filter panel for Desktop on the side, Mobile on top -->
+<div class="col-lg-3 col-12 mb-3 md-3 sticky-top">
+    <div class="filter-panel p-4 bg-white shadow-lg rounded" style="border-left: 5px solid #28a745;">
+        <h5 class="mb-4 text-success text-uppercase fw-bold" style="letter-spacing: 1px;">Filters</h5>
+        <!-- Filter Form -->
+        <form>
+            <!-- Category Filter -->
+            <div class="mb-4">
+                <label for="category" class="form-label fw-semibold text-secondary d-flex align-items-center">
+                    <i class="fas fa-leaf text-success me-3" style="font-size: 1.2em; color: #28a745;"></i>Category
+                </label>
+                <select class="form-select form-control custom-select" id="category">
+                    <option value="">All Categories</option>
+                    <option value="indoor">Indoor</option>
+                    <option value="outdoor">Outdoor</option>
+                    <option value="succulents">Succulents</option>
+                    <option value="cactus">Cactus</option>
+                </select>
+            </div>
 
-                    <!-- Size Filter -->
-                    <div class="mb-4">
-                        <label for="size" class="form-label fw-semibold text-secondary">Size</label>
-                        <select class="form-select form-control custom-select" id="size">
-                            <option value="">All Sizes</option>
-                            <option value="small">Small</option>
-                            <option value="medium">Medium</option>
-                            <option value="large">Large</option>
-                        </select>
-                    </div>
+            <!-- Price Range Filter -->
+            <div class="mb-4">
+                <label for="price" class="form-label fw-semibold text-secondary d-flex align-items-center">
+                    <i class="fas fa-tag me-3" style="font-size: 1.2em; color: #ff9900;"></i>Price Range
+                </label>
+                <input type="range" class="form-range form-control" id="price" min="0" max="1000" step="50">
+                <p class="text-muted mt-2">Price: <span id="priceValue" class="fw-bold text-success">500</span> KES</p>
+            </div>
 
+            <!-- Size Filter -->
+            <div class="mb-4">
+                <label for="size" class="form-label fw-semibold text-secondary d-flex align-items-center">
+                    <i class="fas fa-arrows-alt me-3" style="font-size: 1.2em; color: #007bff;"></i>Size
+                </label>
+                <select class="form-select form-control custom-select" id="size">
+                    <option value="">All Sizes</option>
+                    <option value="small">Small</option>
+                    <option value="medium">Medium</option>
+                    <option value="large">Large</option>
+                </select>
+            </div>
 
             <!-- Light Requirements Filter -->
             <div class="mb-4">
-                <label for="light" class="form-label fw-semibold text-secondary">Light Requirements</label>
+                <label for="light" class="form-label fw-semibold text-secondary d-flex align-items-center">
+                    <i class="fas fa-sun me-3" style="font-size: 1.2em; color: #ffcc00;"></i>Light Requirements
+                </label>
                 <select class="form-select form-control custom-select" id="light">
                     <option value="">All Light Conditions</option>
                     <option value="fullsun">Full Sun</option>
@@ -224,7 +234,9 @@
 
             <!-- Watering Needs Filter -->
             <div class="mb-4">
-                <label for="watering" class="form-label fw-semibold text-secondary">Watering Needs</label>
+                <label for="watering" class="form-label fw-semibold text-secondary d-flex align-items-center">
+                    <i class="fas fa-tint me-3" style="font-size: 1.2em; color: #007bff;"></i>Watering Needs
+                </label>
                 <select class="form-select form-control custom-select" id="watering">
                     <option value="">All Watering Needs</option>
                     <option value="low">Low</option>
@@ -235,7 +247,9 @@
 
             <!-- Difficulty Level Filter -->
             <div class="mb-4">
-                <label for="difficulty" class="form-label fw-semibold text-secondary">Difficulty Level</label>
+                <label for="difficulty" class="form-label fw-semibold text-secondary d-flex align-items-center">
+                    <i class="fas fa-hiking me-3" style="font-size: 1.2em; color: #e74c3c;"></i>Difficulty Level
+                </label>
                 <select class="form-select form-control custom-select" id="difficulty">
                     <option value="">All Difficulty Levels</option>
                     <option value="easy">Easy</option>
@@ -246,7 +260,9 @@
 
             <!-- Growth Rate Filter -->
             <div class="mb-4">
-                <label for="growthRate" class="form-label fw-semibold text-secondary">Growth Rate</label>
+                <label for="growthRate" class="form-label fw-semibold text-secondary d-flex align-items-center">
+                    <i class="fas fa-seedling me-3" style="font-size: 1.2em; color: #2ecc71;"></i> Growth Rate
+                </label>
                 <select class="form-select form-control custom-select" id="growthRate">
                     <option value="">All Growth Rates</option>
                     <option value="slow">Slow</option>
@@ -257,17 +273,21 @@
 
             <!-- Pet-Friendly Filter -->
             <div class="mb-4">
-                <label for="petFriendly" class="form-label fw-semibold text-secondary">Pet-Friendly</label>
+                <label for="petFriendly" class="form-label fw-semibold text-secondary d-flex align-items-center">
+                    <i class="fas fa-paw me-3" style="font-size: 1.2em; color: #8e44ad;"></i>Pet-Friendly
+                </label>
                 <select class="form-select form-control custom-select" id="petFriendly">
                     <option value="">All Plants</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                 </select>
             </div>
-                    <button type="submit" class="btn btn-success w-100 rounded-pill">Apply Filters</button>
-                </form>
-            </div>
-        </div>
+            <button type="submit" class="btn btn-success w-100 rounded-pill">Apply Filters</button>
+        </form>
+    </div>
+</div>
+
+
 
         <!-- Product Listing -->
         <div class="col-lg-9 col-12">
