@@ -399,8 +399,8 @@
             <div class="row">
                 <div class="col-lg-4 offset-lg-4 text-center">
                     <div class="section-heading">
-                        <h6>Our Frourists</h6>
-                        <h2>We offer the best freshiest flowers for you</h2>
+                        <h6>Our Team</h6>
+                        <!-- <h2>We offer the best freshiest flowers for you</h2> -->
                     </div>
                 </div>
             </div>
