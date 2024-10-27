@@ -435,7 +435,7 @@
                                           <li><a href='#tabs-3'><img src="" alt="">Seedlings</a></a></li>
                                           <li><a href='#tabs-4'><img src="" alt="">Herbs</a></a></li>
                                           <li><a href='#tabs-5'><img src="" alt="">Graden</a></a></li>
-                                          <li><a href='#tabs-6'><img src="" alt=""> Planting accessories</a></a></li>
+                                          <li><a href='#tabs-6'><img src="" alt="">Planting accessories</a></a></li>
 
                                       
                                         </ul>
