@@ -46,7 +46,7 @@ class MpesaCallbackController extends Controller
 
     
             // Initiate STK Push
-            $response = $this->initiateSTKPush($phone, $amount, $shortcode, $passkey, $accessToken, $callbackUrl);
+            $response = $this->initiateSTKPush($phone, $amount, $shortcode, $passkey, $accessToken, $callbackUrl, $orderId);
             return response()->json($response);
         } else {
             return response()->json(["errorMessage" => "Invalid input. Phone number and amount are required."], 400);
@@ -87,7 +87,7 @@ class MpesaCallbackController extends Controller
         $password = base64_encode($shortcode . $passkey . $timestamp);
     
         // Hard-coded Order ID
-        // $orderId = "7777545";
+        $orderId = "7777545";
     
         // Create dynamic callback URL with hard-coded order ID
         $callbackUrlWithOrderId = $callbackUrl . '?orderId=' . urlencode($orderId);
