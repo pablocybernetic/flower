@@ -189,7 +189,7 @@ document.getElementById("stkPushForm").addEventListener("submit", function (even
         }
     })
     .catch(error => {
-        showModal("Transaction Error", "An error occurred during the request. Please try again.", "info");
+        showModal("Transaction Error", "An error occurred during the request. Please try again. "`${responseData.errorMessage}`, "info");
     });
 });
 
