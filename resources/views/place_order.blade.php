@@ -71,6 +71,7 @@
                     <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
                 </div>
 
+
                 <div class="row">
                     <div class="col-md-5 mb-3">
                         <label for="country">County</label>
@@ -119,6 +120,13 @@
                         <input type="text" class="form-control" id="zip" placeholder="" required>
                         <div class="invalid-feedback">
                             Zip code required.
+                        </div>
+                    </div>
+                        <div class="col-md-6 mb-6">
+                            <label for="phone">Mpesa Phone Number (2547XXXXXXXX):</label>
+                            <input type="text" class="form-control" id="phone" name="phone" required>
+                        <div class="invalid-feedback">
+                            Phone number required.
                         </div>
                     </div>
                 </div>

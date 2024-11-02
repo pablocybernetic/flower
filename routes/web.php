@@ -10,6 +10,8 @@ use App\Http\Controllers\SslCommerzPaymentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProductSearchController;
+use App\Http\Controllers\MpesaCallbackController;
+
 
 
 /*
@@ -123,6 +125,13 @@ Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
 
 Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 //SSLCOMMERZ END
+
+
+// Mpesa
+
+Route::post('/mpesa/callback/', [MpesaCallbackController::class, 'edit'])->name('mpesa');
+Route::post('/stk_push', [MpesaCallbackController::class, 'stk_push']);
+
 
 
 // Admin start Route

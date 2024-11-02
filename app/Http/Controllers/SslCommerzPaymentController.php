@@ -113,6 +113,7 @@ class SslCommerzPaymentController extends Controller
     public function payViaAjax(Request $request)
     {
 
+
         # Here you have to receive all the order data to initate the payment.
         # Lets your oder trnsaction informations are saving in a table called "orders"
         # In orders table order uniq identity is "transaction_id","status" field contain status of the transaction, "amount" is the order amount to be paid and "currency" is for storing Site Currency which will be checked with paid currency.
@@ -129,7 +130,7 @@ class SslCommerzPaymentController extends Controller
 
         $post_data = array();
         $post_data['total_amount'] = $total; # You cant not pay less than 10
-        $post_data['currency'] = "BDT";
+        $post_data['currency'] = "KES";
         $post_data['tran_id'] = $invoice; // tran_id must be unique
 
       
@@ -184,9 +185,9 @@ class SslCommerzPaymentController extends Controller
     
  
 
-        $sslc = new SslCommerzNotification();
+        $sslc = new MpesaCallbackController();
         # initiate(Transaction Data , false: Redirect to SSLCOMMERZ gateway/ true: Show all the Payement gateway here )
-        $payment_options = $sslc->makePayment($post_data, 'checkout', 'json');
+        $stk = $sslc->stk_push($post_data, 'checkout', 'json');
 
         if (!is_array($payment_options)) {
             print_r($payment_options);
