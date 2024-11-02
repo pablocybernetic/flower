@@ -34,6 +34,16 @@ class MpesaCallbackController extends Controller
         if (isset($input['phone']) && isset($input['amount'])) {
             $phone = $input['phone'];
             $amount = $input['amount'];
+            $orderId = $input['orderId'];
+
+
+
+
+
+
+
+
+
     
             // Initiate STK Push
             $response = $this->initiateSTKPush($phone, $amount, $shortcode, $passkey, $accessToken, $callbackUrl);
@@ -71,13 +81,13 @@ class MpesaCallbackController extends Controller
         }
     }
     
-    private function initiateSTKPush($phone, $amount, $shortcode, $passkey, $accessToken, $callbackUrl)
+    private function initiateSTKPush($phone, $amount, $shortcode, $passkey, $accessToken, $callbackUrl,  $orderId)
     {
         $timestamp = date('YmdHis');
         $password = base64_encode($shortcode . $passkey . $timestamp);
     
         // Hard-coded Order ID
-        $orderId = "7777545";
+        // $orderId = "7777545";
     
         // Create dynamic callback URL with hard-coded order ID
         $callbackUrlWithOrderId = $callbackUrl . '?orderId=' . urlencode($orderId);

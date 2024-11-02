@@ -145,6 +145,12 @@
         </div>
     </div>
 </div>
+@php
+    $invoice = strtoupper(substr(str_shuffle("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 8));
+@endphp
+
+<!-- Now you can use $invoice in your Blade view -->
+{{-- <p>Your invoice number is: {{ $invoice }}</p> --}}
 
 <!-- JavaScript for Form Submission and Notifications -->
 <script>
@@ -154,6 +160,9 @@ document.getElementById("stkPushForm").addEventListener("submit", function (even
     const address = document.getElementById("address").value;
     const phone = document.getElementById("phone").value;
     const totalAmount = document.getElementById("totalAmount").innerText;
+    const orderId = @json($invoice); 
+    // console.log(orderId);
+    
 
     const phonePattern = /^2547\d{8}$/;
     if (!phonePattern.test(phone)) {
@@ -161,7 +170,7 @@ document.getElementById("stkPushForm").addEventListener("submit", function (even
         return;
     }
 
-    const data = { address, phone, amount: totalAmount };
+    const data = { address, phone, amount: totalAmount, orderId };
 
     fetch("{{ url('/stk_push') }}", {
         method: "POST",
