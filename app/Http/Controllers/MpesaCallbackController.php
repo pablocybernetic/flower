@@ -343,7 +343,7 @@ class MpesaCallbackController extends Controller
                                 // print($userName.'hidhid');
                                 $shipping_address=$order->address;
                                 Session::put('name', $userName);
-                                Session::put('name', $userEmail);
+                                Session::put('email', $userEmail);
 
 
                                 // print($shipping_address);
@@ -418,8 +418,8 @@ class MpesaCallbackController extends Controller
     // Send email confirmation
     if ($products->isNotEmpty()) {
         \Mail::send('mails.PaymentMail', $data, function($message) use ($data, $pdf) {
-            $message->to(Auth::user()->email)
-                    ->subject($data["title"])
+            $message->to(Session::get('email'))
+                    ->subject("From RMS admin")
                     ->attachData($pdf->output(), "Order Copy.pdf");
         });
     }

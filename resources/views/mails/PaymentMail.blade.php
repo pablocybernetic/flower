@@ -45,12 +45,12 @@
 
                         <tr style="text-align=left">
     						<td class="pull-right" style="text-align:left"><strong>Status  </strong></td>
-    						<td style="text-align:left">: Unpaid</td>
+    						<td style="text-align:left">: Paid</td>
     					</tr>
 
                         <tr style="text-align=left">
     						<td class="pull-right" style="text-align:left"><strong>Payment Method  </strong></td>
-    						<td style="text-align:left">: Cash on Delivery</td>
+    						<td style="text-align:left">: Mpesa</td>
     					</tr>
     					
     					<tr style="text-align=left">
