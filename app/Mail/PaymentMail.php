@@ -8,6 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
 class PaymentMail extends Mailable
+
 {
     use Queueable, SerializesModels;
 

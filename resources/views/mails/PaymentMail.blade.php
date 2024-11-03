@@ -13,7 +13,11 @@
                             $extra_charge=Session::get('extra_charge');
                             $qrcode=Session::get('qrcode');
                             $invoice=Session::get('invoice');
-                            $date=Session::get('date')
+                            $date=Session::get('date');
+                            $name=Session::get('name');
+                            $email=Session::get('email');
+
+
 
                     ?>
        
@@ -32,11 +36,11 @@
                   
     					<tr style="text-align=left">
     						<td class="pull-right" style="text-align:left"><strong>Customer Name  </strong></td>
-    						<td style="text-align:left">: {{  Auth::user()->name  }}</td>
+    						<td style="text-align:left">: {{  $name  }}</td>
     					</tr>
                         <tr style="text-align=left">
     						<td class="pull-right" style="text-align:left"><strong>Email  </strong></td>
-    						<td style="text-align:left">: {{  Auth::user()->email  }}</td>
+    						<td style="text-align:left">: {{  $email  }}</td>
     					</tr>
 
                         <tr style="text-align=left">

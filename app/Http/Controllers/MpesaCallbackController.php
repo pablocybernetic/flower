@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Mail;
+use App\Models\Cart;
+use App\Models\User;
+use App\Mail\OrderShipped;
+use App\Models\Order;
 use Auth;
 use Session;
-
-
 use QrCode;
 use PDF;
 use DB;
@@ -44,6 +46,7 @@ class MpesaCallbackController extends Controller
 
 
             Session::put('orderId',$orderId);
+            
 
             $orderId = Session::get('orderId');
 
@@ -285,46 +288,150 @@ class MpesaCallbackController extends Controller
 
         // Ensure the data has the "Body" key to prevent warnings
         if (isset($decodedData['Body']['stkCallback'])) {
+            
             $callbackData = $decodedData['Body']['stkCallback'];
             $resultCode = $callbackData['ResultCode'];
             $resultDesc = $callbackData['ResultDesc'];
 
             if ($resultCode === 0) {
+
            
-                // Check if CallbackMetadata exists to avoid undefined index errors
                 if (isset($callbackData['CallbackMetadata']['Item'])) {
-                   
+
+       
                     $amount = null;
                     $receiptNumber = null;
-                
-                     foreach ($callbackData['CallbackMetadata']['Item'] as $item) {
-                        
+                    
+                    foreach ($callbackData['CallbackMetadata']['Item'] as $item) {
                         if ($item['Name'] === 'Amount') {
                             $amount = $item['Value'];
                         } elseif ($item['Name'] === 'MpesaReceiptNumber') {
                             $receiptNumber = $item['Value'];
                         }
                     }
-                
+                    
                     // Retrieve the transaction ID from the query parameters
                     $tran_id = $request->query('orderId');
-                
-                    // Update the status of the order with the captured values
-                    $update_product = DB::table('orders')
-                        ->where('transaction_id', $tran_id)
-                        ->update([
-                            'status' => 'Processing',
-                            'MpesaReceiptNumber' => $receiptNumber,
-                            'AmountPaid' => $amount,
-                            'ResultCode' => 0,
+            
+                    // First, fetch the email associated with the transaction_id from the orders table
+                    $order = DB::table('orders')->where('transaction_id', $tran_id)->first();
+                    
+                    // Check if the order exists and has an email field
+                    if ($order && isset($order->email)) {
+                        // print($order->email);
 
-                            'ResultDesc' => 'Payment Successful, order '.$tran_id.'. amount paid Ksh'.$amount.' Mpesa receipt: '.$receiptNumber
-                        ]);
-                
-                    return response()->json(['message' => 'Order status updated successfully.'], 200);
-                }
-                
-            } else {
+                        // Next, fetch the user by email from the users table
+                        $user = DB::table('users')->where('email', $order->email)->first();
+                        // print($user->id);
+            
+                        // Check if the user exists
+                        if ($user) {
+                            // Update the order status
+                            $update_product = DB::table('orders')
+                                ->where('transaction_id', $tran_id)
+                                ->update([
+                                    'status' => 'Processing',
+                                    'MpesaReceiptNumber' => $receiptNumber,
+                                    'AmountPaid' => $amount,
+                                    'ResultCode' => 0,
+                                    'ResultDesc' => 'Payment Successful, order ' . $tran_id . '. amount paid Ksh ' . $amount . ' Mpesa receipt: ' . $receiptNumber
+                                ]);
+                                $userId= $user->id;
+                                $userName= $user->name;
+                                $userEmail= $user->email;
+
+                                // print($userName.'hidhid');
+                                $shipping_address=$order->address;
+                                Session::put('name', $userName);
+                                Session::put('name', $userEmail);
+
+
+                                // print($shipping_address);
+                            // Send the notification or perform the required action
+                            // send($shipping_address,$userId , $tran_id);
+                            
+    $data = [];
+
+    // Generate a unique order ID if not provided
+    if ($tran_id === null) {
+        $tran_id = substr(str_shuffle("0123456789abcdefghijklmnopqrstvwxyz"), 0, 8);
+        Log::error('No tran_id in function send().');
+
+
+
+    }
+    // Populate order data
+    $data['shipping_address'] = $shipping_address;
+    $data['product_order'] = "yes";
+    $data['invoice_no'] = $tran_id;
+    $data['pay_method'] = "Mpesa";
+    $data['delivery_time'] = "3 hours";
+    $data['purchase_date'] = date("Y-m-d");
+
+    $products = DB::table('carts')->where('user_id', $userId)->where('product_order', 'no')->get();
+
+    $total = DB::table('carts')->where('user_id', $userId)->where('product_order', 'no')->sum('subtotal');
+    $carts_amount = DB::table('carts')->where('user_id', $userId)->where('product_order', 'no')->count();
+    $without_discount_price = $total;
+    $discount_price = 0;
+    $coupon_code = null;
+
+    if ($carts_amount > 0) {
+        print($carts_amount);
+        foreach ($products as $cart) {
+            $coupon_code = $cart->coupon_id;
+        }
+    }
+
+    if ($coupon_code !== null) {
+        $coupon_code_price = DB::table('coupons')->where('code', $coupon_code)->value('percentage');
+        $discount_price = floor(($total * $coupon_code_price) / 100);
+        $total -= $discount_price;
+    }
+
+    // Update the cart status
+    DB::table('carts')->where('user_id', $userId)->where('product_order', 'no')->update($data);
+
+    // Additional charges
+    $extra_charge = DB::table('charges')->get();
+    $total_extra_charge = DB::table('charges')->sum('price');
+    $total += $total_extra_charge;
+    $without_discount_price += $total_extra_charge;
+
+    // Store values in session
+    Session::put('products', $products);
+    Session::put('invoice', $tran_id);
+    Session::put('total', $total);
+    Session::put('extra_charge', $extra_charge);
+    Session::put('discount_price', $discount_price);
+    Session::put('without_discount_price', $without_discount_price);
+    Session::put('date', date("Y-m-d"));
+
+    if ($tran_id === null) {
+        $tran_id = "RMS";
+    }
+
+    $qrcode = base64_encode(QrCode::format('svg')->size(100)->errorCorrection('H')->generate('RMS Verified'));
+    $pdf = PDF::loadView('mails.PaymentMail', $data);
+    Session::put('qrcode', $qrcode);
+
+    // Send email confirmation
+    if ($products->isNotEmpty()) {
+        \Mail::send('mails.PaymentMail', $data, function($message) use ($data, $pdf) {
+            $message->to(Auth::user()->email)
+                    ->subject($data["title"])
+                    ->attachData($pdf->output(), "Order Copy.pdf");
+        });
+    }
+                        } else {
+                            // Handle the case where the user is not found
+                            \Log::warning('User not found for email: ' . $email);
+                        }
+                    } else {
+                        // Handle the case where the order does not exist or email is missing
+                        \Log::warning('Order not found or email is missing for transaction ID: ' . $tran_id);
+                    }
+                } else {
                 // Handle other ResultCodes (e.g., 1032, 1037) with custom messages
                 if ($resultCode === 1037) {
                     $tran_id = $request->query('orderId');
@@ -420,30 +527,89 @@ class MpesaCallbackController extends Controller
             "message" => "No data received"
         ]);
     }
+}}
+
+      function send($shipping_address, $userId, $orderId )
+{
+    $data = [];
+
+    // Generate a unique order ID if not provided
+    if ($tran_id === null) {
+        $tran_id = substr(str_shuffle("0123456789abcdefghijklmnopqrstvwxyz"), 0, 8);
+        Log::error('No tran_id in function send().');
+
+
+
+    }
+    // Populate order data
+    $data['shipping_address'] = $shipping_address;
+    $data['product_order'] = "yes";
+    $data['invoice_no'] = $tran_id;
+    $data['pay_method'] = "Mpesa";
+    $data['delivery_time'] = "3 hours";
+    $data['purchase_date'] = date("Y-m-d");
+    // $user
+
+    $products = DB::table('carts')->where('user_id', $userId)->where('product_order', 'no')->get();
+
+    $total = DB::table('carts')->where('user_id', $userId)->where('product_order', 'no')->sum('subtotal');
+    $carts_amount = DB::table('carts')->where('user_id', $userId)->where('product_order', 'no')->count();
+    $without_discount_price = $total;
+    $discount_price = 0;
+    $coupon_code = null;
+
+
+    if ($carts_amount > 0) {
+        foreach ($products as $cart) {
+            $coupon_code = $cart->coupon_id;
+        }
+    }
+
+    if ($coupon_code !== null) {
+        $coupon_code_price = DB::table('coupons')->where('code', $coupon_code)->value('percentage');
+        $discount_price = floor(($total * $coupon_code_price) / 100);
+        $total -= $discount_price;
+    }
+
+    // Update the cart status
+    DB::table('carts')->where('user_id', $userId)->where('product_order', 'no')->update($data);
+
+    // Additional charges
+    $extra_charge = DB::table('charges')->get();
+    $total_extra_charge = DB::table('charges')->sum('price');
+    $total += $total_extra_charge;
+    $without_discount_price += $total_extra_charge;
+
+    // Store values in session
+    Session::put('products', $products);
+    Session::put('invoice', $tran_id);
+    Session::put('total', $total);
+    Session::put('extra_charge', $extra_charge);
+    Session::put('discount_price', $discount_price);
+    Session::put('without_discount_price', $without_discount_price);
+    Session::put('date', date("Y-m-d"));
+    Session::put('name', $products);
+
+
+    if ($tran_id === null) {
+        $tran_id = "RMS";
+    }
+
+    $qrcode = base64_encode(QrCode::format('svg')->size(100)->errorCorrection('H')->generate('RMS Verified'));
+    $pdf = PDF::loadView('mails.PaymentMail', $data);
+    Session::put('qrcode', $qrcode);
+
+    // Send email confirmation
+    if ($products->isNotEmpty()) {
+        \Mail::send('mails.PaymentMail', $data, function($message) use ($data, $pdf) {
+            $message->to(Auth::user()->email)
+                    ->subject($data["title"])
+                    ->attachData($pdf->output(), "Order Copy.pdf");
+        });
+    }
+
+    // return view('Confirm_order', compact('tran_id', 'products', 'total'));
 }
 
-    
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, order $order)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(order $order)
-    {
-        //
-    }
 }

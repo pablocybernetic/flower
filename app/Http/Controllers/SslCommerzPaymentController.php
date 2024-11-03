@@ -58,7 +58,7 @@ class SslCommerzPaymentController extends Controller
         $post_data['cus_city'] = "";
         $post_data['cus_state'] = "";
         $post_data['cus_postcode'] = "";
-        $post_data['cus_country'] = "Bangladesh";
+        $post_data['cus_country'] = "Kenya";
         $post_data['cus_phone'] = Auth::user()->phone;
         $post_data['cus_fax'] = "";
 
@@ -70,7 +70,7 @@ class SslCommerzPaymentController extends Controller
         $post_data['ship_state'] = "Dhaka";
         $post_data['ship_postcode'] = "1000";
         $post_data['ship_phone'] = "";
-        $post_data['ship_country'] = "Bangladesh";
+        $post_data['ship_country'] = "Kenya";
 
         $post_data['shipping_method'] = "NO";
         $post_data['product_name'] = "Computer";
@@ -143,7 +143,7 @@ class SslCommerzPaymentController extends Controller
         $post_data['cus_city'] = "";
         $post_data['cus_state'] = "";
         $post_data['cus_postcode'] = "";
-        $post_data['cus_country'] = "Bangladesh";
+        $post_data['cus_country'] = "Kenya";
         $post_data['cus_phone'] = Auth::user()->phone;
         $post_data['cus_fax'] = "";
 
@@ -155,7 +155,7 @@ class SslCommerzPaymentController extends Controller
         $post_data['ship_state'] = "Dhaka";
         $post_data['ship_postcode'] = "1000";
         $post_data['ship_phone'] = "";
-        $post_data['ship_country'] = "Bangladesh";
+        $post_data['ship_country'] = "Kenya";
 
         $post_data['shipping_method'] = "NO";
         $post_data['product_name'] = "Computer";
