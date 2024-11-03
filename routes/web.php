@@ -131,6 +131,7 @@ Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 
 Route::post('/mpesa/callback/', [MpesaCallbackController::class, 'edit'])->name('mpesa');
 Route::post('/stk_push', [MpesaCallbackController::class, 'stk_push']);
+Route::get('/order-status/{tran_id}', [MpesaCallbackController::class, 'get_order_status']);
 
 
 

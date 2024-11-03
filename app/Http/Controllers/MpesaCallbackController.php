@@ -40,9 +40,12 @@ class MpesaCallbackController extends Controller
             $phone = $input['phone'];
             $amount = $input['amount'];
             $orderId = $input['orderId'];
+            // Session::put('invoice',$orderId);
 
 
             Session::put('orderId',$orderId);
+
+            $orderId = Session::get('orderId');
 
 
             $post_data = array();
@@ -96,6 +99,9 @@ class MpesaCallbackController extends Controller
             'phone' => $post_data['cus_phone'],
             'amount' => $post_data['total_amount'],
             'status' => 'Pending',
+            'MpesaReceiptNumber'=>'',
+            'AmountPaid'=>0,
+            'ResultDesc'=>null,
             'address' => $post_data['cus_add1'],
             'transaction_id' => $orderId,
             'currency' => $post_data['currency']
@@ -149,7 +155,6 @@ class MpesaCallbackController extends Controller
         $password = base64_encode($shortcode . $passkey . $timestamp);
     
         // Hard-coded Order ID
-        $orderId = "7777545";
     
         // Create dynamic callback URL with hard-coded order ID
         $callbackUrlWithOrderId = $callbackUrl . '?orderId=' . urlencode($orderId);
@@ -202,10 +207,42 @@ class MpesaCallbackController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function get_order_status($tran_id)
     {
-        //
+        // Retrieve the updated record with only the fields we want
+        $updatedProduct = DB::table('orders')
+            ->where('transaction_id', $tran_id)
+            ->select('ResultDesc', 'MpesaReceiptNumber', 'AmountPaid', 'ResultCode') // Select only the required fields
+            ->first();
+    
+        // Check if the product was found and access fields
+        if ($updatedProduct) {
+            // Access the fields you need
+            $resultDesc = $updatedProduct->ResultDesc; // Default to 'Not Sent' if undefined
+            $mpesaReceiptNumber = $updatedProduct->MpesaReceiptNumber ?? 'undefined'; // Default to 'undefined' if undefined
+            $amountPaid = $updatedProduct->AmountPaid ?? 'undefined'; // Default to 'undefined' if undefined
+            $resultCode = $updatedProduct->ResultCode ?? 404; // Use lowercase variable name
+    
+            // Return the fields in the response
+            return response()->json([
+                'ResultCode' => $resultCode, // Corrected variable name
+                'Description' => $resultDesc,
+                'AmountPaid' => $amountPaid,
+                'MpesaReceiptNumber' => $mpesaReceiptNumber
+            ]);
+        }
+    
+        // Return a response indicating no record found
+        return response()->json([
+            'ResultCode' => 'undefined',
+            'Description' => 'Not Sent',
+            'AmountPaid' => 'undefined',
+            'MpesaReceiptNumber' => 'undefined'
+        ]);
     }
+    
+    
+    
 
     /**
      * Store a newly created resource in storage.
@@ -253,38 +290,111 @@ class MpesaCallbackController extends Controller
             $resultDesc = $callbackData['ResultDesc'];
 
             if ($resultCode === 0) {
-                // Payment was successful, extract amount and receipt number
-                $amount = null;
-                $receiptNumber = null;
-
+           
                 // Check if CallbackMetadata exists to avoid undefined index errors
                 if (isset($callbackData['CallbackMetadata']['Item'])) {
-                    foreach ($callbackData['CallbackMetadata']['Item'] as $item) {
+                   
+                    $amount = null;
+                    $receiptNumber = null;
+                
+                     foreach ($callbackData['CallbackMetadata']['Item'] as $item) {
+                        
                         if ($item['Name'] === 'Amount') {
                             $amount = $item['Value'];
                         } elseif ($item['Name'] === 'MpesaReceiptNumber') {
                             $receiptNumber = $item['Value'];
                         }
                     }
-
+                
                     // Retrieve the transaction ID from the query parameters
+                    $tran_id = $request->query('orderId');
+                
+                    // Update the status of the order with the captured values
+                    $update_product = DB::table('orders')
+                        ->where('transaction_id', $tran_id)
+                        ->update([
+                            'status' => 'Processing',
+                            'MpesaReceiptNumber' => $receiptNumber,
+                            'AmountPaid' => $amount,
+                            'ResultCode' => 0,
+
+                            'ResultDesc' => 'Payment Successful, order '.$tran_id.'. amount paid Ksh'.$amount.' Mpesa receipt: '.$receiptNumber
+                        ]);
+                
+                    return response()->json(['message' => 'Order status updated successfully.'], 200);
+                }
+                
+            } else {
+                // Handle other ResultCodes (e.g., 1032, 1037) with custom messages
+                if ($resultCode === 1037) {
                     $tran_id = $request->query('orderId');
 
                     // Update the status of the order with the captured transaction ID
                     $update_product = DB::table('orders')
                         ->where('transaction_id', $tran_id)
-                        ->update(['status' => 'Processing']);
+                        ->update(['ResultDesc' => 'Payment Timeout',
+                        'ResultCode' => 1037,
 
-                    return response()->json(['message' => 'Order status updated successfully.'], 200);
-                }
-            } else {
-                // Handle other ResultCodes (e.g., 1032, 1037) with custom messages
-                if ($resultCode === 1037) {
+                    ]);
+
+                    // return response()->json(['message' => 'Payment Timeout.'], 200
+
                     $errorMessage = "Order ID: $tran_id - Timeout: $resultDesc\n";
                 } elseif ($resultCode === 1032) {
-                    $errorMessage = "Order ID: $tran_id - Cancelled by User: $resultDesc\n";
-                } else {
-                    $errorMessage = "Order ID: $tran_id - Error $resultCode: $resultDesc\n";
+                    $update_product = DB::table('orders')
+                    ->where('transaction_id', $tran_id)
+                    ->update(['ResultDesc' => 'Cancelled by User',
+                    'ResultCode' => 1032,
+
+                ]);
+
+                return response()->json(['message' => 'Cancelled by User.'], 200);
+                    // $errorMessage = "Order ID: $tran_id - Cancelled by User: $resultDesc\n";
+                }
+                elseif ($resultCode === 1001) {
+                    $update_product = DB::table('orders')
+                    ->where('transaction_id', $tran_id)
+                    ->update(['ResultDesc' => 'A transaction is already in process for the current subscriber, try again between 2-3 minutes',
+                    'ResultCode' => 1001,
+
+                ]);
+
+                return response()->json(['message' => 'A transaction is already in process for the current subscriber, try again between 2-3 minutes'], 200);
+                    // $errorMessage = "Order ID: $tran_id - Cancelled by User: $resultDesc\n";
+                }
+                elseif ($resultCode === 1) {
+                    $update_product = DB::table('orders')
+                    ->where('transaction_id', $tran_id)
+                    ->update(['ResultDesc' => 'The balance is insufficient for the transaction.',
+                    'ResultCode' => 1,
+
+                ]);
+
+                return response()->json(['message' => 'The balance is insufficient for the transaction.'], 200);
+                    // $errorMessage = "Order ID: $tran_id - Cancelled by User: $resultDesc\n";
+                }
+                elseif ($resultCode === 1037) {
+                    $update_product = DB::table('orders')
+                    ->where('transaction_id', $tran_id)
+                    ->update(['ResultDesc' => 'DS timeout phone cannot be reached',
+                    'ResultCode' => 1037,
+
+                ]);
+
+                return response()->json(['message' => 'DS timeout phone cannot be reached.'], 200);
+                    // $errorMessage = "Order ID: $tran_id - Cancelled by User: $resultDesc\n";
+                }
+                
+                else {
+                    $update_product = DB::table('orders')
+                    ->where('transaction_id', $tran_id)
+                    ->update(['ResultDesc' => 'Error '.$resultDesc]);
+                    return response()->json(['message' => 'An error occured try again later',
+                    'ResultCode' => 404,
+
+                ], 200);
+
+                    // $errorMessage = "Order ID: $t.ran_id - Error $resultCode: $resultDesc\n";
                 }
 
                 // Log the error message to data.json
