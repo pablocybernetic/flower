@@ -147,6 +147,8 @@
 </div>
 @php
     $invoice = strtoupper(substr(str_shuffle("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 8));
+    Session::put('invoice',$invoice);
+
 @endphp
 
 <!-- Now you can use $invoice in your Blade view -->
