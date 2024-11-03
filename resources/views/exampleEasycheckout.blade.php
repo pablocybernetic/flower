@@ -215,7 +215,7 @@ function showModal(title, message, type) {
     $('#notificationModal').modal('show');
     // if type is "success keep check the database order status"
 if (type === "success") {
-    alert("Operation completed successfully!");
+    // alert("Operation completed successfully!");
 
     const tranId = @json($tranId); // Replace with the actual transaction ID from your backend
     const endpoint = `/order-status/${tranId}`;
