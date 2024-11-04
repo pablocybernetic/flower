@@ -24,6 +24,7 @@ class MpesaCallbackController extends Controller
     {
         // Set the response type to JSON
         header("Content-Type: application/json");
+        
     
         // M-Pesa API credentials
         $consumerKey = 'EjoJP5yBeUG68Gwgyx4sbQwPFJ5AzoNA';  // Replace with your actual consumer key
