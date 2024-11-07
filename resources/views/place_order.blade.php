@@ -171,6 +171,7 @@
             tag.parentNode.insertBefore(script, tag);
         };
 
+        
         window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);
     })(window, document);
 </script>

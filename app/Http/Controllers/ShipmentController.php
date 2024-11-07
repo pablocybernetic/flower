@@ -216,7 +216,7 @@ class ShipmentController extends Controller
   
 
          $qrcode = base64_encode(QrCode::format('svg')->size(100)->errorCorrection('H')->generate('RMS Verified'));
-         $pdf = PDF::loadView('mails.PaymentMail', $data);
+         $pdf = PDF::loadView('mails.UnpaidMail', $data);
 
          Session::put('qrcode',$qrcode);
 
@@ -227,7 +227,7 @@ class ShipmentController extends Controller
         if($carts)
         {
 
-            \Mail::send('mails.PaymentMail', $data, function($message)use($data, $pdf) {
+            \Mail::send('mails.UnpaidMail', $data, function($message)use($data, $pdf) {
                 $message->to(Auth::user()->email,Auth::user()->email)
                         ->subject($data["title"])
                         ->attachData($pdf->output(), "Order Copy.pdf");

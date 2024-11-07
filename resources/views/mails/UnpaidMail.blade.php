@@ -45,12 +45,12 @@
 
                         <tr style="text-align=left">
     						<td class="pull-right" style="text-align:left"><strong>Status  </strong></td>
-    						<td style="text-align:left">: Paid</td>
+    						<td style="text-align:left">: Not Paid</td>
     					</tr>
 
                         <tr style="text-align=left">
     						<td class="pull-right" style="text-align:left"><strong>Payment Method  </strong></td>
-    						<td style="text-align:left">: Mpesa</td>
+    						<td style="text-align:left">: Cash on Delivery</td>
     					</tr>
     					
     					<tr style="text-align=left">
@@ -133,10 +133,10 @@
   	    	</div>
             <br>
   	    	<div class="span3">
-  		        <strong>Phone:</strong>(+254) 705374455
+  		        <strong>Phone:</strong>(+254) 705307007
   	    	</div>
   	    	<div class="span3">
-  		        <strong>Email:</strong> <a href="sajeebchakraborty.cse2000@gmail.com">gitaup08@gmail.com</a>
+  		        <strong>Email:</strong> <a href="Jiuda47@gmail.com">Jiuda47@gmail.com</a>
   	    	</div>
   	    
   		</div>

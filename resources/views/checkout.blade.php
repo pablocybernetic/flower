@@ -6,10 +6,10 @@
     <br>
     <br>
     <br>
-    <h1>Your order amount is Ksh{{$total}}</h1><br>
-    <h2 style="color:#75c1d8">PSayment with Mpesa</h2><br>
-    {{-- <input ng-model="myVar" type="radio" id="cod" name="cod" value="cod"> --}}
-    {{-- <label for="cod"><img style="max-width:150px;" src="{{ asset('assets/images/cod.png')}}"></label><br> --}}
+    <h4>Your order amount is Ksh{{$total}}</h4><br>
+    <h6 style="color:#75c1d8">Payment Method</h6><br>
+    <input ng-model="myVar" type="radio" id="cod" name="cod" value="cod"> 
+    <label for="cod"><img style="max-width:150px;" src="{{ asset('assets/images/cod.png')}}"></label><br> 
     <input ng-model="myVar" type="radio" id="bkash" name="bkash" value="bkash">
     <label for="bkash"><img style="max-width:150px;"  src="{{ asset('assets/images/bkash.png')}}"></label><br><br><br>
     <div ng-switch="myVar">
