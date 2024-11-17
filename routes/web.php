@@ -25,6 +25,8 @@ use App\Http\Controllers\MpesaCallbackController;
 |
 */
 // routes/web.php
+Route::get('/products', [HomeController::class, 'products']);
+
 
 Route::get('/simple', function () {
     return view('welcome');
@@ -33,13 +35,12 @@ Route::get('/search', [HomeController::class, 'search'])->name('search');
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::post("/register/confirm",'App\Http\Controllers\HomeController@register')->name('register/confirm');
 Route::get("/redirects",'App\Http\Controllers\HomeController@redirects');
  
 #Route::get("/menu",'App\Http\Controllers\MenuController@menu');
-Route::get('/menu', [MenuController::class, 'menu'])->name('menu');
+Route::get('/menu', [HomeController::class, 'index'])->name('home');
 Route::get('/menu/{id}', [MenuController::class, 'show'])->name('show');
 
 

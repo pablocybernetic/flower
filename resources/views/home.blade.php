@@ -33,7 +33,7 @@
 
      <div class="container mt-5">
         <div class="d-flex justify-content-center">
-            <form id="searchForm" class="bg-light p-0 rounded shadow-sm" action="{{ route('home') }}" method="GET">
+            <form id="searchForm" class="p-0 rounded shadow-sm bg-light" action="{{ route('home') }}" method="GET">
                 <div class="input-group">
                     <input type="text" name="query" id="searchQuery" class="form-control" placeholder="Search products">
                     <div class="input-group-append">
@@ -98,7 +98,7 @@
                             </a>
                             <div class="card-body">
                                 <h6 class="card-title fs-5">${product.name}</h6>
-                                <div class="d-flex justify-content-between mb-3">
+                                <div class="mb-3 d-flex justify-content-between">
                                     <span>Total</span>
                                     <span class="fs-6">Ksh ${product.price}</span>
                                 </div>
@@ -178,8 +178,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 <!-- Filter panel for Desktop on the side, Mobile on top -->
-<div class="col-lg-3 col-12 mb-3 md-3 sticky-top">
-    <div class="filter-panel p-4 bg-white shadow-lg rounded" style="border-left: 5px solid #28a745;">
+<div class="mb-3 col-lg-3 col-12 md-3 sticky-top">
+    <div class="p-4 bg-white rounded shadow-lg filter-panel" style="border-left: 5px solid #28a745;">
         <h5 class="mb-4 text-success text-uppercase fw-bold" style="letter-spacing: 1px;">Filters</h5>
         <!-- Filter Form -->
         <form>
@@ -203,7 +203,7 @@
                     <i class="fas fa-tag me-3" style="font-size: 1.2em; color: #ff9900;"></i>Price Range
                 </label>
                 <input type="range" class="form-range form-control" id="price" min="0" max="1000" step="50">
-                <p class="text-muted mt-2">Price: <span id="priceValue" class="fw-bold text-success">500</span> KES</p>
+                <p class="mt-2 text-muted">Price: <span id="priceValue" class="fw-bold text-success">500</span> KES</p>
             </div>
 
             <!-- Size Filter -->
@@ -294,7 +294,7 @@
             <div class="menu-item-carousel">
                 <div class="grid-container row gx-8" id="searching">
                     @foreach($displayResults as $product)
-                    <div class="col-6 col-sm-6 col-md-3 col-lg-3 mb-4">
+                    <div class="mb-4 col-6 col-sm-6 col-md-3 col-lg-3">
                         <div class="card">
                             <a href="/menu/{{ $product->id }}">
                                 <div style="padding-bottom: 100%; position: relative;">
@@ -353,6 +353,10 @@
 
         <!-- ***** Menu Area Ends ***** -->
 
+
+        {{-- @include('products') --}}
+
+
     <!-- ***** About Area Starts ***** -->
     <section class="section" id="about">
         <div class="container">
@@ -397,7 +401,7 @@
         <div class="container">
           
             <div class="row">
-                <div class="col-lg-4 offset-lg-4 text-center">
+                <div class="text-center col-lg-4 offset-lg-4">
                     <div class="section-heading">
                         <h6>Our Team</h6>
                         <!-- <h2>We offer the best freshiest flowers for you</h2> -->
@@ -434,7 +438,7 @@
      <section class="section" id="offers">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4 offset-lg-4 text-center">
+                <div class="text-center col-lg-4 offset-lg-4">
                     <div class="section-heading">
                         <h6>Midway Week</h6>
                         <h2>This Week’s Special Offers</h2>

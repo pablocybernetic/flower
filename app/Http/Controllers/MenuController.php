@@ -11,7 +11,7 @@ class MenuController extends Controller
     
     public function menu(){
         $products = Product::all();
-        return view('menu', compact('products'));
+        return view('home', compact('products'));
     }
     
     /**

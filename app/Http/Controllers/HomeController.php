@@ -54,9 +54,29 @@ class HomeController extends Controller
                 return view('home', compact('menu', 'breakfast', 'lunch', 'dinner', 'chefs', 'searchResults', 'query', 'cart_amount', 'about_us', 'banners'));
             }
         }
-    
+    // return $menu;
         // If no search query, display regular products
         return view('home', compact('menu', 'breakfast', 'lunch', 'dinner', 'chefs', 'cart_amount', 'about_us', 'banners'));
+    }
+    
+    public function products(Request $request)
+    {
+        // Fetch all products
+        $menu = DB::table('products')->get();
+
+        // If a search query is present, filter products
+        if ($request->has('query')) {
+            $query = $request->input('query');
+            $menu = DB::table('products')
+                ->where('name', 'like', "%$query%")
+                ->orWhere('description', 'like', "%$query%")
+                ->get();
+        }
+
+        // Return data as JSON
+        return response()->json([
+            'products' => $menu
+        ], 200);
     }
     public function search(Request $request){
 
