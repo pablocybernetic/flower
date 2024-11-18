@@ -49,6 +49,12 @@
 
 
     </style>
+    <!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bootstrap JS (for toggle functionality) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
      <!-- resources/views/search.blade.php -->
      <div class="container mt-5">
         <!-- Search Bar -->
@@ -62,72 +68,97 @@
         </div>
     
         <!-- Filter Section -->
-        <div class="p-4 rounded shadow-sm bg-light">
-            <h5 class="mb-3 text-secondary">Filters</h5>
-            <div class="row gy-3">
-                <div class="col-md-2">
-                    <select id="filterSize" name="size" class="form-select">
-                        <option value="">Size</option>
-                        <option value="small">Small</option>
-                        <option value="medium">Medium</option>
-                        <option value="large">Large</option>
-                    </select>
-                </div>
-                <div class="col-md-2">
-                    <select id="filterCategory" name="category" class="form-select">
-                        <option value="">Category</option>
-                        <option value="indoor">Indoor</option>
-                        <option value="outdoor">Outdoor</option>
-                        <option value="regular">Regular</option>
-                    </select>
-                </div>
-                <div class="col-md-2">
-                    <select id="filterLight" name="light" class="form-select">
-                        <option value="">Light</option>
-                        <option value="low">Low</option>
-                        <option value="medium">Medium</option>
-                        <option value="high">High</option>
-                    </select>
-                </div>
-                <div class="col-md-2">
-                    <select id="filterWater" name="water" class="form-select">
-                        <option value="">Water</option>
-                        <option value="low">Low</option>
-                        <option value="medium">Medium</option>
-                        <option value="high">High</option>
-                    </select>
-                </div>
-                <div class="col-md-2">
-                    <select id="filterGrowth" name="growth" class="form-select">
-                        <option value="">Growth</option>
-                        <option value="slow">Slow</option>
-                        <option value="medium">Medium</option>
-                        <option value="fast">Fast</option>
-                    </select>
-                </div>
-                <div class="col-md-2">
-                    <select id="filterPet" name="pet" class="form-select">
-                        <option value="">Pet-Friendly</option>
-                        <option value="yes">Yes</option>
-                        <option value="no">No</option>
-                    </select>
-                </div>
-            </div>
-            <div class="mt-3 d-flex justify-content-end">
-                <button type="button" id="clearFilters" class="btn btn-outline-secondary">Clear Filters</button>
+        <div class="col-md-4">
+            <label for="priceRange" class="form-label">Price Range</label>
+            <input type="range" id="priceRange" class="form-range" min="0" max="1000" step="50">
+            <div class="d-flex justify-content-between">
+                <span id="minPriceLabel">0</span>
+                <label id="currentPriceLabel">Selected Price: Ksh 0</label>
+
             </div>
         </div>
-        <div class="container">
-            <br>
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="section-heading">
-                        <h6>Our Plants</h6>
-                        <h2>Here's a selection of our plants</h2>
+        
+        
+        <div class="container my-4">
+            <!-- Toggle Button for Mobile View -->
+            <div class="mb-3 d-lg-none">
+                
+                <button class="btn btn-primary w-50" type="button" data-bs-toggle="collapse" data-bs-target="#filterSection" aria-expanded="false" aria-controls="filterSection">
+                    Filters
+                </button>
+            </div>
+        
+            <!-- Filters Section (Visible by default on desktop, hidden on mobile until toggle is clicked) -->
+            <div class="p-4 rounded shadow-sm bg-light collapse d-lg-block" id="filterSection">
+                <h5 class="mb-3 text-secondary">Filters</h5>
+                <div class="row gy-3">
+                    <div class="col-6 col-md-2">
+                        <select id="filterSize" name="size" class="form-select form-select-md">
+                            <option value="">Size</option>
+                            <option value="small">Small</option>
+                            <option value="medium">Medium</option>
+                            <option value="large">Large</option>
+                        </select>
+                    </div>
+                    <div class="col-6 col-md-2">
+                        <select id="filterCategory" name="category" class="form-select form-select-md">
+                            <option value="">Category</option>
+                            <option value="indoor">Indoor</option>
+                            <option value="outdoor">Outdoor</option>
+                            <option value="regular">Regular</option>
+                        </select>
+                    </div>
+                    <div class="col-6 col-md-2">
+                        <select id="filterLight" name="light" class="form-select form-select-md">
+                            <option value="">Light</option>
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </div>
+                    <div class="col-6 col-md-2">
+                        <select id="filterWater" name="water" class="form-select form-select-md">
+                            <option value="">Water</option>
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </div>
+                    <div class="col-6 col-md-2">
+                        <select id="filterGrowth" name="growth" class="form-select form-select-md">
+                            <option value="">Growth</option>
+                            <option value="slow">Slow</option>
+                            <option value="medium">Medium</option>
+                            <option value="fast">Fast</option>
+                        </select>
+                    </div>
+                    <div class="col-6 col-md-2">
+                        <select id="filterPet" name="pet" class="form-select form-select-md">
+                            <option value="">Pet-Friendly</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mt-3 d-flex justify-content-end">
+                    <button type="button" id="clearFilters" class="btn btn-outline-secondary btn-sm">Clear Filters</button>
+                </div>
+            </div>
+        
+            <!-- Plants Section -->
+            <div class="container mt-4">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="section-heading">
+                            <h6 class="text-primary">Our Plants</h6>
+                            <h2>Here's a selection of our plants</h2>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        
+        
     
         <!-- Search Results -->
         <div id="searching" class="mt-4 row">
@@ -140,8 +171,9 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-   $(document).ready(function () {
-    let fetchedData = []; // Variable to store fetched data
+ $(document).ready(function () {
+    let fetchedData = [];
+    let maxPrice = 0;
 
     // Function to perform the initial fetch
     function performSearch() {
@@ -155,88 +187,84 @@
             pet: $('#filterPet').val()
         };
 
-        console.log('Performing search with filters:', filters);
-
         $.ajax({
             type: 'GET',
             url: '{{ route("home") }}',
             data: { query: query, filters: filters },
             success: function (response) {
-                console.log('Fetched data:', response);
-                fetchedData = response; // Store fetched data locally
-                applyFilters(); // Apply filters on the fetched data
+                fetchedData = response;
+                updateMaxPrice();
+                applyFilters();
             },
             error: function (xhr, status, error) {
-                console.error('Error fetching data:', error);
                 alert('Error fetching data. Please try again later.');
             }
         });
     }
 
+    // Function to update the maximum price
+    function updateMaxPrice() {
+        if (fetchedData.length > 0) {
+            maxPrice = Math.max(...fetchedData.map(product => product.price));
+            $('#maxPriceLabel').text(`Max Price: Ksh ${maxPrice}`);
+            $('#priceRange').attr('max', maxPrice).val(maxPrice);
+            $('#currentPriceLabel').text(`Selected Price: Ksh ${maxPrice}`); // Show initial value
+        } else {
+            maxPrice = 0;
+            $('#maxPriceLabel').text('Max Price: Ksh 0');
+            $('#priceRange').attr('max', maxPrice).val(0);
+            $('#currentPriceLabel').text('Selected Price: Ksh 0');
+        }
+    }
+
     // Function to apply filters locally on fetched data
     function applyFilters() {
-    var query = $('#searchQuery').val().toLowerCase();
-    var filters = {
-        size: $('#filterSize').val(),
-        category: $('#filterCategory').val(),
-        light: $('#filterLight').val(),
-        water: $('#filterWater').val(),
-        growth: $('#filterGrowth').val(),
-        pet: $('#filterPet').val() // Captures the dropdown value for "pet"
-    };
+        var query = $('#searchQuery').val().toLowerCase();
+        var filters = {
+            size: $('#filterSize').val(),
+            category: $('#filterCategory').val(),
+            light: $('#filterLight').val(),
+            water: $('#filterWater').val(),
+            growth: $('#filterGrowth').val(),
+            pet: $('#filterPet').val(),
+            price: parseFloat($('#priceRange').val())
+        };
 
-    console.log('Applying filters:', filters);
+        var filteredData = fetchedData.filter(function (product) {
+            const matchesQuery = query === '' || product.name.toLowerCase().includes(query);
+            const matchesSize = !filters.size || product.size.toLowerCase() === filters.size.toLowerCase();
+            const matchesCategory = !filters.category || product.catagory.toLowerCase() === filters.category.toLowerCase();
+            const matchesLight = !filters.light || product.light.toLowerCase() === filters.light.toLowerCase();
+            const matchesWater = !filters.water || product.water.toLowerCase() === filters.water.toLowerCase();
+            const matchesGrowth = !filters.growth || product.growth.toLowerCase() === filters.growth.toLowerCase();
+            const matchesPet = !filters.pet || product.pet.toLowerCase() === filters.pet.toLowerCase();
+            const matchesPrice = !filters.price || product.price <= filters.price;
 
-    // Filter the data
-    var filteredData = fetchedData.filter(function (product) {
-        const matchesQuery = query === '' || product.name.toLowerCase().includes(query);
-        const matchesSize = !filters.size || product.size.toLowerCase() === filters.size.toLowerCase();
-        const matchesCategory = !filters.category || product.catagory.toLowerCase() === filters.category.toLowerCase();
-        const matchesLight = !filters.light || product.light.toLowerCase() === filters.light.toLowerCase();
-        const matchesWater = !filters.water || product.water.toLowerCase() === filters.water.toLowerCase();
-        const matchesGrowth = !filters.growth || product.growth.toLowerCase() === filters.growth.toLowerCase();
-        const matchesPet = !filters.pet || product.pet.toLowerCase() === filters.pet.toLowerCase();
-
-        console.log({
-            product,
-            matchesQuery,
-            matchesSize,
-            matchesCategory,
-            matchesLight,
-            matchesWater,
-            matchesGrowth,
-            matchesPet
+            return (
+                matchesQuery &&
+                matchesSize &&
+                matchesCategory &&
+                matchesLight &&
+                matchesWater &&
+                matchesGrowth &&
+                matchesPet &&
+                matchesPrice
+            );
         });
 
-        return (
-            matchesQuery &&
-            matchesSize &&
-            matchesCategory &&
-            matchesLight &&
-            matchesWater &&
-            matchesGrowth &&
-            matchesPet
-        );
-    });
+        displayData(filteredData);
+    }
 
-    console.log('Filtered Data:', filteredData);
-
-    displayData(filteredData); // Update the display with filtered data
-}
-
-
-    // Function to display the fetched/filtered data on the HTML page
+    // Function to display the fetched/filtered data
     function displayData(data) {
         var menuList = $('#searching');
         menuList.empty();
 
         if (data.length === 0) {
-            console.log('No matching data found');
             menuList.append('<p class="text-center">No results found</p>');
             return;
         }
 
-        // Loop through the filtered data and create HTML elements to display it
         $.each(data, function (index, product) {
             var card = $('<div>').addClass('col-6 col-md-3 col-lg-3 mb-4');
             var cardInnerHtml = `
@@ -274,9 +302,14 @@
         });
     }
 
-    // Trigger search on keyup or filter change
-    $('#searchQuery').on('keyup', applyFilters);
-    $('#filterSize, #filterCategory, #filterLight, #filterWater, #filterGrowth, #filterPet').on('change', applyFilters);
+    // Event listeners
+    $('#priceRange').on('input', function () {
+        const currentPrice = $(this).val();
+        $('#currentPriceLabel').text(`Selected Price: Ksh ${currentPrice}`); // Update dynamically
+        applyFilters(); // Apply filters while sliding
+    });
+
+    $('#searchQuery, #filterSize, #filterCategory, #filterLight, #filterWater, #filterGrowth, #filterPet').on('change', applyFilters);
 
     // Prevent form submission
     $('#searchForm').submit(function (event) {
@@ -284,16 +317,18 @@
     });
 
     // Perform the initial search
-    $('#searchQuery').val(''); // Set query input to empty string
-    performSearch(); // Trigger the initial fetch
+    performSearch();
 
     // Clear filters functionality
     $('#clearFilters').on('click', function () {
         $('#searchQuery').val('');
         $('#filterSize, #filterCategory, #filterLight, #filterWater, #filterGrowth, #filterPet').val('');
+        $('#priceRange').val(maxPrice);
+        $('#currentPriceLabel').text(`Selected Price: Ksh ${maxPrice}`); // Reset displayed price
         applyFilters();
     });
 });
+
 
     </script>
     
