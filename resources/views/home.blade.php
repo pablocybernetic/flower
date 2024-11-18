@@ -2,6 +2,8 @@
 @section('page-content')
 {{-- @include('hero-banner') --}}
 <!-- ***** Main Banner Area Start ***** -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+
     <div id="top">
         <div class="container-fluid">
             <div class="row">
@@ -28,133 +30,95 @@
         </div>
     </div>
     <!-- ***** Main Banner Area End ***** -->
-    
-     <!-- resources/views/search.blade.php -->
+    <style>
+#searchForm {
+    border: 1px solid #dee2e6;
+    transition: box-shadow 0.3s ease-in-out;
+}
+#searchForm:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+#clearFilters {
+    transition: background-color 0.3s, color 0.3s;
+}
+#clearFilters:hover {
+    background-color: #f8f9fa;
+    color: #6c757d;
+}
 
+
+
+    </style>
+     <!-- resources/views/search.blade.php -->
      <div class="container mt-5">
-        <div class="d-flex justify-content-center">
-            <form id="searchForm" class="p-0 rounded shadow-sm bg-light" action="{{ route('home') }}" method="GET">
+        <!-- Search Bar -->
+        <div class="mb-4 d-flex justify-content-center">
+            <form id="searchForm" class="p-3 bg-white rounded shadow-lg" action="{{ route('search') }}" method="GET" style="width: 100%; max-width: 500px;">
                 <div class="input-group">
                     <input type="text" name="query" id="searchQuery" class="form-control" placeholder="Search products">
-                    <div class="input-group-append">
-                        <button type="submit" class="btn btn-primary">Search</button>
-                    </div>
+                    <button type="submit" class="btn btn-primary">Search</button>
                 </div>
             </form>
         </div>
-    </div>
     
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            // Function to perform search
-            function performSearch() {
-                var query = $('#searchQuery').val(); // Get the search query
-    
-                // Send AJAX request
-                $.ajax({
-                    type: 'GET',
-                    url: '{{ route('home') }}', // Replace this with your route
-                    data: { query: query },
-                    success: function(response) {
-                        displayData(response); // Display search results
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(error);
-                    }
-                });
-                
-            }
-    
-            // Trigger search whenever the user types something
-            $('#searchQuery').on('keyup', function() {
-                performSearch();
-            });
-    
-            // Prevent form submission
-            $('#searchForm').submit(function(event) {
-                event.preventDefault();
-            });
-        
-    
-            // Function to display the fetched data on the HTML page
-            function displayData(data) {
-                // Find the menu-list element
-                var menuList = $('#searching');
-    
-                // Clear any existing content
-                menuList.empty();
-    
-                // Loop through the fetched data and create HTML elements to display it
-                $.each(data, function(index, product) {
-                    // Create HTML elements to represent the product card
-                    var card = $('<div>').addClass('col-6 col-md-3 col-lg-3 mb-4');
-                    var cardInnerHtml = `
-                        <div class="card" style="min-height: auto;">
-                            <a href="/menu/${product.id}">
-                                <div style="padding-bottom: 100%; position: relative;">
-                                    <img src="assets/images/${product.image}" class="card-img-top img-fluid" alt="Product Image" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
-                                </div>
-                            </a>
-                            <div class="card-body">
-                                <h6 class="card-title fs-5">${product.name}</h6>
-                                <div class="mb-3 d-flex justify-content-between">
-                                    <span>Total</span>
-                                    <span class="fs-6">Ksh ${product.price}</span>
-                                </div>
-                                <form method="post" action="/menu/${product.id}">
-                                    <input type="hidden" name="_token" value="{{ csrf_token() }}"> <!-- Add this line -->
-
-                                    <div class="row align-items-center">
-                                        <div class="col">
-                                            <input type="number" name="number" class="form-control form-control-sm" value="1" style="width: 50%">
-                                        </div>
-                                        <div class="col-auto">
-                                            <button type="submit" class="btn btn-primary btn-sm rounded-circle">
-                                                <i class="fa fa-plus"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                                ${product.available !== "Stock" ? '<p class="text-danger fs-6">Out Of Stock</p>' : ''}
-                                <!-- Add the rating section here -->
-                                <!-- Assuming product ratings are also fetched from the server -->
-                            </div>
-                        </div>
-                    `;
-                    // Set the inner HTML of the card element
-                    card.html(cardInnerHtml);
-                    // Append the card to the container
-                    menuList.append(card);
-                });
-            }
-        });
-    </script>
-    
-
-            
-  <!-- ***** Menu Area Starts ***** -->
-<section class="section" id="menu">
-    @if(isset($query))
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="section-heading">
-                        <h6>Our Plants</h6>
-                        <h2>Your search results</h2>
-                    </div>
+        <!-- Filter Section -->
+        <div class="p-4 rounded shadow-sm bg-light">
+            <h5 class="mb-3 text-secondary">Filters</h5>
+            <div class="row gy-3">
+                <div class="col-md-2">
+                    <select id="filterSize" name="size" class="form-select">
+                        <option value="">Size</option>
+                        <option value="small">Small</option>
+                        <option value="medium">Medium</option>
+                        <option value="large">Large</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <select id="filterCategory" name="category" class="form-select">
+                        <option value="">Category</option>
+                        <option value="indoor">Indoor</option>
+                        <option value="outdoor">Outdoor</option>
+                        <option value="regular">Regular</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <select id="filterLight" name="light" class="form-select">
+                        <option value="">Light</option>
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <select id="filterWater" name="water" class="form-select">
+                        <option value="">Water</option>
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <select id="filterGrowth" name="growth" class="form-select">
+                        <option value="">Growth</option>
+                        <option value="slow">Slow</option>
+                        <option value="medium">Medium</option>
+                        <option value="fast">Fast</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <select id="filterPet" name="pet" class="form-select">
+                        <option value="">Pet-Friendly</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
                 </div>
             </div>
+            <div class="mt-3 d-flex justify-content-end">
+                <button type="button" id="clearFilters" class="btn btn-outline-secondary">Clear Filters</button>
+            </div>
         </div>
-        @php
-            $displayResults = $searhResults;
-        @endphp
-    @else
-        @php
-            $displayResults = $menu;
-        @endphp
-
         <div class="container">
+            <br>
             <div class="row">
                 <div class="col-lg-4">
                     <div class="section-heading">
@@ -164,192 +128,179 @@
                 </div>
             </div>
         </div>
-    @endif
-
-<style>
-    .custom-select {
-        border-radius: 25px;
-    }
-</style>
-
-<div class="container" style="padding: 0">
-    <div class="row">
-   <!-- Font Awesome CSS --> 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-<!-- Filter panel for Desktop on the side, Mobile on top -->
-<div class="mb-3 col-lg-3 col-12 md-3 sticky-top">
-    <div class="p-4 bg-white rounded shadow-lg filter-panel" style="border-left: 5px solid #28a745;">
-        <h5 class="mb-4 text-success text-uppercase fw-bold" style="letter-spacing: 1px;">Filters</h5>
-        <!-- Filter Form -->
-        <form>
-            <!-- Category Filter -->
-            <div class="mb-4">
-                <label for="category" class="form-label fw-semibold text-secondary d-flex align-items-center">
-                    <i class="fas fa-leaf text-success me-3" style="font-size: 1.2em; color: #28a745;"></i>Category
-                </label>
-                <select class="form-select form-control custom-select" id="category">
-                    <option value="">All Categories</option>
-                    <option value="indoor">Indoor</option>
-                    <option value="outdoor">Outdoor</option>
-                    <option value="succulents">Succulents</option>
-                    <option value="cactus">Cactus</option>
-                </select>
-            </div>
-
-            <!-- Price Range Filter -->
-            <div class="mb-4">
-                <label for="price" class="form-label fw-semibold text-secondary d-flex align-items-center">
-                    <i class="fas fa-tag me-3" style="font-size: 1.2em; color: #ff9900;"></i>Price Range
-                </label>
-                <input type="range" class="form-range form-control" id="price" min="0" max="1000" step="50">
-                <p class="mt-2 text-muted">Price: <span id="priceValue" class="fw-bold text-success">500</span> KES</p>
-            </div>
-
-            <!-- Size Filter -->
-            <div class="mb-4">
-                <label for="size" class="form-label fw-semibold text-secondary d-flex align-items-center">
-                    <i class="fas fa-arrows-alt me-3" style="font-size: 1.2em; color: #007bff;"></i>Size
-                </label>
-                <select class="form-select form-control custom-select" id="size">
-                    <option value="">All Sizes</option>
-                    <option value="small">Small</option>
-                    <option value="medium">Medium</option>
-                    <option value="large">Large</option>
-                </select>
-            </div>
-
-            <!-- Light Requirements Filter -->
-            <div class="mb-4">
-                <label for="light" class="form-label fw-semibold text-secondary d-flex align-items-center">
-                    <i class="fas fa-sun me-3" style="font-size: 1.2em; color: #ffcc00;"></i>Light Requirements
-                </label>
-                <select class="form-select form-control custom-select" id="light">
-                    <option value="">All Light Conditions</option>
-                    <option value="fullsun">Full Sun</option>
-                    <option value="partialsun">Partial Sun</option>
-                    <option value="lowlight">Low Light</option>
-                </select>
-            </div>
-
-            <!-- Watering Needs Filter -->
-            <div class="mb-4">
-                <label for="watering" class="form-label fw-semibold text-secondary d-flex align-items-center">
-                    <i class="fas fa-tint me-3" style="font-size: 1.2em; color: #007bff;"></i>Watering Needs
-                </label>
-                <select class="form-select form-control custom-select" id="watering">
-                    <option value="">All Watering Needs</option>
-                    <option value="low">Low</option>
-                    <option value="medium">Medium</option>
-                    <option value="high">High</option>
-                </select>
-            </div>
-
-            <!-- Difficulty Level Filter -->
-            <div class="mb-4">
-                <label for="difficulty" class="form-label fw-semibold text-secondary d-flex align-items-center">
-                    <i class="fas fa-hiking me-3" style="font-size: 1.2em; color: #e74c3c;"></i>Difficulty Level
-                </label>
-                <select class="form-select form-control custom-select" id="difficulty">
-                    <option value="">All Difficulty Levels</option>
-                    <option value="easy">Easy</option>
-                    <option value="moderate">Moderate</option>
-                    <option value="challenging">Challenging</option>
-                </select>
-            </div>
-
-            <!-- Growth Rate Filter -->
-            <div class="mb-4">
-                <label for="growthRate" class="form-label fw-semibold text-secondary d-flex align-items-center">
-                    <i class="fas fa-seedling me-3" style="font-size: 1.2em; color: #2ecc71;"></i> Growth Rate
-                </label>
-                <select class="form-select form-control custom-select" id="growthRate">
-                    <option value="">All Growth Rates</option>
-                    <option value="slow">Slow</option>
-                    <option value="medium">Medium</option>
-                    <option value="fast">Fast</option>
-                </select>
-            </div>
-
-            <!-- Pet-Friendly Filter -->
-            <div class="mb-4">
-                <label for="petFriendly" class="form-label fw-semibold text-secondary d-flex align-items-center">
-                    <i class="fas fa-paw me-3" style="font-size: 1.2em; color: #8e44ad;"></i>Pet-Friendly
-                </label>
-                <select class="form-select form-control custom-select" id="petFriendly">
-                    <option value="">All Plants</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </div>
-            <button type="submit" class="btn btn-success w-100 rounded-pill">Apply Filters</button>
-        </form>
-    </div>
-</div>
+    
+        <!-- Search Results -->
+        <div id="searching" class="mt-4 row">
 
 
-
-        <!-- Product Listing -->
-        <div class="col-lg-9 col-12">
-            <div class="menu-item-carousel">
-                <div class="grid-container row gx-8" id="searching">
-                    @foreach($displayResults as $product)
-                    <div class="mb-4 col-6 col-sm-6 col-md-3 col-lg-3">
-                        <div class="card">
-                            <a href="/menu/{{ $product->id }}">
-                                <div style="padding-bottom: 100%; position: relative;">
-                                    <img src="{{asset('assets/images/'.$product->image)}}" class="card-img-top img-fluid" alt="Product Image" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
-                                </div>
-                            </a>
-                            <div class="card-body" style="padding:0.5rem">
-                                <strong><span class="fs-6" style="font-size: 20px; font-style:bold;">KES {{ $product->price }}</span></strong>
-                                <p class="card-title fs-5" style="color:gray;">{{ $product->name }}</p>
-
-                                @if($product->available == "Stock")
-                                <form method="post" action="{{ route('cart.store', $product->id) }}">
-                                    @csrf
-                                    <div class="row align-items-center">
-                                        <div class="col">
-                                            <input type="number" name="number" class="form-control form-control-sm" value="1" style="width: 50%; border-radius:30px">
-                                        </div>
-                                        <div class="col-auto">
-                                            <button type="submit" class="btn btn-primary btn-sm rounded-circle">
-                                                <i class="fa fa-plus"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                                @else
-                                <p class="text-danger fs-4" style="font-size: 10px;">Out Of Stock</p>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
-                </div>
-            </div>
         </div>
     </div>
-</div>
+    
+    
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-    // JavaScript for dynamic price range handling
-    const minPrice = {{ $displayResults->min('price') }};
-    const maxPrice = {{ $displayResults->max('price') }};
+   $(document).ready(function () {
+    let fetchedData = []; // Variable to store fetched data
 
-    const priceSlider = document.getElementById('price');
-    const priceValue = document.getElementById('priceValue');
+    // Function to perform the initial fetch
+    function performSearch() {
+        var query = $('#searchQuery').val();
+        var filters = {
+            size: $('#filterSize').val(),
+            category: $('#filterCategory').val(),
+            light: $('#filterLight').val(),
+            water: $('#filterWater').val(),
+            growth: $('#filterGrowth').val(),
+            pet: $('#filterPet').val()
+        };
 
-    // Set the min and max for the slider
-    priceSlider.min = minPrice;
-    priceSlider.max = maxPrice;
+        console.log('Performing search with filters:', filters);
 
-    // Update the displayed value dynamically
-    priceSlider.addEventListener('input', function() {
-        priceValue.textContent = this.value;
+        $.ajax({
+            type: 'GET',
+            url: '{{ route("home") }}',
+            data: { query: query, filters: filters },
+            success: function (response) {
+                console.log('Fetched data:', response);
+                fetchedData = response; // Store fetched data locally
+                applyFilters(); // Apply filters on the fetched data
+            },
+            error: function (xhr, status, error) {
+                console.error('Error fetching data:', error);
+                alert('Error fetching data. Please try again later.');
+            }
+        });
+    }
+
+    // Function to apply filters locally on fetched data
+    function applyFilters() {
+    var query = $('#searchQuery').val().toLowerCase();
+    var filters = {
+        size: $('#filterSize').val(),
+        category: $('#filterCategory').val(),
+        light: $('#filterLight').val(),
+        water: $('#filterWater').val(),
+        growth: $('#filterGrowth').val(),
+        pet: $('#filterPet').val() // Captures the dropdown value for "pet"
+    };
+
+    console.log('Applying filters:', filters);
+
+    // Filter the data
+    var filteredData = fetchedData.filter(function (product) {
+        const matchesQuery = query === '' || product.name.toLowerCase().includes(query);
+        const matchesSize = !filters.size || product.size.toLowerCase() === filters.size.toLowerCase();
+        const matchesCategory = !filters.category || product.catagory.toLowerCase() === filters.category.toLowerCase();
+        const matchesLight = !filters.light || product.light.toLowerCase() === filters.light.toLowerCase();
+        const matchesWater = !filters.water || product.water.toLowerCase() === filters.water.toLowerCase();
+        const matchesGrowth = !filters.growth || product.growth.toLowerCase() === filters.growth.toLowerCase();
+        const matchesPet = !filters.pet || product.pet.toLowerCase() === filters.pet.toLowerCase();
+
+        console.log({
+            product,
+            matchesQuery,
+            matchesSize,
+            matchesCategory,
+            matchesLight,
+            matchesWater,
+            matchesGrowth,
+            matchesPet
+        });
+
+        return (
+            matchesQuery &&
+            matchesSize &&
+            matchesCategory &&
+            matchesLight &&
+            matchesWater &&
+            matchesGrowth &&
+            matchesPet
+        );
     });
-</script>
-</section>
+
+    console.log('Filtered Data:', filteredData);
+
+    displayData(filteredData); // Update the display with filtered data
+}
+
+
+    // Function to display the fetched/filtered data on the HTML page
+    function displayData(data) {
+        var menuList = $('#searching');
+        menuList.empty();
+
+        if (data.length === 0) {
+            console.log('No matching data found');
+            menuList.append('<p class="text-center">No results found</p>');
+            return;
+        }
+
+        // Loop through the filtered data and create HTML elements to display it
+        $.each(data, function (index, product) {
+            var card = $('<div>').addClass('col-6 col-md-3 col-lg-3 mb-4');
+            var cardInnerHtml = `
+                <div class="card" style="min-height: auto;">
+                    <a href="/menu/${product.id}">
+                        <div style="padding-bottom: 100%; position: relative;">
+                            <img src="assets/images/${product.image}" class="card-img-top img-fluid" alt="Product Image" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                    </a>
+                    <div class="card-body">
+                        <h6 class="card-title fs-5">${product.name}</h6>
+                        <div class="mb-3 d-flex justify-content-between">
+                            <span>Total</span>
+                            <span class="fs-6">Ksh ${product.price}</span>
+                        </div>
+                        <form method="post" action="/menu/${product.id}">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <input type="number" name="number" class="form-control form-control-sm" value="1" style="width: 50%">
+                                </div>
+                                <div class="col-auto">
+                                    <button type="submit" class="btn btn-primary btn-sm rounded-circle">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        ${product.available !== "Stock" ? '<p class="text-danger fs-6">Out Of Stock</p>' : ''}
+                    </div>
+                </div>
+            `;
+            card.html(cardInnerHtml);
+            menuList.append(card);
+        });
+    }
+
+    // Trigger search on keyup or filter change
+    $('#searchQuery').on('keyup', applyFilters);
+    $('#filterSize, #filterCategory, #filterLight, #filterWater, #filterGrowth, #filterPet').on('change', applyFilters);
+
+    // Prevent form submission
+    $('#searchForm').submit(function (event) {
+        event.preventDefault();
+    });
+
+    // Perform the initial search
+    $('#searchQuery').val(''); // Set query input to empty string
+    performSearch(); // Trigger the initial fetch
+
+    // Clear filters functionality
+    $('#clearFilters').on('click', function () {
+        $('#searchQuery').val('');
+        $('#filterSize, #filterCategory, #filterLight, #filterWater, #filterGrowth, #filterPet').val('');
+        applyFilters();
+    });
+});
+
+    </script>
+    
+
+            
+  <!-- ***** Menu Area Starts ***** -->
+
 
         <!-- ***** Menu Area Ends ***** -->
 

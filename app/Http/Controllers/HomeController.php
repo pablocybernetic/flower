@@ -78,34 +78,70 @@ class HomeController extends Controller
             'products' => $menu
         ], 200);
     }
-    public function search(Request $request){
-
-        $menu = DB::table('products')->where('catagory', 'regular')->get();
-        if ($request->has('query')) {
-            $query = $request->input('query');
+    public function search(Request $request)
+    {
+        echo $request.'kukuku';
+        // Get the base query for products
+        $queryBuilder = DB::table('products');
     
-            // Perform a search and get the results
-            $searchResults = DB::table('products')
-                ->where('name', 'like', "%$query%")
-                ->orWhere('description', 'like', "%$query%")
-                ->get();
+        // Check for filters in the request
+        if ($request->has('filters') && !empty($request->input('filters'))) {
+            $filters = $request->input('filters');
     
-            // Check if it's an AJAX request
-            if ($request->ajax()) {
-                // Return only the search results in JSON format
-                return response()->json($searchResults);
-            } else {
-                // Pass the search results to the view along with other data
-                return view('home', compact('menu', 'breakfast', 'lunch', 'dinner', 'chefs', 'searchResults', 'query', 'cart_amount', 'about_us', 'banners'));
+            // Apply filters dynamically
+            if (!empty($filters['size'])) {
+                $queryBuilder->where('size', $filters['size']);
+                Log::info('Applying size filter:', ['size' => $filters['size']]);
+            }
+            if (!empty($filters['category'])) {
+                $queryBuilder->where('catagory', $filters['category']);
+                Log::info('Applying category filter:', ['category' => $filters['category']]);
+            }
+            if (!empty($filters['light'])) {
+                $queryBuilder->where('light', $filters['light']);
+                Log::info('Applying light filter:', ['light' => $filters['light']]);
+            }
+            if (!empty($filters['water'])) {
+                $queryBuilder->where('water', $filters['water']);
+                Log::info('Applying water filter:', ['water' => $filters['water']]);
+            }
+            if (!empty($filters['growth'])) {
+                $queryBuilder->where('growth', $filters['growth']);
+                Log::info('Applying growth filter:', ['growth' => $filters['growth']]);
+            }
+            if (!empty($filters['pet'])) {
+                $queryBuilder->where('pet', $filters['pet']);
+                Log::info('Applying pet filter:', ['pet' => $filters['pet']]);
             }
         }
-        else {
-            if ($request->ajax()) {
-        // return products
-            return response()->json($menu);
-        }}
-
+    
+        // Check for search query
+        if ($request->has('query') && !empty($request->input('query'))) {
+            $searchQuery = $request->input('query');
+            $queryBuilder->where(function ($q) use ($searchQuery) {
+                $q->where('name', 'like', "%$searchQuery%")
+                  ->orWhere('description', 'like', "%$searchQuery%");
+            });
+            Log::info('Applying search query:', ['query' => $searchQuery]);
+        }
+    
+        // Fetch the results
+        $searchResults = $queryBuilder->get();
+    
+        // Log the final query for debugging
+        Log::info('Final Query:', ['query' => $queryBuilder->toSql()]);
+        Log::info('Query Bindings:', ['bindings' => $queryBuilder->getBindings()]);
+    
+        // Return results for AJAX requests
+        if ($request->ajax()) {
+            return response()->json($searchResults);
+        }
+    
+        // Pass data to the view if not an AJAX request
+        $menu = DB::table('products')->where('catagory', 'regular')->get();
+        return view('home', compact('menu', 'searchResults'));
     }
+    
     public function redirects(){
 
 
