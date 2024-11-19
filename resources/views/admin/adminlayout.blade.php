@@ -72,18 +72,18 @@
                     </div>
                   </div>
                   <div class="preview-item-content">
-                    <p class="preview-subject ellipsis mb-1 text-small">Account settings</p>
+                    <p class="mb-1 preview-subject ellipsis text-small">Account settings</p>
                   </div>
                 </a>
                 <div class="dropdown-divider"></div>
                 <a href="#" class="dropdown-item preview-item">
                   <div class="preview-thumbnail">
                     <div class="preview-icon bg-dark rounded-circle">
-                      <i class="mdi mdi-onepassword  text-info"></i>
+                      <i class="mdi mdi-onepassword text-info"></i>
                     </div>
                   </div>
                   <div class="preview-item-content">
-                    <p class="preview-subject ellipsis mb-1 text-small">Change Password</p>
+                    <p class="mb-1 preview-subject ellipsis text-small">Change Password</p>
                   </div>
                 </a>
                 <div class="dropdown-divider"></div>
@@ -94,7 +94,7 @@
                     </div>
                   </div>
                   <div class="preview-item-content">
-                    <p class="preview-subject ellipsis mb-1 text-small">To-do list</p>
+                    <p class="mb-1 preview-subject ellipsis text-small">To-do list</p>
                   </div>
                 </a>
               </div>
@@ -118,6 +118,14 @@
                 <i class="mdi mdi-cart"></i>
               </span>
               <span class="menu-title">Products</span>
+            </a>
+          </li>
+          <li class="nav-item menu-items">
+            <a class="nav-link" href="/admin/categories">
+              <span class="menu-icon">
+                <i class="mdi mdi-cart"></i>
+              </span>
+              <span class="menu-title">Categories</span>
             </a>
           </li>
           
@@ -267,17 +275,17 @@
       <!-- partial -->
       <div class="container-fluid page-body-wrapper">
         <!-- partial:partials/_navbar.html -->
-        <nav class="navbar p-0 fixed-top d-flex flex-row">
+        <nav class="flex-row p-0 navbar fixed-top d-flex">
           <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
             <a class="navbar-brand brand-logo-mini" href="index.html"><img src="{{asset('admin/assets//images/logo-mini.svg')}}" alt="logo" /></a>
           </div>
-          <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
-            <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+          <div class="flex-grow navbar-menu-wrapper d-flex align-items-stretch">
+            <button class="navbar-toggler align-self-center" type="button" data-toggle="minimize">
               <span class="mdi mdi-menu"></span>
             </button>
             <ul class="navbar-nav w-100">
               <li class="nav-item w-100">
-                <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
+                <form class="mt-2 nav-link mt-md-0 d-none d-lg-flex search">
                   <input type="text" class="form-control" placeholder="Search products">
                 </form>
               </li>
@@ -294,7 +302,7 @@
                       </div>
                     </div>
                     <div class="preview-item-content">
-                      <p class="preview-subject ellipsis mb-1">Software Development</p>
+                      <p class="mb-1 preview-subject ellipsis">Software Development</p>
                     </div>
                   </a>
                   <div class="dropdown-divider"></div>
@@ -305,7 +313,7 @@
                       </div>
                     </div>
                     <div class="preview-item-content">
-                      <p class="preview-subject ellipsis mb-1">UI Development</p>
+                      <p class="mb-1 preview-subject ellipsis">UI Development</p>
                     </div>
                   </a>
                   <div class="dropdown-divider"></div>
@@ -316,7 +324,7 @@
                       </div>
                     </div>
                     <div class="preview-item-content">
-                      <p class="preview-subject ellipsis mb-1">Software Testing</p>
+                      <p class="mb-1 preview-subject ellipsis">Software Testing</p>
                     </div>
                   </a>
                   <div class="dropdown-divider"></div>
@@ -352,7 +360,7 @@
                       </div>
                     </div>
                     <div class="preview-item-content">
-                      <p class="preview-subject mb-1">Settings</p>
+                      <p class="mb-1 preview-subject">Settings</p>
                     </div>
                   </a>
                   <div class="dropdown-divider"></div>
@@ -365,7 +373,7 @@
                       </div>
                     </div>
                     <div class="preview-item-content">
-                      <p class="preview-subject mb-1">Log out</p>
+                      <p class="mb-1 preview-subject">Log out</p>
                     </div>
                   </button>
                   </form>
@@ -393,9 +401,9 @@
           <!-- partial:partials/_footer.html -->
           <footer class="footer">
             <div class="d-sm-flex justify-content-center justify-content-sm-between">
-              <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © Pandakivuli  2023</span>
+              <span class="text-center text-muted d-block text-sm-left d-sm-inline-block">Copyright © Pandakivuli  2023</span>
          
-              <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> <a href="/" target="_blank">Go to Client Section</a></span>
+              <span class="float-none mt-1 text-center float-sm-right d-block mt-sm-0"> <a href="/" target="_blank">Go to Client Section</a></span>
             </div>
           </footer>
           <!-- partial -->

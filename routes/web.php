@@ -11,6 +11,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProductSearchController;
 use App\Http\Controllers\MpesaCallbackController;
+use App\Http\Controllers\CategoryController;
 
 
 
@@ -188,6 +189,40 @@ Route::get('/invoice/complete/{id}', [AdminController::class, 'invoice_complete'
 Route::get('/order/location', [AdminController::class, 'order_location'])->name('/order/location');
 Route::post('/invoice/location/edit', [AdminController::class, 'edit_order_location'])->name('/invoice/location/edit');
 Route::get('/delivery-boy', [AdminController::class, 'delivery_boy'])->name('/delivery-boy');
+
+// categories
+Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index'); // Show all categories
+Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create'); // Show form to create a category
+Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store'); // Save a new category
+Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('categories.show'); // Show a single category
+Route::get('/categories/{category}/edit', [CategoryController::class, 'edit'])->name('categories.edit'); // Show form to edit a category
+Route::put('/categories/{category}', [CategoryController::class, 'update'])->name('categories.update'); // Update an existing category
+Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy'); // Delete a category
+// selectors
+Route::get('/api/categories', [CategoryController::class, 'index']);
+
+// Admin
+
+// Show all categories
+Route::get('/admin/categories', [CategoryController::class, 'allcats'])->name('admin.categories.index');
+
+// Show form to create a new category
+Route::get('/admin/categories/create', [CategoryController::class, 'create'])->name('admin.categories.create');
+
+// Save a new category
+Route::post('/categories', [CategoryController::class, 'store'])->name('admin.categories.store');
+
+// Show a single category using slug
+Route::get('/admin/categories/{slug}', [CategoryController::class, 'show'])->name('admin.categories.show');
+
+// Show form to edit a category using slug
+Route::get('/admin/categories/{slug}/edit', [CategoryController::class, 'edit'])->name('admin.categories.edit');
+
+// Update an existing category using slug
+Route::put('/admin/categories/{slug}', [CategoryController::class, 'update'])->name('admin.categories.update');
+
+// Delete a category using slug
+Route::delete('/admin/categories/{slug}', [CategoryController::class, 'destroy'])->name('admin.categories.destroy');
 
 
 Route::get('/admin-add', [AdminController::class, 'add_admin'])->name('/admin-add');

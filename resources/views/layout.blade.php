@@ -193,16 +193,75 @@
        
       
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
+          <ul class="mr-auto navbar-nav">
             <li class="nav-item active">
               <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="/#about">About <span class="sr-only">(current)</span></a>
               </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="/#menu">Our Plants <span class="sr-only">(current)</span></a>
+              <li class="nav-item dropdown">
+                <a 
+                  class="nav-link dropdown-toggle" 
+                  href="#" 
+                  id="navbarDropdown" 
+                  role="button" 
+                  data-bs-toggle="dropdown" 
+                  aria-expanded="false">
+                  Categories
+                </a>
+                <ul id="categoryDropdownMenu" class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="#">Loading categories...</a></li>
+              </ul>
+              
+                <script>
+                  document.addEventListener("DOMContentLoaded", () => {
+    const categoryDropdownMenu = document.getElementById('categoryDropdownMenu');
+
+    fetch('/api/categories') // Replace with your API endpoint
+        .then(response => response.json())
+        .then(data => {
+            const categories = data.data || []; // Ensure proper data structure
+            
+            // Clear the placeholder items
+            categoryDropdownMenu.innerHTML = '';
+
+            // Add categories dynamically
+            categories.forEach(category => {
+                const listItem = document.createElement('li');
+                const anchor = document.createElement('a');
+                anchor.classList.add('dropdown-item');
+                anchor.href = `/#${category.slug}`; // Adjust based on your URL structure
+                anchor.textContent = category.name;
+                listItem.appendChild(anchor);
+                categoryDropdownMenu.appendChild(listItem);
+            });
+
+            // Add a divider and "View All Categories" link
+            const divider = document.createElement('li');
+            divider.innerHTML = '<hr class="dropdown-divider">';
+            categoryDropdownMenu.appendChild(divider);
+
+            const viewAllItem = document.createElement('li');
+            const viewAllAnchor = document.createElement('a');
+            viewAllAnchor.classList.add('dropdown-item');
+            viewAllAnchor.href = '/#all'; // Link for "View All Categories"
+            viewAllAnchor.textContent = 'View All Categories';
+            viewAllItem.appendChild(viewAllAnchor);
+            categoryDropdownMenu.appendChild(viewAllItem);
+        })
+        .catch(error => {
+            console.error('Error fetching categories:', error);
+            // Handle error gracefully
+            categoryDropdownMenu.innerHTML = `
+                <li><a class="dropdown-item" href="#">Failed to load categories</a></li>
+            `;
+        });
+});
+
+                </script>
               </li>
+              
               <li class="nav-item active">
                 <a class="nav-link" href="/trace-my-order">Trace Order<span class="sr-only">(current)</span></a>
               </li>
@@ -219,7 +278,7 @@
                           
                           <li>
                             @if (Route::has('login'))
-                            <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                            <div class="fixed top-0 right-0 hidden px-6 py-4 sm:block">
                                 @auth
                                     <li style="margin-top:-13px;">
                                         {{-- <x-app-layout> </x-app-layout> --}}
@@ -330,9 +389,9 @@
               @endif
 
           </ul>
-          {{-- <form class="form-inline my-2 my-lg-0">
+          {{-- <form class="my-2 form-inline my-lg-0">
             <input class="form-control mr-sm-2" style="border-radius: 20px;" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-primary my-2 my-sm-0"style="border-radius: 20px;" type="submit">Search</button>
+            <button class="my-2 btn btn-outline-primary my-sm-0"style="border-radius: 20px;" type="submit">Search</button>
           </form> --}}
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

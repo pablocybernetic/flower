@@ -46,15 +46,47 @@
                           <label for="exampleInputPassword4">Price</label>
                           <input type="number" name="price" value="{{ $product->price }}" class="form-control" id="exampleInputPassword4">
                         </div>
+                        <div class="form-group">
+                          <label for="categorySelect">Category</label>
+                          <select class="form-control" name="category" id="categorySelect">
+                              <option value="" disabled>Select a category</option>
+                          </select>
+                      </div>
+                      
+                      <script>
+                          document.addEventListener("DOMContentLoaded", () => {
+                              const categorySelect = document.getElementById('categorySelect');
+                              const currentCategory = "{{ $product->category ?? '' }}";
+                      
+                              fetch('/api/categories') // Replace with your API endpoint
+                                  .then(response => response.json())
+                                  .then(data => {
+                                      const categories = data.data || []; // Fallback to an empty array if `data` is undefined
+                      
+                                      categories.forEach(category => {
+                                          const option = document.createElement('option');
+                                          option.value = category.slug;
+                                          option.textContent = category.name;
+                      
+                                          if (category.slug === currentCategory) {
+                                              option.selected = true;
+                                          }
+                      
+                                          categorySelect.appendChild(option);
+                                      });
+                                  })
+                                  .catch(error => console.error('Error fetching categories:', error));
+                          });
+                      </script>
                       
                         <!-- ... (Other form fields) ... -->
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                           <label for="exampleSelectGender">Catagory</label>
                           <select class="form-control" name="catagory" id="exampleSelectGender">
                             <option value="regular" @php if($product->catagory=="regular"){ echo"selected"; }   @endphp>Regular</option>
                             <option value="special" @php if($product->catagory=="special"){ echo"selected"; }   @endphp>Special</option>
                           </select>
-                        </div>
+                        </div> --}}
                         <div class="form-group">
                           <label for="exampleSelectGender">Size</label>
                           <select class="form-control" name="size" id="exampleSelectGender">

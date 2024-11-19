@@ -46,15 +46,36 @@
                             <input type="number" name="price" class="form-control" id="exampleInputPassword4">
                           </div>
                           <div class="form-group">
-                            <label for="exampleSelectGender">Catagory</label>
-                            <select class="form-control" name="catagory" id="exampleSelectGender">
-                              <option value="Indoor">Indoor</option>
-                              <option value="Outdoor">Outdoor</option>
-                              <option value="Saculent">Saculent</option>
-                              <option value="Cactus">Cactus</option>
-
+                            <label for="exampleSelectGender">Category</label>
+                            <select class="form-control" name="category" id="exampleSelectGender">
+                                <option value="">Select a category</option>
+                                <!-- Categories will be populated here by JS -->
                             </select>
-                          </div>
+                        </div>
+                        
+                        <script>
+                            // Fetch categories from the backend API
+                            fetch('/api/categories')
+                                .then(response => response.json()) // Parse the response as JSON
+                                .then(data => {
+                                    if (data.success) {
+                                        const categories = data.data; // The list of categories
+                                        const selectElement = document.getElementById('exampleSelectGender');
+                        
+                                        // Loop through the categories and create option elements
+                                        categories.forEach(category => {
+                                            const option = document.createElement('option');
+                                            option.value = category.slug; // Use slug as the value
+                                            option.textContent = category.name; // Display the category name
+                                            selectElement.appendChild(option); // Append option to the select
+                                        });
+                                    }
+                                })
+                                .catch(error => {
+                                    console.error('Error fetching categories:', error);
+                                });
+                        </script>
+                        
                           <div class="form-group">
                             <label for="exampleSelectGender">Season</label>
                             <select class="form-control" name="session" id="exampleSelectGender">
