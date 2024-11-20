@@ -69,7 +69,7 @@
                         Day
                     @endif
                 </td>
-                <td>{{ $product->price }} Tk</td>
+                <td>{{ $product->price }} KES</td>
                 <td>
                     @if($product->available == "Stock")
                         In Stock
