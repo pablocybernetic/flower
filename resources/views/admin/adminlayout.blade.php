@@ -123,12 +123,20 @@
           <li class="nav-item menu-items">
             <a class="nav-link" href="/admin/categories">
               <span class="menu-icon">
-                <i class="mdi mdi-cart"></i>
+                <i class="mdi mdi-tree"></i>
               </span>
               <span class="menu-title">Categories</span>
             </a>
           </li>
-          
+
+            <li class="nav-item menu-items">
+            <a class="nav-link" href="/admin/blog">
+              <span class="menu-icon">
+                <i class="mdi mdi-book"></i>
+              </span>
+              <span class="menu-title">Blogs</span>
+            </a>
+          </li>
 
           <li class="nav-item menu-items">
             <a class="nav-link" href="/admin/chefs">

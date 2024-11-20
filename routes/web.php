@@ -251,3 +251,26 @@ Route::get('/admin/charge/edit/{id}', [AdminController::class, 'edit_charge'])->
 Route::post('/charge-edit-process/{id}', [AdminController::class, 'edit_charge_process'])->name('/charge-edit-process');
 Route::get('/customize/edit', [AdminController::class, 'customize_edit'])->name('/customize/edit');
 Route::post('/customize_edit_process', [AdminController::class, 'edit_customize_process'])->name('/customize_edit_process');
+// Blogs
+use App\Http\Controllers\BlogPostController;
+
+// Public Routes (for displaying posts)
+Route::get('blog', [BlogPostController::class, 'index'])->name('blog.index'); // List all posts
+Route::get('blog/{slug}', [BlogPostController::class, 'show'])->name('blog.show'); // Show a single post by slug
+
+// Admin Routes (for managing posts)
+Route::prefix('admin/blog')->name('admin.blog.')->middleware('auth')->group(function() {
+    // List all blog posts for admin
+    Route::get('/', [BlogPostController::class, 'index'])->name('index');
+
+    // Create a new blog post
+    Route::get('create', [BlogPostController::class, 'create'])->name('create');
+    Route::post('create', [BlogPostController::class, 'store'])->name('store');
+
+    // Edit an existing blog post
+    Route::get('{blogPost}/edit', [BlogPostController::class, 'edit'])->name('edit');
+    Route::post('{blogPost}/edit', [BlogPostController::class, 'update'])->name('update');
+
+    // Delete a blog post
+    Route::delete('{blogPost}', [BlogPostController::class, 'destroy'])->name('destroy');
+});
