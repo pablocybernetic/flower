@@ -52,7 +52,7 @@
                 <td>{{ $i++ }}</td>
                 <td>
                     @if($product->image)
-                        <img src="{{ asset('assets/images/'.$product->image) }}" alt="Product Image" style="width: 50px; height: 50px;">
+                        <img src="{{ asset('assets/images/'.$product->image) }}" alt="Product Image"  style="width: 50px; height: 50px; border-radius: 5px;">
                     @else
                         <span>No Image</span>
                     @endif
