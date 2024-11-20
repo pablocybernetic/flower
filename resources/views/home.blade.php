@@ -103,6 +103,8 @@
                    
                     <div class="col-6 col-md-2">
                         <select id="filterCategory" name="category" class="form-select form-select-md">
+                            <option value="">Category</option>
+
                             @foreach($categories as $category)
                             <option value="{{ $category->name }}">{{ $category->name }}</option>
                         @endforeach 
