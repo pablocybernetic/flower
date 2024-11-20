@@ -338,16 +338,10 @@ class AdminController extends Controller
     }
     public function menu_edit($id)
     {
-
-
-
-        $products=DB::table('products')->where('id',$id)->get();
-
-        
-        return view('admin.menu_edit',compact('products'));
-
-
-
+        $products = DB::table('products')->where('id', $id)->get(); // Fetch the product by ID
+        $categories = DB::table('categories')->get(); // Fetch all categories
+    
+        return view('admin.menu_edit', compact('products', 'categories'));
     }
     public function chef_edit($id)
     {

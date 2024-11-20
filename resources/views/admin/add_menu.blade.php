@@ -47,7 +47,7 @@
                           </div>
                           <div class="form-group">
                             <label for="exampleSelectGender">Category</label>
-                            <select class="form-control" name="category" id="exampleSelectGender">
+                            <select class="form-control" name="catagory" id="exampleSelectGender">
                                 <option value="">Select a category</option>
                                 <!-- Categories will be populated here by JS -->
                             </select>
