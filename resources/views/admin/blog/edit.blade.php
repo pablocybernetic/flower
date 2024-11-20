@@ -6,16 +6,16 @@
         <h1>Edit Blog Post</h1>
 
         <!-- Success or Error Messages -->
-        @if(session('success'))
+        @if (session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
             </div>
         @endif
 
-        @if($errors->any())
+        @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
-                    @foreach($errors->all() as $error)
+                    @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
                     @endforeach
                 </ul>
@@ -25,34 +25,41 @@
         <form action="{{ route('admin.blog.update', $blogPost->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('POST')
-            
+
             <div class="form-group">
                 <label for="title">Title</label>
-                <input type="text" name="title" id="title" class="form-control" value="{{ old('title', $blogPost->title) }}" required>
+                <input type="text" name="title" id="title" class="form-control"
+                    value="{{ old('title', $blogPost->title) }}" required>
             </div>
 
             <div class="form-group">
                 <label for="category_id">Category</label>
                 <select name="category" id="category_id" class="form-control" required>
                     @foreach ($categories as $category)
-                        <option value="{{ $category->name }}" {{ $blogPost->category == $category->name ? 'selected' : '' }}>
+                        <option value="{{ $category->name }}"
+                            {{ $blogPost->category == $category->name ? 'selected' : '' }}>
                             {{ $category->name }}
                         </option>
                     @endforeach
                 </select>
             </div>
-
             <div class="form-group">
+                <label for="editor">Description</label>
+                <div id="editor" style="height: 300px;">{!! old('content', $blogPost->content) !!}</div>
+                <input type="hidden" name="content" id="hiddenDescriptionInput">
+            </div>
+            {{-- <div class="form-group">
                 <label for="content">Content</label>
                 <textarea name="content" id="content" class="form-control" rows="5" required>{{ old('content', $blogPost->content) }}</textarea>
-            </div>
+            </div> --}}
 
             <!-- Featured Image Section -->
             <div class="form-group">
                 <label for="image">Featured Image</label>
-                @if($blogPost->featured_image)
+                @if ($blogPost->featured_image)
                     <div class="mb-2">
-                        <img src="{{ asset('/' . $blogPost->featured_image) }}" alt="Featured Image" class="img-fluid" style="max-width: 200px;">
+                        <img src="{{ asset('/' . $blogPost->featured_image) }}" alt="Featured Image" class="img-fluid"
+                            style="max-width: 200px;">
                     </div>
                 @endif
                 <input type="file" name="featured_image" id="image" class="form-control">
@@ -61,7 +68,8 @@
 
             <div class="form-group">
                 <label for="meta_title">Meta Title</label>
-                <input type="text" name="meta_title" id="meta_title" class="form-control" value="{{ old('meta_title', $blogPost->meta_title) }}">
+                <input type="text" name="meta_title" id="meta_title" class="form-control"
+                    value="{{ old('meta_title', $blogPost->meta_title) }}">
             </div>
 
             <div class="form-group">
@@ -71,7 +79,8 @@
 
             <div class="form-group">
                 <label for="tags">Tags</label>
-                <input type="text" name="tags" id="tags" class="form-control" value="{{ old('tags', $blogPost->tags) }}">
+                <input type="text" name="tags" id="tags" class="form-control"
+                    value="{{ old('tags', $blogPost->tags) }}">
             </div>
 
             <!-- Status Field -->
@@ -89,4 +98,19 @@
             </div>
         </form>
     </div>
+    <!-- Include Quill JS -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+    <script>
+        // Initialize Quill
+        var quill = new Quill('#editor', {
+            theme: 'snow',
+        });
+
+        // Update the hidden input field with Quill's HTML content
+        quill.on('text-change', function() {
+            var hiddenInput = document.getElementById('hiddenDescriptionInput');
+            hiddenInput.value = quill.root.innerHTML;
+        });
+    </script>
 @endsection

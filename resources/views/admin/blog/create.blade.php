@@ -21,7 +21,8 @@
             @csrf
             <div class="form-group">
                 <label for="title">Title</label>
-                <input type="text" name="title" id="title" class="form-control" value="{{ old('title') }}" required>
+                <input type="text" name="title" id="title" class="form-control" value="{{ old('title') }}"
+                    required>
                 @error('title')
                     <div class="mt-2 alert alert-danger">{{ $message }}</div>
                 @enderror
@@ -46,13 +47,13 @@
                     <div class="mt-2 alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
+
             <div class="form-group">
-                <label for="content">Content</label>
-                <textarea name="content" id="content" class="form-control" rows="5" required>{{ old('content') }}</textarea>
-                @error('content')
-                    <div class="mt-2 alert alert-danger">{{ $message }}</div>
-                @enderror
+                <label for="editor">Content</label>
+                <div id="editor" style="height: 300px;"></div>
+                <input type="hidden" name="content" id="hiddenDescriptionInput">
             </div>
+            
             <div class="form-group">
                 <label for="featured_image">Image</label>
                 <input type="file" name="featured_image" id="image" class="form-control">
@@ -62,7 +63,8 @@
             </div>
             <div class="form-group">
                 <label for="meta_title">Meta Title</label>
-                <input type="text" name="meta_title" id="meta_title" class="form-control" value="{{ old('meta_title') }}">
+                <input type="text" name="meta_title" id="meta_title" class="form-control"
+                    value="{{ old('meta_title') }}">
                 @error('meta_title')
                     <div class="mt-2 alert alert-danger">{{ $message }}</div>
                 @enderror
@@ -86,4 +88,19 @@
             </div>
         </form>
     </div>
+    <!-- Include Quill JS -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+    <script>
+        // Initialize Quill
+        var quill = new Quill('#editor', {
+            theme: 'snow',
+        });
+
+        // Update the hidden input field with Quill's HTML content
+        quill.on('text-change', function() {
+            var hiddenInput = document.getElementById('hiddenDescriptionInput');
+            hiddenInput.value = quill.root.innerHTML;
+        });
+    </script>
 @endsection

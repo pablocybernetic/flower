@@ -48,8 +48,11 @@
             <div class="profile-desc">
               <div class="profile-pic">
                 <div class="count-indicator">
-                  <img class="img-xs rounded-circle " src="{{asset('assets/images/admin/'.Auth::user()->profile_photo_path)}}" alt="">
-                  <span class="count bg-success"></span>
+                  <img class="img-xs rounded-circle" 
+                  src="{{ Auth::user()->profile_photo_path ? asset('assets/images/admin/' . Auth::user()->profile_photo_path) : 'https://static.vecteezy.com/system/resources/previews/036/594/092/non_2x/man-empty-avatar-photo-placeholder-for-social-networks-resumes-forums-and-dating-sites-male-and-female-no-photo-images-for-unfilled-user-profile-free-vector.jpg' }}" 
+                  alt="">
+             
+                               <span class="count bg-success"></span>
                 </div>
                 <div class="profile-name">
                   <h5 class="mb-0 font-weight-normal">{{ Auth::user()->name }}</h5>
@@ -353,7 +356,10 @@
               <li class="nav-item dropdown">
                 <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                   <div class="navbar-profile">
-                    <img class="img-xs rounded-circle" src="{{asset('assets/images/admin/'.Auth::user()->profile_photo_path)}}" alt="">
+                    <img class="img-xs rounded-circle" 
+                    src="{{ Auth::user()->profile_photo_path ? asset('assets/images/admin/' . Auth::user()->profile_photo_path) : 'https://static.vecteezy.com/system/resources/previews/036/594/092/non_2x/man-empty-avatar-photo-placeholder-for-social-networks-resumes-forums-and-dating-sites-male-and-female-no-photo-images-for-unfilled-user-profile-free-vector.jpg' }}" 
+                    alt="">
+               
                     <p class="mb-0 d-none d-sm-block navbar-profile-name">{{ Auth::user()->name }}</p>
                     <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                   </div>
