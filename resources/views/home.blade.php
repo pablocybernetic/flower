@@ -100,44 +100,15 @@
                             <option value="large">Large</option>
                         </select>
                     </div>
+                   
                     <div class="col-6 col-md-2">
                         <select id="filterCategory" name="category" class="form-select form-select-md">
-                            <option value="" disabled selected>Loading categories...</option>
-                        </select>
+                            @foreach($categories as $category)
+                            <option value="{{ $category->name }}">{{ $category->name }}</option>
+                        @endforeach 
+                     </select>
                     </div>
-                    <script>
-                        document.addEventListener("DOMContentLoaded", () => {
-    const filterCategorySelect = document.getElementById('filterCategory');
-
-    fetch('/api/categories') // Replace with your API endpoint for fetching categories
-        .then(response => response.json())
-        .then(data => {
-            const categories = data.data || []; // Assume the API returns an array under `data`
-            
-            // Clear existing options
-            filterCategorySelect.innerHTML = '<option value="">Category</option>';
-
-            // Populate the categories dynamically
-            categories.forEach(category => {
-                const option = document.createElement('option');
-                option.value = category.slug; // Use `slug` for the value
-                option.textContent = category.name; // Use `name` for display
-                filterCategorySelect.appendChild(option);
-            });
-        })
-        .catch(error => {
-            console.error('Error fetching categories:', error);
-            // Handle error by showing fallback options or a message
-            filterCategorySelect.innerHTML = `
-                <option value="">Category</option>
-                <option value="indoor">Indoor</option>
-                <option value="outdoor">Outdoor</option>
-                <option value="regular">Regular</option>
-            `;
-        });
-});
-
-                    </script>
+                    
                     <div class="col-6 col-md-2">
                         <select id="filterLight" name="light" class="form-select form-select-md">
                             <option value="">Light</option>
