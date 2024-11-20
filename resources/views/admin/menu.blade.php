@@ -32,7 +32,7 @@
             <th>Name</th>
             {{-- <th>Description</th> --}}
             <th>Category</th>
-            <th>Season</th>
+            {{-- <th>Season</th> --}}
             <th>Price</th>
             <th>Availability</th>
             <th>Rating</th>
@@ -60,7 +60,7 @@
                 <td>{{ $product->name }}</td>
                 {{-- <td>{{ $product->description }}</td> --}}
                 <td>{{ $product->catagory }}</td>
-                <td>
+                {{-- <td>
                     @if($product->session == 0)
                         Breakfast
                     @elseif($product->session == 1)
@@ -68,7 +68,7 @@
                     @elseif($product->session == 2)
                         Day
                     @endif
-                </td>
+                </td> --}}
                 <td>{{ $product->price }} KES</td>
                 <td>
                     @if($product->available == "Stock")
