@@ -236,7 +236,7 @@
         var filteredData = fetchedData.filter(function (product) {
             const matchesQuery = query === '' || product.name.toLowerCase().includes(query);
             const matchesSize = !filters.size || product.size.toLowerCase() === filters.size.toLowerCase();
-            const matchesCategory = !filters.category || product.catagory.toLowerCase() === filters.category.toLowerCase();
+            const matchesCategory = !filters.category || product.catagory === filters.category;
             const matchesLight = !filters.light || product.light.toLowerCase() === filters.light.toLowerCase();
             const matchesWater = !filters.water || product.water.toLowerCase() === filters.water.toLowerCase();
             const matchesGrowth = !filters.growth || product.growth.toLowerCase() === filters.growth.toLowerCase();
