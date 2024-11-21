@@ -21,6 +21,16 @@ class BlogPostController extends Controller
 
             return view('admin.blog.index', compact('blogPosts','categories'));
         }
+        public function show($slug) {
+            $categories = DB::table('categories')->get(); // Fetch categories
+
+            $blogs = DB::table('blog_posts')
+            ->orderBy('created_at', 'desc') // Order by the most recent
+            ->limit(3) // Get the last three posts
+            ->get();
+            $blog = DB::table('blog_posts')->where('slug', $slug)->first(); // Fetch the blog details by ID
+            return view('blog_details', compact('blog','blogs', 'categories'));
+        }
     
         // Show the form for creating a new blog post
         public function create()

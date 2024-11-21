@@ -256,7 +256,7 @@ use App\Http\Controllers\BlogPostController;
 
 // Public Routes (for displaying posts)
 Route::get('blog', [BlogPostController::class, 'index'])->name('blog.index'); // List all posts
-Route::get('blog/{slug}', [BlogPostController::class, 'show'])->name('blog.show'); // Show a single post by slug
+Route::get('blog/{slug}', [BlogPostController::class, 'show'])->name('blog_details'); // Show a single post by slug
 
 // Admin Routes (for managing posts)
 Route::prefix('admin/blog')->name('admin.blog.')->middleware('auth')->group(function() {

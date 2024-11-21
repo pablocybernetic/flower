@@ -84,7 +84,7 @@
                         <span class="media-date">{{ $blog->created_at }}</span>
                         <h5 class="mt-0 sep">{{ $blog->title }}</h5>
                         <p>{!! \Illuminate\Support\Str::limit($blog->content, 60, '...') !!}</p>
-                        <a href="" class="btn btn-transparent">View More</a>
+                        <a href="{{ route('blog_details', $blog->slug) }}" class="btn btn-transparent">View More</a>
                     </div>
                 </div>
             </div>
