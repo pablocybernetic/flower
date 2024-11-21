@@ -26,6 +26,11 @@ class HomeController extends Controller
     $dinner = DB::table('products')->where('catagory', 'special')->where('session', 2)->get();
     $chefs = DB::table('chefs')->get();
     $categories = DB::table('categories')->get(); // Fetch categories
+    $blogs = DB::table('blog_posts')
+    ->orderBy('created_at', 'desc') // Order by the most recent
+    ->limit(3) // Get the last three posts
+    ->get();
+
     
     if (Auth::user()) {
         $cart_amount = DB::table('carts')->where('user_id', Auth::user()->id)->where('product_order', 'no')->count();
@@ -50,7 +55,7 @@ class HomeController extends Controller
         }
     }
 
-    return view('home', compact('menu', 'breakfast', 'lunch', 'dinner', 'chefs', 'cart_amount', 'about_us', 'banners', 'categories'));
+    return view('home', compact('menu', 'breakfast', 'lunch', 'dinner', 'chefs', 'cart_amount', 'about_us', 'banners', 'categories','blogs'));
 }
 
     public function products(Request $request)
