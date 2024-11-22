@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Str;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use DB;
 
 class CategoryController extends Controller
 {
@@ -62,7 +63,9 @@ class CategoryController extends Controller
     public function show($slug)
     {
         $category = Category::where('slug', $slug)->firstOrFail(); // Find category by slug
-        return view('admin.categories.show', compact('category'));
+        $products = DB::table('products')->get();
+        $category=$category->name;
+        return  compact('category');
     }
 
     // Show the form for editing the specified category (based on slug)

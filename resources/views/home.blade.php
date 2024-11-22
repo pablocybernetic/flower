@@ -464,7 +464,7 @@
                     <div class="left-text-content">
                         <div class="section-heading">
                             <h6>Contact Us</h6>
-                            <h2>Here You Can Make an inquary Or Just walkin to our flowers Store</h2>
+                            <h2>Here You Can Make an Inquary Or Just Make an Online Order</h2>
                         </div>
                         <p>Members of Pandakivuli are always active to response your call.</p>
                         <div class="row">
@@ -516,25 +516,7 @@
                                             required="">
                                     </fieldset>
                                 </div>
-                                <div class="col-md-6 col-sm-12">
-                                    <fieldset>
-                                        <select value="number-guests" name="no_guest" id="number-guests">
-                                            <option value="number-guests">Number Of Flowers</option>
-                                            <option name="1" id="1">1</option>
-                                            <option name="2" id="2">2</option>
-                                            <option name="3" id="3">3</option>
-                                            <option name="4" id="4">4</option>
-                                            <option name="5" id="5">5</option>
-                                            <option name="6" id="6">6</option>
-                                            <option name="7" id="7">7</option>
-                                            <option name="8" id="8">8</option>
-                                            <option name="9" id="9">9</option>
-                                            <option name="10" id="10">10</option>
-                                            <option name="11" id="11">11</option>
-                                            <option name="12" id="12">12</option>
-                                        </select>
-                                    </fieldset>
-                                </div>
+                                
                                 <div class="col-lg-6">
                                     <div id="filterDate2">
                                         <div class="input-group date" data-date-format="dd/mm/yyyy">
