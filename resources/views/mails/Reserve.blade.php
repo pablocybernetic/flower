@@ -23,7 +23,7 @@
     					</tr>
     					<tr>
     						<td class="pull-right"><strong>Date</strong></td>
-    						<td>10-08-2013</td>
+    						<td>{{ $date }}</td>
     					</tr>
     					
     				</tbody>
@@ -49,15 +49,15 @@
 					<tbody>
 					<tr>
 						<td>SEO Bronze</td>
-						<td>www.swaransoft.com</td>
+						<td>pandakivuli.co.ke</td>
 						<td>8 Months</td>
-                      <td>$1000</td>
+                      <td>Kes 1000</td>
 						</tr>
             <tr><td colspan="4"></td></tr>
 <tr>
 							<td colspan="2">&nbsp;</td>
 							<td><strong>Total</strong></td>
-							<td><strong>$1000.00</strong></td>
+							<td><strong>Kes 1000.00</strong></td>
 						</tr>
 					</tbody>
 				</table>
@@ -70,10 +70,10 @@
   		</div>
   		<div class="row">
   	    	<div class="span3">
-  		        <strong>Phone:</strong>(+880) 1824072334
+  		        <strong>Phone:</strong>(+254) 705307007
   	    	</div>
   	    	<div class="span3">
-  		        <strong>Email:</strong> <a href="sajeebchakraborty.cse2000@gmail.com">sajeebchakraborty.cse2000@gmail.com</a>
+  		        <strong>Email:</strong> <a href="support@pandakivuli.co.ke">support@pandakivuli.co.ke</a>
   	    	</div>
   	    
   		</div>

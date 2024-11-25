@@ -231,7 +231,7 @@
                 const listItem = document.createElement('li');
                 const anchor = document.createElement('a');
                 anchor.classList.add('dropdown-item');
-                anchor.href = `/#${category.slug}`; // Adjust based on your URL structure
+                anchor.href = `/category/${category.slug}`; // Adjust based on your URL structure
                 anchor.textContent = category.name;
                 listItem.appendChild(anchor);
                 categoryDropdownMenu.appendChild(listItem);

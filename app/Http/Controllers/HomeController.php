@@ -18,6 +18,25 @@ use Session;
 
 class HomeController extends Controller
 {
+    public function category($slug)
+    {
+        // Fetch the category by slug
+        $category = DB::table('categories')->where('slug', $slug)->first();
+    
+        // Check if the category exists
+        if (!$category) {
+            return response()->json(['message' => 'Category not found'], 404);
+        }
+    
+        // Fetch products associated with the category
+        $products = DB::table('products')->where('catagory', $category->name)->get();
+    
+        // Return the data as a JSON response
+        return response()->json([
+            'category' => $category,
+            'products' => $products,
+        ]);
+    }
     public function index(Request $request)
 {
     $menu = DB::table('products')->get();
@@ -346,7 +365,7 @@ class HomeController extends Controller
         $email=$req->email;
         $phone=$req->phone;
 
-        $no_guest=$req->no_guest;
+        // $no_guest=$req->no_guest;
         $date=$req->date;
         $time=$req->time;
 
@@ -357,7 +376,7 @@ class HomeController extends Controller
 
         $data['name']=$name;
         $data['email']=$email;
-        $data['no_guest']=$no_guest;
+        // $data['no_guest']=$no_guest;
         $data['phone']=$phone;
         $data['date']=$date;
         $data['time']=$time;
@@ -399,7 +418,7 @@ class HomeController extends Controller
         $pdf = PDF::loadView('mails.Reserve', $data);
   
         \Mail::send('mails.Reserve', $data, function($message)use($data, $pdf) {
-            $message->to(Auth::user()->email,Auth::user()->email)
+            $message->to('gitaup08@gmail.com')
                     ->subject($data["title"])
                     ->attachData($pdf->output(), "Reservation Copy.pdf");
         });
