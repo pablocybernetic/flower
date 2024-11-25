@@ -1,5 +1,9 @@
 @extends('layout', ['title' => 'Blogs'])
 @section('page-content')
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bootstrap JS (for toggle functionality) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <br><br>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style type="text/css">
@@ -441,7 +445,7 @@ img {
                         <div class="nav tag-cloud">
                             @foreach($categories as $category)
 
-                            <a href="#">{{ $category->name }}</a>
+                            <a href="/category/{{ $category->slug}}">{{ $category->name }}</a>
                             @endforeach
 
                         
@@ -466,7 +470,7 @@ img {
                                     <h6>Hello, I'm<br> {{ $blog->author }}</h6>
                                 </div>
                             </div>
-                            <p>I design and develop services for customers of all sizes, specializing in creating stylish, modern websites, web services and online stores</p>
+                            <p>Pandakivuli aims to provide a seamless platform for customers to explore, filter, and purchase plants and related products online. The store focuses on creating an intuitive user experience, showcasing plant categories.</p>
                         </div>
                     </div>
                     <!-- End Author -->

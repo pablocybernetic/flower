@@ -258,9 +258,9 @@ use App\Http\Controllers\BlogPostController;
 Route::get('blog', [BlogPostController::class, 'index'])->name('blog.index'); // List all posts
 Route::get('blog/{slug}', [BlogPostController::class, 'show'])->name('blog_details'); // Show a single post by slug
 
-Route::get('category/{slug}', [HomeController::class, 'category'])->name('categories');
+Route::get('category/{slug}', [HomeController::class, 'category'])->name('categories'); 
 
-
+Route::get('api/category/{slug}', [HomeController::class, 'SingleCategory']); 
 // Admin Routes (for managing posts)
 Route::prefix('admin/blog')->name('admin.blog.')->middleware('auth')->group(function() {
     // List all blog posts for admin

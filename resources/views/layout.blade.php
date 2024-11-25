@@ -245,8 +245,8 @@
             const viewAllItem = document.createElement('li');
             const viewAllAnchor = document.createElement('a');
             viewAllAnchor.classList.add('dropdown-item');
-            viewAllAnchor.href = '/#all'; // Link for "View All Categories"
-            viewAllAnchor.textContent = 'View All Categories';
+            viewAllAnchor.href = '/'; // Link for "View All Categories"
+            viewAllAnchor.textContent = 'All Products';
             viewAllItem.appendChild(viewAllAnchor);
             categoryDropdownMenu.appendChild(viewAllItem);
         })

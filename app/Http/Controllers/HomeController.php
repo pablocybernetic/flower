@@ -21,22 +21,46 @@ class HomeController extends Controller
     public function category($slug)
     {
         // Fetch the category by slug
-        $category = DB::table('categories')->where('slug', $slug)->first();
-    
+        $Pagecategory = DB::table('categories')->where('slug', $slug)->first();
+        $categories = DB::table('categories')->get(); // Fetch categories
+        $blogs = DB::table('blog_posts')
+        ->orderBy('created_at', 'desc') // Order by the most recent
+        ->limit(3) // Get the last three posts
+        ->get();
+
         // Check if the category exists
-        if (!$category) {
+        if (!$Pagecategory) {
             return response()->json(['message' => 'Category not found'], 404);
         }
     
         // Fetch products associated with the category
-        $products = DB::table('products')->where('catagory', $category->name)->get();
-        return view('categories', compact('category','products'));
+        $products = DB::table('products')->where('catagory', $Pagecategory->name)->get();
+        return view('categories', compact('Pagecategory','products','categories','blogs'));
     
         // Return the data as a JSON response
         // return response()->json([
         //     'category' => $category,
         //     'products' => $products,
         // ]);
+    }
+    public function SingleCategory(Request $request, $slug){
+        $category = DB::table('categories')->where('slug', $slug)->first();
+
+        if (!$category) {
+
+            return response()->json(['message' => 'Category not found'], 404);
+        }
+        $searchResults = DB::table('products')->where('catagory', $category->name)->get();
+        if ($request->ajax()) {
+            return response()->json($searchResults);
+        }else{
+          return response()->json([
+            // 'category' => $category,
+            'products' => $searchResults,
+        ]);
+    }
+
+
     }
     public function index(Request $request)
 {

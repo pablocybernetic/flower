@@ -1,5 +1,6 @@
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
+
 <style type="text/css">
 
     body {
@@ -78,7 +79,7 @@
             <div class="mb-4 col-xl-4 col-12">
                 <div class="media media-news">
                     <div class="media-img">
-                        <img src="{{ $blog->featured_image }}" alt="{{ $blog->title }}" class="img-fluid" style="height: 300px; width:300px;">
+                        <img src="/{{ $blog->featured_image }}" alt="{{ $blog->title }}" class="img-fluid" style="height: 300px; width:300px;">
                     </div>
                     <div class="media-body">
                         <span class="media-date">{{ $blog->created_at }}</span>
