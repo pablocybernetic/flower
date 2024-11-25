@@ -30,12 +30,13 @@ class HomeController extends Controller
     
         // Fetch products associated with the category
         $products = DB::table('products')->where('catagory', $category->name)->get();
+        return view('categories', compact('category','products'));
     
         // Return the data as a JSON response
-        return response()->json([
-            'category' => $category,
-            'products' => $products,
-        ]);
+        // return response()->json([
+        //     'category' => $category,
+        //     'products' => $products,
+        // ]);
     }
     public function index(Request $request)
 {
