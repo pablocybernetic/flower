@@ -257,7 +257,7 @@
             <div class="card" style="min-height: auto;">
                 <a href="/menu/${product.id}">
                     <div style="padding-bottom: 100%; position: relative;">
-                        <img src="assets/images/${product.image}" class="card-img-top img-fluid" alt="Product Image" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                        <img src="/assets/images/${product.image}" class="card-img-top img-fluid" alt="Product Image" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
                     </div>
                 </a>
                 <div class="card-body">
