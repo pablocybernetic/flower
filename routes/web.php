@@ -36,6 +36,7 @@ Route::get('/search', [HomeController::class, 'search'])->name('search');
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+Route::get('/about', [HomeController::class, 'about'])->name('home');
 
 Route::post("/register/confirm",'App\Http\Controllers\HomeController@register')->name('register/confirm');
 Route::get("/redirects",'App\Http\Controllers\HomeController@redirects');
