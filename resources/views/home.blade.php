@@ -472,9 +472,18 @@
                                 <div class="phone">
                                     <i class="fa fa-phone"></i>
                                     <h4>Phone Numbers</h4>
-                                    <span><a href="#">0705307007</a>
-                                        <!-- <br><a href="#">0705374455</a> -->
+                                    <span>
+                                        <a href="tel:+254705307007" class="btn btn-link">
+                                            <i class="fa fa-phone fa-sm"  style="height: 40px; color:green; background-color:rgba(255, 255, 255, 0);"></i> 0705307007
+                                        </a>
+                                    </span><br>
+                                    <span>
+                                        <a href="https://wa.me/254705307007" class="btn btn-link" target="_blank">
+                                            <i class="fa fa-whatsapp fa-sm" style="height: 40px; color:green; background-color:rgba(255, 255, 255, 0);" ></i> 0705307007
+                                        </a>
                                     </span>
+                                    
+
                                 </div>
                             </div>
                             <div class="col-lg-6">
