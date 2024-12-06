@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 
-    <title>Pandakivuli - Your Favourite Flowers</title>
+    <title>Pandakivuli - Plants Kenya </title>
 
     <!-- Additional CSS Files -->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap.min.css')}}">
@@ -208,7 +208,7 @@
                   role="button" 
                   data-bs-toggle="dropdown" 
                   aria-expanded="false">
-                  Categories
+                  Shop all plants
                 </a>
                 <ul id="categoryDropdownMenu" class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li><a class="dropdown-item" href="#">Loading categories...</a></li>
