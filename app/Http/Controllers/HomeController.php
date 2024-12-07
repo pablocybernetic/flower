@@ -121,6 +121,9 @@ class HomeController extends Controller
             'products' => $menu
         ], 200);
     }
+    public function about(){
+        return view('about');
+    }
     public function search(Request $request)
     {
         echo $request.'kukuku';
