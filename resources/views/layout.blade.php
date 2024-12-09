@@ -405,7 +405,7 @@
     <div style="min-height:750px">
         @yield('page-content')
     </div>
-
+    {{-- #75c1d8 previous bg --}}
     <!-- ***** Footer Start ***** -->
     <footer>
         <div class="container">
@@ -413,7 +413,7 @@
                 <div class="col-lg-4 col-xs-12">
                     <div class="right-text-content">
                             <ul class="social-icons">
-                                <li><a href="https://web.facebook.com/rahathosenmanik/"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="https://web.facebook.com/"><i class="fa fa-facebook"></i></a></li>
                                 <li><a href="https://twitter.com/peter"><i class="fa fa-twitter"></i></a></li>
                                 <li><a href="https://www.linkedin.com/peter/"><i class="fa fa-linkedin"></i></a></li>
                                 <li><a href="https://www.instagram.com/"><i class="fa fa-instagram"></i></a></li>
@@ -422,7 +422,7 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="logo">
-                        <a href="{{url('home')}}"><img src="{{ asset('assets/images/logo.png')}}" alt=""></a>
+                        <a href="{{url('home')}}"><img src="{{ asset('assets/images/logo.png')}}" alt="" height="100px"></a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-xs-12">
