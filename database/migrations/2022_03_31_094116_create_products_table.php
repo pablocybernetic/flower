@@ -22,13 +22,15 @@ class CreateProductsTable extends Migration
             $table->text("water")->nullable();
             $table->text("growth")->nullable();
             $table->text("pet")->nullable();
-
-            $table->string("image", 255)->nullable();
-            $table->decimal("price", 6, 2);
+            $table->text("catagory")->nullable();
+            $table->text("session")->nullable();
+            $table->string("image", 255)->nullable(); // Main image
+            $table->json('gallery_images')->nullable(); // Gallery images
+            $table->decimal("price", 8, 2); // Price with larger precision
             $table->timestamps();
-
         });
     }
+    
 
     /**
      * Reverse the migrations.

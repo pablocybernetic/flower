@@ -2,33 +2,84 @@
 @extends('layout', ['title'=> 'Product Details'])
 
 @section('page-content')
+<style>
+/* Add sliding animation */
+.slide-image {
+    transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+}
+
+.slide-image.slide-out {
+    transform: translateX(-100%);
+    opacity: 0;
+}
+
+.slide-image.slide-in {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+
+</style>
 <br><br><br><br><br>
 <section class="py-5">
     <div class="container">
       <div class="row gx-5">
         <aside class="col-lg-6">
-          <div class="mb-3 border rounded-4 d-flex justify-content-center">
-            <a data-fslightbox="mygalley" class="rounded-4" target="_blank" data-type="image" href="{{asset('assets/images/'.$product->image)}}">
-              <img style="max-width: 100%; max-height: 100vh; margin: auto;" class="rounded-4 fit" src="{{asset('assets/images/'.$product->image)}}" />
-            </a>
-          </div>
           <div class="mb-3 d-flex justify-content-center">
-            <a data-fslightbox="mygalley" class="mx-1 border rounded-2" target="_blank" data-type="image" href="#" class="item-thumb">
-              <img width="60" height="60" class="rounded-2" src="{{asset('assets/images/'.$product->image)}}" />
+            <!-- Main Image -->
+            <a data-fslightbox="mygalley" class="rounded-4" id="mainImageLink" target="_blank" data-type="image" href="{{ asset('assets/images/' . $product->image) }}">
+                <img id="mainImage" class="rounded-4 fit slide-image" style="max-width: 100%; max-height: 100vh; margin: auto;" src="{{ asset('assets/images/' . $product->image) }}" />
             </a>
-            <a data-fslightbox="mygalley" class="mx-1 border rounded-2" target="_blank" data-type="image" href="#" class="item-thumb">
-              <img width="60" height="60" class="rounded-2" src="#" />
+        </div>
+        <div class="mb-3 d-flex justify-content-center">
+            <!-- Main Thumbnail -->
+            <a data-src="{{ asset('assets/images/' . $product->image) }}" class="mx-1 border rounded-2 item-thumb" onclick="changeMainImage(this)">
+                <img width="60" height="60" class="rounded-2" src="{{ asset('assets/images/' . $product->image) }}" />
             </a>
-            <a data-fslightbox="mygalley" class="mx-1 border rounded-2" target="_blank" data-type="image" href="#" class="item-thumb">
-              <img width="60" height="60" class="rounded-2" src="#" />
-            </a>
-            <a data-fslightbox="mygalley" class="mx-1 border rounded-2" target="_blank" data-type="image" href="#" class="item-thumb">
-              <img width="60" height="60" class="rounded-2" src="#" />
-            </a>
-            <a data-fslightbox="mygalley" class="mx-1 border rounded-2" target="_blank" data-type="image" href="#" class="item-thumb">
-              <img width="60" height="60" class="rounded-2" src="#" />
-            </a>
-          </div>
+        
+            <!-- Gallery Thumbnails -->
+            @if(!empty($product->gallery_images))
+                @foreach(json_decode($product->gallery_images, true) as $galleryImage)
+                <a data-src="{{ asset('assets/images/gallery/' . $galleryImage) }}" class="mx-1 border rounded-2 item-thumb" onclick="changeMainImage(this)">
+                    <img width="60" height="60" class="rounded-2" src="{{ asset('assets/images/gallery/' . $galleryImage) }}" />
+                </a>
+                @endforeach
+            @else
+                <p>No gallery images available.</p>
+            @endif
+        </div>
+        
+        
+        <script>
+           function changeMainImage(thumbnail) {
+    const mainImage = document.getElementById('mainImage');
+    const mainImageLink = document.getElementById('mainImageLink');
+
+    // Get the new image source from the thumbnail
+    const newImageSrc = thumbnail.getAttribute('data-src');
+
+    // Add slide-out class for the current image
+    mainImage.classList.add('slide-out');
+
+    // Wait for the animation to complete, then update the image
+    setTimeout(() => {
+        mainImage.src = newImageSrc;
+        mainImageLink.href = newImageSrc;
+
+        // Remove slide-out and add slide-in for the new image
+        mainImage.classList.remove('slide-out');
+        mainImage.classList.add('slide-in');
+
+        // Remove the slide-in class after the animation ends
+        setTimeout(() => {
+            mainImage.classList.remove('slide-in');
+        }, 400); // Match the transition duration
+    }, 400); // Match the transition duration
+}
+
+        </script>
+        
+              
           <!-- thumbs-wrap.// -->
           <!-- gallery-wrap .end// -->
         </aside>
@@ -36,20 +87,11 @@
           <div class="ps-lg-3">
             <h4 class="titl text-dark" style="text-align: left">
               {{ $product->name }}
+            
+
           </h4>
             <div class="flex-row my-3 d-flex">
-              {{-- <div class="mb-1 text-warning me-2">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-                <span class="ms-1">
-                  4.5
-                  
-                </span>
-              </div> --}}
-              {{-- <span class="text-muted"><i class="mx-1 fas fa-shopping-basket fa-sm"></i>154 orders</span> --}}
+            
               <br>
             </div>
             <span class="text-success ms-2">In stock</span>
@@ -68,29 +110,13 @@
               <dt class="col-3">Category:</dt>
               <dd class="col-9">{{ $product->category }}</dd>
   
-              {{-- <dt class="col-3">Color</dt>
-              <dd class="col-9">Brown</dd>
-  
-              <dt class="col-3">Material</dt>
-              <dd class="col-9">Cotton, Jeans</dd>
-  
-              <dt class="col-3">Brand</dt>
-              <dd class="col-9">Reebook</dd> --}}
+            
             </div>
   
             <hr />
   
             <div class="mb-4 row">
-              {{-- <div class="col-md-4 col-6">
-                <label class="mb-2">Size</label>
-                <select class="border form-select border-secondary" style="height: 35px;">
-                  <option>Small</option>
-                  <option>Medium</option>
-                  <option>Large</option>
-                </select>
-              </div> --}}
-              <!-- col.// -->
-       
+        
             </div>
             <form method="post" action="{{ route('cart.store', $product->id) }}">
                 @csrf

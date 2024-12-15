@@ -138,7 +138,11 @@
                             <label for="exampleFormControlFile1">Image</label>
                             <input type="file" name="image" class="form-control-file" id="exampleFormControlFile1">
                           </div>
-                    
+                    <div class="form-group">
+                      <label for="gallery_images">Gallery Images:</label>
+                      <input type="file" name="gallery_images[]" id="gallery_images" multiple accept="image/*"  class="form-control-file">
+                      
+                    </div>
                           <button type="submit" class="btn btn-primary me-2">Submit</button>
                           <button class="btn btn-dark">Cancel</button>
                         </form>

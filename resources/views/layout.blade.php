@@ -405,6 +405,7 @@
     <div style="min-height:750px">
         @yield('page-content')
     </div>
+    
     {{-- #75c1d8 previous bg --}}
     <!-- ***** Footer Start ***** -->
     <footer>

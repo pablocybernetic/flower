@@ -229,54 +229,56 @@ class AdminController extends Controller
 
     public function menu_add_process(Request $req)
     {
-
-
-        if($req->price < 0)
-        {
-
-            session()->flash('wrong','Negative Price value are not accepted !');
-            return back();
-
-
-        }
-
-
-        $this->validate(request(),[
-
-            'image'=>'mimes:jpeg,jpg,png',
+        // Validate input fields
+        $this->validate($req, [
+            'image' => 'mimes:jpeg,jpg,png',
+            'gallery_images.*' => 'mimes:jpeg,jpg,png|max:2048', // Validate each gallery image
         ]);
-     
-     
-        $uploadedfile=$req->file('image');
-        $new_image=rand().'.'.$uploadedfile->getClientOriginalExtension();
-        $uploadedfile->move(public_path('/assets/images/'),$new_image);
-
-        $data=array();
-        $data['name']=$req->name;
-        $data['description']=$req->description;
-        $data['price']=$req->price;
-        $data['catagory']=$req->catagory;
-        $data['session']=$req->session;
-        $data['available']=$req->available;
-        $data['image']=$new_image;
-        // added
-        $data['size']=$req->size;
-        $data['light']=$req->light;
-        $data['water']=$req->water;
-        $data['growth']=$req->growth;
-        $data['pet']=$req->pet;     
-
-
-        $insert=DB::table('products')->Insert($data);
-
-
-        session()->flash('success','Plant added successfully !');
+    
+        if ($req->price < 0) {
+            session()->flash('wrong', 'Negative Price values are not accepted!');
+            return back();
+        }
+    
+        // Main image upload
+        $uploadedfile = $req->file('image');
+        $new_image = rand() . '.' . $uploadedfile->getClientOriginalExtension();
+        $uploadedfile->move(public_path('/assets/images/'), $new_image);
+    
+        // Handle gallery images
+        $galleryPaths = [];
+        if ($req->hasFile('gallery_images')) {
+            foreach ($req->file('gallery_images') as $galleryImage) {
+                $galleryName = rand() . '.' . $galleryImage->getClientOriginalExtension();
+                $galleryImage->move(public_path('/assets/images/gallery/'), $galleryName);
+                $galleryPaths[] = $galleryName;
+            }
+        }
+    
+        // Prepare data for insertion
+        $data = [
+            'name' => $req->name,
+            'description' => $req->description,
+            'price' => $req->price,
+            'catagory' => $req->catagory,
+            'session' => $req->session,
+            'available' => $req->available,
+            'image' => $new_image,
+            'size' => $req->size,
+            'light' => $req->light,
+            'water' => $req->water,
+            'growth' => $req->growth,
+            'pet' => $req->pet,
+            'gallery_images' => json_encode($galleryPaths), // Save gallery images as JSON
+        ];
+    
+        // Insert into database
+        $insert = DB::table('products')->insert($data);
+    
+        session()->flash('success', 'Plant added successfully!');
         return back();
-
-
-
     }
-    public function chef_add_process(Request $req)
+        public function chef_add_process(Request $req)
     {
 
 
@@ -356,64 +358,87 @@ class AdminController extends Controller
 
 
     }
-    public function menu_edit_process(Request $req,$id)
+    public function menu_edit_process(Request $req, $id)
     {
-
-
-        if($req->price < 0)
-        {
-
-            session()->flash('wrong','Negative Price value do not accept !');
+        // Validate input
+        $this->validate($req, [
+            'image' => 'mimes:jpeg,jpg,png',
+            'gallery_images.*' => 'mimes:jpeg,jpg,png|max:2048', // Validate each gallery image
+        ]);
+    
+        if ($req->price < 0) {
+            session()->flash('wrong', 'Negative Price values are not accepted!');
             return back();
-
-
         }
-
-   
-       
-
-        $data=array();
-        $data['name']=$req->name;
-        $data['description']=$req->description;
-        $data['price']=$req->price;
-        $data['catagory']=$req->catagory;
-        $data['session']=$req->session;
-            // added
-            $data['size']=$req->size;
-            $data['light']=$req->light;
-            $data['water']=$req->water;
-            $data['growth']=$req->growth;
-            $data['pet']=$req->pet; ;
-        $data['available']=$req->available;
-
-        if($req->image!=NULL)
-        {
-
-            $this->validate(request(),[
-
-                'image'=>'mimes:jpeg,jpg,png',
-            ]);
-         
-         
-            $uploadedfile=$req->file('image');
-            $new_image=rand().'.'.$uploadedfile->getClientOriginalExtension();
-            $uploadedfile->move(public_path('/assets/images/'),$new_image);
-
-            $data['image']=$new_image;
-
+    
+        // Fetch the current product
+        $product = DB::table('products')->where('id', $id)->first();
+        $currentGalleryImages = $product->gallery_images ? json_decode($product->gallery_images, true) : [];
+    
+        // Prepare data for update
+        $data = [
+            'name' => $req->name,
+            'description' => $req->description,
+            'price' => $req->price,
+            'catagory' => $req->catagory,
+            'session' => $req->session,
+            'size' => $req->size,
+            'light' => $req->light,
+            'water' => $req->water,
+            'growth' => $req->growth,
+            'pet' => $req->pet,
+            'available' => $req->available,
+        ];
+    
+        // Handle main image update
+        if ($req->hasFile('image')) {
+            $uploadedfile = $req->file('image');
+            $new_image = rand() . '.' . $uploadedfile->getClientOriginalExtension();
+            $uploadedfile->move(public_path('/assets/images/'), $new_image);
+    
+            // Optionally, delete the old main image file if required
+            if ($product->image) {
+                $oldImagePath = public_path('/assets/images/') . $product->image;
+                if (file_exists($oldImagePath)) {
+                    unlink($oldImagePath);
+                }
+            }
+    
+            $data['image'] = $new_image;
         }
-  
-
-
-        $update=DB::table('products')->where('id',$id)->Update($data);
-
-
-        session()->flash('success','Menu updated successfully !');
+    
+        // Handle gallery images
+        if ($req->hasFile('gallery_images')) {
+            foreach ($req->file('gallery_images') as $galleryImage) {
+                $galleryName = rand() . '.' . $galleryImage->getClientOriginalExtension();
+                $galleryImage->move(public_path('/assets/images/gallery/'), $galleryName);
+                $currentGalleryImages[] = $galleryName; // Add new images to the gallery
+            }
+        }
+    
+        // Remove selected images from gallery if requested
+        if ($req->remove_gallery_images) {
+            $removeImages = $req->remove_gallery_images; // Assume this is an array of image names to remove
+            $currentGalleryImages = array_diff($currentGalleryImages, $removeImages);
+    
+            // Delete files from the server
+            foreach ($removeImages as $removeImage) {
+                $removeImagePath = public_path('/assets/images/gallery/') . $removeImage;
+                if (file_exists($removeImagePath)) {
+                    unlink($removeImagePath);
+                }
+            }
+        }
+    
+        $data['gallery_images'] = json_encode($currentGalleryImages); // Update gallery images column
+    
+        // Update the product
+        $update = DB::table('products')->where('id', $id)->update($data);
+    
+        session()->flash('success', 'Menu updated successfully!');
         return back();
-
-
-
     }
+    
 
 
 

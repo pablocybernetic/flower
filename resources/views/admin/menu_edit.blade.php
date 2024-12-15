@@ -46,16 +46,6 @@
                           <label for="exampleInputPassword4">Price</label>
                           <input type="number" name="price" value="{{ $product->price }}" class="form-control" id="exampleInputPassword4">
                         </div>
-                       
-                      
-                        <!-- ... (Other form fields) ... -->
-                        {{-- <div class="form-group">
-                          <label for="exampleSelectGender">Catagory</label>
-                          <select class="form-control" name="catagory" id="exampleSelectGender">
-                            <option value="regular" @php if($product->catagory=="regular"){ echo"selected"; }   @endphp>Regular</option>
-                            <option value="special" @php if($product->catagory=="special"){ echo"selected"; }   @endphp>Special</option>
-                          </select>
-                        </div> --}}
                         <div class="form-group">
                           <label for="exampleSelectCategory">Category</label>
                           <select class="form-control" name="catagory" id="exampleSelectCategory">
@@ -133,6 +123,18 @@
                           <label for="exampleFormControlFile1">Image</label>
                           <input type="file" name="image" class="form-control-file" id="exampleFormControlFile1">
                       </div>
+                      @foreach (json_decode($product->gallery_images, true) as $image)
+                      <div>
+                          <img src="/assets/images/gallery/{{ $image }}" alt="Gallery Image" width="100">
+                          <label>
+                              <input type="checkbox" name="remove_gallery_images[]" value="{{ $image }}"> Remove
+                          </label>
+                      </div>
+                  @endforeach
+                  
+                  <label for="gallery_images">Add New Gallery Images:</label>
+                  <input type="file" name="gallery_images[]" id="gallery_images" multiple accept="image/*">
+                  
                       
                         <button type="submit" class="btn btn-primary me-2">Update</button>
                         <button class="btn btn-dark">Cancel</button>
