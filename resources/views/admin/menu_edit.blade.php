@@ -123,7 +123,11 @@
                           <label for="exampleFormControlFile1">Image</label>
                           <input type="file" name="image" class="form-control-file" id="exampleFormControlFile1">
                       </div>
-                      @foreach (json_decode($product->gallery_images, true) as $image)
+                      @php
+                      $galleryImages = json_decode($product->gallery_images, true) ?? []; // Fallback to an empty array if null
+                  @endphp
+                  
+                  @foreach ($galleryImages as $image)
                       <div>
                           <img src="/assets/images/gallery/{{ $image }}" alt="Gallery Image" width="100">
                           <label>
@@ -134,6 +138,7 @@
                   
                   <label for="gallery_images">Add New Gallery Images:</label>
                   <input type="file" name="gallery_images[]" id="gallery_images" multiple accept="image/*">
+                  
                   
                       
                         <button type="submit" class="btn btn-primary me-2">Update</button>
