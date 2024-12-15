@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\BlogPost;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -22,7 +23,7 @@ class HomeController extends Controller
     {
         // Fetch the category by slug
         $Pagecategory = DB::table('categories')->where('slug', $slug)->first();
-        $categories = DB::table('categories')->get(); // Fetch categories
+            $categories = DB::table('categories')->get(); // Fetch categories
         $blogs = DB::table('blog_posts')
         ->orderBy('created_at', 'desc') // Order by the most recent
         ->limit(3) // Get the last three posts
@@ -205,6 +206,8 @@ class HomeController extends Controller
         $breakfast=DB::table('products')->where('catagory','special')->where('session',0)->get();
         $lunch=DB::table('products')->where('catagory','special')->where('session',1)->get();
         $dinner=DB::table('products')->where('catagory','special')->where('session',2)->get();
+        $categories = DB::table('categories')->get(); // Fetch categories
+        $blogs = BlogPost::all(); // Fetch all blog records
 
 
         $chefs=DB::table('chefs')->get();
@@ -228,6 +231,7 @@ class HomeController extends Controller
 
         $about_us=DB::table('about_us')->get();
         $banners=DB::table('banners')->get();
+      
 
 
         $usertype= Auth::user()->usertype;
@@ -379,8 +383,8 @@ class HomeController extends Controller
     		return view('admin.dashboard',compact('pending_order','product_cart','copy_cart','total','copy_product','per_rate','product','cash_on_payment','online_payment','customer','delivery_boy','admin','processing_order','cancel_order','complete_order'));
     	}
         else{
-            
-            return view("home",compact('menu','breakfast','lunch','dinner','chefs','cart_amount','about_us','banners'));
+            // here
+            return view("home",compact('menu','breakfast','lunch','dinner','chefs','cart_amount','about_us','banners','categories','blogs'));
         }
     }
 

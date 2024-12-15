@@ -1,37 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
+<head>
+  <!-- Basic Meta Tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Pandakivuli is Kenya's premier plant-selling company offering a wide range of indoor and outdoor plants, gardening tools, and expert care tips. Explore our catalogue today!">
+  <meta name="keywords" content="plants for sale in Kenya, indoor plants, outdoor plants, gardening tools, buy plants Kenya, Pandakivuli, plant nursery, affordable plants, plant care tips">
+  <meta name="author" content="Pandakivuli Team">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="{{ url()->current() }}">
+  <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/logo.png') }}">
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/images/logo.png') }}">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Social Media Meta Tags -->
+  <meta property="og:title" content="Pandakivuli - Kenya's Premier Plant Shop">
+  <meta property="og:description" content="Discover Kenya's finest collection of indoor and outdoor plants, gardening tools, and expert care tips at Pandakivuli.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ url()->current() }}">
+  <meta property="og:image" content="{{ asset('assets/images/logo.png') }}">
+  <meta property="og:site_name" content="Pandakivuli">
 
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Pandakivuli - Kenya's Premier Plant Shop">
+  <meta name="twitter:description" content="Explore our wide range of plants and gardening tools at Pandakivuli.">
+  <meta name="twitter:image" content="{{ asset('assets/images/logo.png') }}">
+  <meta name="twitter:site" content="@Pandakivuli">
 
-    <title>Pandakivuli - Plants Kenya </title>
+  <!-- Title -->
+  <title>Buy Plants Online in Kenya | Pandakivuli - Indoor & Outdoor Plants</title>
 
-    <!-- Additional CSS Files -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap.min.css')}}">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/font-awesome.css')}}">
+  <!-- CSS Files -->
+  <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap.min.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/font-awesome.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/css-library.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/owl-carousel.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/lightbox.css') }}">
 
-    <link rel="stylesheet" href="{{ asset('assets/css/css-library.css')}}">
-    {{-- <link rel="stylesheet" href="{{ asset('assets/css/mordern.css')}}"> --}}
+  <!-- JavaScript Files (Deferred for Performance) -->
+  <script src="{{ asset('assets/js/angular.min.js') }}" defer></script>
+  <script src="{{ asset('assets/js/bKash-checkout.js') }}" defer></script>
+  <script src="{{ asset('assets/js/bKash-checkout-sandbox.js') }}" defer></script>
 
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "GardenStore",
+    "name": "Pandakivuli",
+    "url": "{{ url('/') }}",
+    "logo": "{{ asset('assets/images/logo.png') }}",
+    "description": "Pandakivuli is a leading plant-selling company in Kenya, offering a variety of plants, gardening tools, and expert advice.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "123 Green Street",
+      "addressLocality": "Nairobi",
+      "addressRegion": "KE",
+      "postalCode": "00100",
+      "addressCountry": "Kenya"
+    },
+    "telephone": "+254700123456",
+    "openingHours": "Mo-Sa 09:00-18:00",
+    "sameAs": [
+      "https://www.facebook.com/pandakivuli",
+      "https://www.instagram.com/pandakivuli",
+      "https://twitter.com/pandakivuli"
+    ]
+  }
+  </script>
+</head>
 
-    <link rel="stylesheet" href="{{ asset('assets/css/owl-carousel.css')}}">
-
-    <link rel="stylesheet" href="{{ asset('assets/css/lightbox.css')}}">
-
-    <script src="{{ asset('assets/js/angular.min.js')}}"></script>
-    <script src="{{ asset('assets/js/bKash-checkout.js')}}"></script>
-    <script src="{{ asset('assets/js/bKash-checkout-sandbox.js')}}"></script>
-
-    </head>
     
     <body ng-app="">
     
