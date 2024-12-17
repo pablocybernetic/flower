@@ -343,7 +343,7 @@
             {{-- <li class="nav-item">
               <a class="nav-link" href="#">Link</a>
             </li> --}}
-            <li style="padding:10px"><a href="/cart"><i class="fa fa-shopping-cart"></i></a></li>
+            <li style="padding:10px"><a href="/cart" ><i class="fa fa-shopping-cart" style="color: #48ff00"></i></a></li>
             <?php
                             
             if(Auth::user())
