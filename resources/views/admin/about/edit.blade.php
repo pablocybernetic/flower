@@ -37,7 +37,7 @@
         <!-- Images -->
         <h4 class="mt-4">Images</h4>
         <div class="form-group">
-            <label for="image1">Image 1 241 by 362px</label>
+            <label for="image1">Image1 241 by 362px</label>
             <input type="file" id="image1" name="image1" class="form-control">
             @if($abouts->image1)
                 <img src="{{ asset($abouts->image1) }}" alt="Image 1" class="mt-2" width="100">
@@ -45,7 +45,7 @@
         </div>
     
         <div class="form-group">
-            <label for="image2">Image 2 337 by 450px</label>
+            <label for="image2">Image2 337 by 450px</label>
             <input type="file" id="image2" name="image2" class="form-control">
             @if($abouts->image2)
                 <img src="{{ asset($abouts->image2) }}" alt="Image 2" class="mt-2" width="100">
@@ -53,7 +53,7 @@
         </div>
     
         <div class="form-group">
-            <label for="image3">Image 3 600 by 401px</label>
+            <label for="image3">Image3 600 by 401px</label>
             <input type="file" id="image3" name="image3" class="form-control">
             @if($abouts->image3)
                 <img src="{{ asset($abouts->image3) }}" alt="Image 3" class="mt-2" width="100">
