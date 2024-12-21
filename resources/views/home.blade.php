@@ -30,14 +30,7 @@
     </div>
     <!-- ***** Main Banner Area End ***** -->
     <style>
-        #searchForm {
-            border: 1px solid #dee2e6;
-            transition: box-shadow 0.3s ease-in-out;
-        }
-
-        #searchForm:hover {
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
+       
 
         #clearFilters {
             transition: background-color 0.3s, color 0.3s;
@@ -56,12 +49,12 @@
     <div class="container mt-5">
         <!-- Search Bar -->
         <div class="mb-4 d-flex justify-content-center">
-            <form id="searchForm" class="p-3 bg-white rounded shadow-lg" action="{{ route('search') }}" method="GET"
+            <form id="searchForm" class="p-3 rounded -lg" action="{{ route('search') }}" method="GET"
                 style="width: 100%; max-width: 500px;">
                 <div class="input-group">
                     <input type="text" name="query" id="searchQuery" class="form-control"
-                        placeholder="Search products">
-                    <button type="submit" class="btn btn-primary">Search</button>
+                        placeholder="Search products" style=" border-radius:2rem;">
+                    <button type="submit" class="" style="border-color: rgba(255, 255, 255, 0)"><i class="fa fa-search text-info" style="height: 14px;"></i></button>
                 </div>
             </form>
         </div>
@@ -89,7 +82,7 @@
             </div>
 
             <!-- Filters Section (Visible by default on desktop, hidden on mobile until toggle is clicked) -->
-            <div class="p-4 rounded shadow-sm bg-light collapse d-lg-block" id="filterSection">
+            <div class="p-4 rounded shado collapse d-lg-block" id="filterSection">
                 <h5 class="mb-3 text-secondary">Filters</h5>
                 <div class="row gy-3">
                     <div class="col-6 col-md-2">
