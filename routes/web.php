@@ -8,6 +8,7 @@ use App\Http\Controllers\BkashController;
 use App\Http\Controllers\ShipmentController;
 use App\Http\Controllers\SslCommerzPaymentController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AboutsController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProductSearchController;
 use App\Http\Controllers\MpesaCallbackController;
@@ -36,7 +37,9 @@ Route::get('/search', [HomeController::class, 'search'])->name('search');
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/about', [HomeController::class, 'about'])->name('home');
+// Route::get('/about', [HomeController::class, 'about'])->name('home');
+Route::get('/about', [AboutsController::class, 'index'])->name('about.index');
+
 
 Route::post("/register/confirm",'App\Http\Controllers\HomeController@register')->name('register/confirm');
 Route::get("/redirects",'App\Http\Controllers\HomeController@redirects');
@@ -277,4 +280,9 @@ Route::prefix('admin/blog')->name('admin.blog.')->middleware('auth')->group(func
 
     // Delete a blog post
     Route::delete('{blogPost}', [BlogPostController::class, 'destroy'])->name('destroy');
+});
+// Group routes that require authentication
+Route::middleware(['auth'])->group(function () {
+    Route::get('admin/about/edit', [AboutsController::class, 'edit'])->name('about.edit');
+    Route::post('about/update', [AboutsController::class, 'update'])->name('about.update');
 });

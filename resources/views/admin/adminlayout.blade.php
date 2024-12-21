@@ -276,7 +276,15 @@
               <span class="menu-title">Charge</span>
             </a>
           </li>
-
+          <li class="nav-item menu-items">
+            <a class="nav-link" href="/admin/about/edit">
+              <span class="menu-icon">
+                <i class="mdi mdi-help-circle"></i>
+              </span>
+              <span class="menu-title">About</span>
+            </a>
+          </li>
+          
           @endif
 
      

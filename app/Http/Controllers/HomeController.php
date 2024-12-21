@@ -123,6 +123,7 @@ class HomeController extends Controller
         ], 200);
     }
     public function about(){
+        
         return view('about');
     }
     public function search(Request $request)
