@@ -30,7 +30,22 @@
     </div>
     <!-- ***** Main Banner Area End ***** -->
     <style>
-       
+           .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px) scale(1.05);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .card img {
+        transition: transform 0.3s ease;
+    }
+
+    .card:hover img {
+        transform: scale(1.1);
+    }
 
         #clearFilters {
             transition: background-color 0.3s, color 0.3s;
@@ -262,17 +277,17 @@
 
             // Function to display the fetched/filtered data
             function displayData(data) {
-                var menuList = $('#searching');
-                menuList.empty();
+        var menuList = $('#searching');
+        menuList.empty();
 
-                if (data.length === 0) {
-                    menuList.append('<p class="text-center">No results found</p>');
-                    return;
-                }
+        if (data.length === 0) {
+            menuList.append('<p class="text-center">No results found</p>');
+            return;
+        }
 
-                $.each(data, function(index, product) {
-                    var card = $('<div>').addClass('col-6 col-md-3 col-lg-3 mb-4');
-                    var cardInnerHtml = `
+        $.each(data, function(index, product) {
+            var card = $('<div>').addClass('col-6 col-md-3 col-lg-3 mb-4');
+            var cardInnerHtml = `
                 <div class="card" style="min-height: auto;">
                     <a href="/menu/${product.id}">
                         <div style="padding-bottom: 100%; position: relative;">
@@ -302,10 +317,10 @@
                     </div>
                 </div>
             `;
-                    card.html(cardInnerHtml);
-                    menuList.append(card);
-                });
-            }
+            card.html(cardInnerHtml);
+            menuList.append(card);
+        });
+    }
 
             // Event listeners
             $('#priceRange').on('input', function() {
