@@ -19,7 +19,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['http://localhost','http://127.0.0.1:8000','https://pandakivuli.co.ke','http://localhost:5173','launch.artcaffemarket.co.ke','artcaffemarket.co.ke'],
+    'allowed_origins' => ['http://localhost','http://127.0.0.1:8000','https://pandakivuli.co.ke','http://localhost:5173','https://launch.artcaffemarket.co.ke','https://artcaffemarket.co.ke'],
 
     'allowed_origins_patterns' => [],
 
