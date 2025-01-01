@@ -9,7 +9,7 @@
         "aws/aws-sdk-php": "^3.218",
         "barryvdh/laravel-cors": "^3.0",
         "barryvdh/laravel-dompdf": "^2.0",
-        "fruitcake/laravel-cors": "^2.0",
+        "fruitcake/laravel-cors": "^3.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.54",
         "laravel/jetstream": "^2.3",
