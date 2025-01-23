@@ -306,9 +306,14 @@
                                 <div class="col">
                                     <input type="number" name="number" class="form-control form-control-sm" value="1" style="width: 50%">
                                 </div>
-                                <div class="col-auto">
+                                 <div class="col-auto">
                                     <button type="submit" class="btn btn-primary btn-sm rounded-circle">
                                         <i class="fa fa-plus"></i>
+                                    </button>
+                                </div>
+                                <div class="col-auto">
+                                    <button type="submit" class="btn btn-success btn-sm rounded-circle">
+                                        <i class="fa fa-whatsapp"></i>
                                     </button>
                                 </div>
                             </div>
