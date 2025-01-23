@@ -312,9 +312,18 @@
                                     </button>
                                 </div>
                                 <div class="col-auto">
-                                    <button type="submit" class="btn btn-success btn-sm rounded-circle">
+<a 
+  href="https://wa.me/254705307007?text=Hello,%0A
+  I%20want%20to%20buy:%0A
+  *${product.name}*%0A
+  Price:%20*${product.price}*%0A
+  Website:%20https://pandakivuli.co.ke/menu/${product.id}" 
+  type="submit" 
+  class="btn btn-success btn-sm rounded-circle">
+  WhatsApp
+</a>
                                         <i class="fa fa-whatsapp"></i>
-                                    </button>
+                                    </a>
                                 </div>
                             </div>
                         </form>
