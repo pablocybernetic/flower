@@ -319,10 +319,7 @@
   Price:%20*${product.price}*%0A
   Website:%20https://pandakivuli.co.ke/menu/${product.id}" 
   type="submit" 
-  class="btn btn-success btn-sm rounded-circle">
-  WhatsApp
-</a>
-                                        <i class="fa fa-whatsapp"></i>
+  class="btn btn-success btn-sm rounded-circle">                                        <i class="fa fa-whatsapp"></i>
                                     </a>
                                 </div>
                             </div>
